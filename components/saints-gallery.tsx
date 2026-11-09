@@ -10,7 +10,7 @@ export function SaintsGallery() {
   const featuredThreeSaints = SAINTS_DATA.slice(0, 3);
 
   return (
-    <section id="saints" className="py-24 relative border-t border-[rgba(194,189,206,0.12)]">
+    <section id="saints" className="py-20 relative border-t border-[rgba(194,189,206,0.12)] scroll-mt-20">
       {/* Background ambient plum glow */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#FF2477]/5 blur-[160px] pointer-events-none rounded-full" />
       <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-[#271C31]/60 blur-[130px] pointer-events-none rounded-full" />

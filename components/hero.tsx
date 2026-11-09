@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { SaintsBookLogo } from "./saintsbook-logo";
 import { SAINTS_DATA } from "@/lib/data";
-import { ArrowDownRight, BookOpen, Sparkles, Calendar, Award, Heart, ArrowRight } from "lucide-react";
+import { ArrowDownRight, BookOpen, Sparkles, Calendar, Award, Heart } from "lucide-react";
 
 export function Hero() {
   const featuredSaint = SAINTS_DATA[0]; // St. Francis of Assisi
@@ -50,22 +50,30 @@ export function Hero() {
               An architectural digital illuminated book dedicated to the stories, divine callings, and enduring legacies of Christian saints. Documenting dates of birth, beatification, canonisation, and annual feast days across two millennia.
             </p>
 
-            {/* Clear Direct Navigation on Page Load to Start Reading */}
+            {/* Clear Direct Navigation on Page Load with Smooth Scroll to Reading Section */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-              <Link
-                href={`/saints/${featuredSaint.id}`}
-                className="px-8 py-3.5 rounded-lg bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-xs uppercase tracking-[0.28em] font-[200] transition-all shadow-[0_0_25px_rgba(255,36,119,0.35)] hover:shadow-[0_0_35px_rgba(255,36,119,0.55)] text-center flex items-center justify-center gap-2 group"
+              <a
+                href="#saints"
+                className="px-8 py-3.5 rounded-lg bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-xs uppercase tracking-[0.28em] font-[200] transition-all shadow-[0_0_25px_rgba(255,36,119,0.35)] hover:shadow-[0_0_35px_rgba(255,36,119,0.55)] text-center flex items-center justify-center gap-2 group cursor-pointer"
               >
-                <span>Start Reading Now</span>
-                <ArrowRight className="w-4 h-4 stroke-[1.5] group-hover:translate-x-1 transition-transform" />
-              </Link>
+                <span>Start Reading</span>
+                <ArrowDownRight className="w-4 h-4 stroke-[1.5] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
+              </a>
 
               <Link
                 href="/saints"
                 className="px-6 py-3.5 rounded-lg border border-[rgba(194,189,206,0.25)] hover:border-[#FF2477] bg-[#433352]/40 hover:bg-[#FF2477]/10 text-xs uppercase tracking-[0.28em] font-[200] text-[#F8F6FA] transition-all flex items-center justify-center gap-2 group"
               >
                 <BookOpen className="w-4 h-4 stroke-[1.5] text-[#FF2477]" />
-                <span>Browse All 12 Saints</span>
+                <span>All 12 Saints</span>
+              </Link>
+
+              <Link
+                href="/calendar"
+                className="px-4 py-3.5 text-xs uppercase tracking-[0.22em] font-[200] text-[#C2BDCE] hover:text-[#FF2477] transition-colors flex items-center justify-center gap-1.5"
+              >
+                <Calendar className="w-3.5 h-3.5 text-[#FF2477]" />
+                <span>Feast Calendar</span>
               </Link>
             </div>
 

@@ -78,6 +78,7 @@
   }
 
   html {
+    scroll-behavior: smooth;
     color-scheme: dark;
     background-color: #3B2D47;
     font-family: var(--font-outfit), "Helvetica Neue", Arial, sans-serif;

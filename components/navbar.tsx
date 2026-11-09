@@ -3,14 +3,11 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { SaintsBookLogo } from "./saintsbook-logo";
-import { BrandIdentityModal } from "./brand-identity-modal";
-import { Sparkles, Menu, X, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [identityModalOpen, setIdentityModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,129 +17,44 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Featured", href: "/#saints" },
-    { label: "All Saints", href: "/saints" },
-    { label: "Feast Calendar", href: "/#calendar" },
-    { label: "Manifesto", href: "/#manifesto" },
-  ];
-
   return (
-    <>
-      <header
-        className={cn(
-          "sticky top-0 z-40 w-full transition-all duration-300",
-          isScrolled
-            ? "bg-[#3B2D47]/90 backdrop-blur-md border-b border-[rgba(194,189,206,0.14)] py-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
-            : "bg-transparent border-b border-transparent py-5"
-        )}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo Brandmark */}
+    <header
+      className={cn(
+        "sticky top-0 z-40 w-full transition-all duration-300",
+        isScrolled
+          ? "bg-[#3B2D47]/95 backdrop-blur-md border-b border-[rgba(194,189,206,0.12)] py-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
+          : "bg-transparent border-b border-transparent py-4 sm:py-5"
+      )}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Brand Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-3 group focus:outline-none"
+          aria-label="SaintsBook Home"
+        >
+          <SaintsBookLogo size="md" glow />
+        </Link>
+
+        {/* Minimal Navigation & Direct Start Reading Action */}
+        <div className="flex items-center gap-3 sm:gap-6">
           <Link
-            href="/"
-            className="flex items-center gap-3 group focus:outline-none"
-            aria-label="SaintsBook Home"
+            href="/calendar"
+            className="flex items-center gap-1.5 text-xs uppercase font-[200] tracking-[0.2em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors"
           >
-            <SaintsBookLogo size="md" glow />
+            <Calendar className="w-3.5 h-3.5 stroke-[1.5]" />
+            <span className="hidden sm:inline">Feast Calendar</span>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-xs uppercase font-[200] tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#FF2477] hover:after:w-full after:transition-all after:duration-300"
-              >
-                {link.label}
-              </Link>
-            ))}
-
-            {/* Design Spec Trigger */}
-            <button
-              onClick={() => setIdentityModalOpen(true)}
-              className="inline-flex items-center gap-1.5 text-xs uppercase font-[200] tracking-[0.22em] text-[#FF2477] px-3 py-1.5 rounded-full border border-[#FF2477]/40 bg-[#FF2477]/10 hover:bg-[#FF2477]/20 hover:border-[#FF2477] transition-all"
-            >
-              <Sparkles className="w-3 h-3 stroke-[1.5]" />
-              <span>Identity Guide</span>
-            </button>
-          </nav>
-
-          {/* Right Action Trigger: Clear Navigation Direct on Page Load */}
-          <div className="hidden sm:flex items-center gap-4">
-            <Link
-              href="/saints"
-              className="relative group overflow-hidden px-4 py-2 rounded-lg border border-[#FF2477]/40 bg-[#FF2477]/15 hover:bg-[#FF2477] text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA] hover:text-white transition-all duration-300 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,36,119,0.2)] hover:shadow-[0_0_25px_rgba(255,36,119,0.5)]"
-            >
-              <span className="relative z-10">Start Reading</span>
-              <ArrowUpRight className="w-3.5 h-3.5 stroke-[1.5] text-[#FF2477] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2">
-            <button
-              onClick={() => setIdentityModalOpen(true)}
-              className="p-2 text-[#FF2477] hover:text-[#ff4b91]"
-              aria-label="View Identity"
-            >
-              <Sparkles className="w-4 h-4 stroke-[1.5]" />
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#C2BDCE] hover:text-[#F8F6FA]"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6 stroke-[1.5]" /> : <Menu className="w-6 h-6 stroke-[1.5]" />}
-            </button>
-          </div>
+          <Link
+            href="/saints"
+            className="px-4 sm:px-5 py-2 rounded-lg bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-xs uppercase tracking-[0.25em] font-[200] transition-all shadow-[0_0_15px_rgba(255,36,119,0.3)] hover:shadow-[0_0_25px_rgba(255,36,119,0.5)] flex items-center gap-1.5 group"
+          >
+            <span>Start Reading</span>
+            <ArrowRight className="w-3.5 h-3.5 stroke-[1.5] group-hover:translate-x-0.5 transition-transform" />
+          </Link>
         </div>
-
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-[#352741] border-b border-[rgba(194,189,206,0.15)] px-6 py-6 space-y-4 animate-in slide-in-from-top-2 duration-200">
-            <div className="space-y-3">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block text-sm uppercase font-[200] tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] py-1.5"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-
-            <div className="pt-4 border-t border-[rgba(194,189,206,0.12)] space-y-3">
-              <Link
-                href="/saints"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center py-2.5 rounded-lg bg-[#FF2477] text-white text-xs uppercase font-[200] tracking-[0.25em]"
-              >
-                Start Reading
-              </Link>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setIdentityModalOpen(true);
-                }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg border border-[#FF2477]/40 text-xs uppercase font-[200] tracking-[0.25em] text-[#FF2477] bg-[#FF2477]/10"
-              >
-                <Sparkles className="w-3.5 h-3.5 stroke-[1.5]" />
-                Identity Guide
-              </button>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Brand Identity Modal */}
-      <BrandIdentityModal
-        isOpen={identityModalOpen}
-        onClose={() => setIdentityModalOpen(false)}
-      />
-    </>
+      </div>
+    </header>
   );
 }
