@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { Monograph } from "@/types/monograph";
-import { SaintsBookLogo } from "./saintsbook-logo";
-import { X, BookOpen, Share2, Check, ArrowLeft, ArrowRight, Bookmark } from "lucide-react";
+import { X, Share2, Check, ArrowLeft, ArrowRight, Bookmark } from "lucide-react";
 
 interface MonographReaderModalProps {
   monograph: Monograph | null;

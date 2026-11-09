@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { SaintsBookLogo } from "./saintsbook-logo";
 import { MONOGRAPHS } from "@/data/monographs";
 import { Monograph } from "@/types/monograph";
-import { ArrowDownRight, BookOpen, Compass, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowDownRight, BookOpen, Sparkles, CheckCircle2 } from "lucide-react";
 
 interface HeroProps {
   onOpenReader: (monograph: Monograph) => void;

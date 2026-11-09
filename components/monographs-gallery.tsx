@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { MONOGRAPHS } from "@/data/monographs";
 import { Category, Monograph } from "@/types/monograph";
-import { BookOpen, Search, ArrowUpRight, Filter, BookmarkCheck } from "lucide-react";
+import { BookOpen, Search, ArrowUpRight, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface MonographsGalleryProps {

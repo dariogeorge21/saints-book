@@ -294,7 +294,7 @@ export function BrandIdentityModal({ isOpen, onClose }: BrandIdentityModalProps)
                       SAINTS / #FF2477
                     </div>
                     <p className="text-[#C2BDCE]/80 leading-relaxed">
-                      Represents active human expression, vitalism, and modern energy. The 'A' is constructed without a crossbar (inverted chevron), giving it an architectural apex.
+                      Represents active human expression, vitalism, and modern energy. The &apos;A&apos; is constructed without a crossbar (inverted chevron), giving it an architectural apex.
                     </p>
                   </div>
 
@@ -304,7 +304,7 @@ export function BrandIdentityModal({ isOpen, onClose }: BrandIdentityModalProps)
                       BOOK / #C2BDCE
                     </div>
                     <p className="text-[#C2BDCE]/80 leading-relaxed">
-                      Represents the timeless archive, literary permanence, and quiet intellect. Circular geometric 'O's reinforce optical harmony and balance.
+                      Represents the timeless archive, literary permanence, and quiet intellect. Circular geometric &apos;O&apos;s reinforce optical harmony and balance.
                     </p>
                   </div>
                 </div>
