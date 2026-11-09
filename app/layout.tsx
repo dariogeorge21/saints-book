@@ -26,6 +26,9 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} h-full antialiased dark`}
     >
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Saints Book" />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-[#3B2D47] text-[#C2BDCE] selection:bg-[#FF2477] selection:text-white">
         {children}
       </body>
