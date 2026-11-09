@@ -3,23 +3,39 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
-import { MonographsGallery } from "@/components/monographs-gallery";
+import { SaintsGallery } from "@/components/saints-gallery";
+import { FeastCalendar } from "@/components/feast-calendar";
 import { Manifesto } from "@/components/manifesto";
-import { ArchiveIndex } from "@/components/archive-index";
 import { Inscription } from "@/components/inscription";
 import { Footer } from "@/components/footer";
-import { MonographReaderModal } from "@/components/monograph-reader-modal";
+import { SaintStoryModal } from "@/components/saint-story-modal";
 import { BrandIdentityModal } from "@/components/brand-identity-modal";
-import { Monograph } from "@/types/monograph";
+import { SAINTS_DATA, Saint } from "@/lib/data";
 
 export default function Home() {
-  const [selectedMonograph, setSelectedMonograph] = useState<Monograph | null>(null);
-  const [readerOpen, setReaderOpen] = useState(false);
+  const [selectedSaint, setSelectedSaint] = useState<Saint | null>(null);
+  const [storyModalOpen, setStoryModalOpen] = useState(false);
   const [identityModalOpen, setIdentityModalOpen] = useState(false);
 
-  const handleOpenReader = (monograph: Monograph) => {
-    setSelectedMonograph(monograph);
-    setReaderOpen(true);
+  const handleOpenSaintStory = (saint: Saint) => {
+    setSelectedSaint(saint);
+    setStoryModalOpen(true);
+  };
+
+  const currentIndex = selectedSaint
+    ? SAINTS_DATA.findIndex((s) => s.id === selectedSaint.id)
+    : -1;
+
+  const handleNextSaint = () => {
+    if (currentIndex >= 0 && currentIndex < SAINTS_DATA.length - 1) {
+      setSelectedSaint(SAINTS_DATA[currentIndex + 1]);
+    }
+  };
+
+  const handlePrevSaint = () => {
+    if (currentIndex > 0) {
+      setSelectedSaint(SAINTS_DATA[currentIndex - 1]);
+    }
   };
 
   return (
@@ -28,32 +44,34 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-1 flex flex-col">
-        {/* Hero Showcase */}
-        <Hero onOpenReader={handleOpenReader} />
+        {/* Hero Section with Featured Saint */}
+        <Hero onOpenSaintStory={handleOpenSaintStory} />
 
-        {/* Curated Monographs & Canon Section */}
-        <section id="curations">
-          <MonographsGallery onOpenReader={handleOpenReader} />
-        </section>
+        {/* The Saints Chronicles Directory */}
+        <SaintsGallery onOpenSaintStory={handleOpenSaintStory} />
 
-        {/* The SaintsBook Manifesto & Aesthetic Principles */}
+        {/* Liturgical Feast Day Calendar & Chronology */}
+        <FeastCalendar onSelectSaint={handleOpenSaintStory} />
+
+        {/* The SaintsBook Aesthetic Manifesto */}
         <Manifesto />
 
-        {/* Archival Index Ledger */}
-        <ArchiveIndex />
-
-        {/* Patron Inscription */}
+        {/* Patron Inscription & Dispatches */}
         <Inscription />
       </main>
 
       {/* Colophon & Footer */}
       <Footer onOpenIdentityGuide={() => setIdentityModalOpen(true)} />
 
-      {/* Interactive Reader Room Modal */}
-      <MonographReaderModal
-        monograph={selectedMonograph}
-        isOpen={readerOpen}
-        onClose={() => setReaderOpen(false)}
+      {/* Multi-Paragraph Sacred Chronicle Modal */}
+      <SaintStoryModal
+        saint={selectedSaint}
+        isOpen={storyModalOpen}
+        onClose={() => setStoryModalOpen(false)}
+        onNavigateNext={handleNextSaint}
+        onNavigatePrev={handlePrevSaint}
+        hasNext={currentIndex < SAINTS_DATA.length - 1}
+        hasPrev={currentIndex > 0}
       />
 
       {/* Visual Identity & Design System Inspector */}

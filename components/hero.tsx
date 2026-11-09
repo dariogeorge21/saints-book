@@ -2,17 +2,16 @@
 
 import React, { useState } from "react";
 import { SaintsBookLogo } from "./saintsbook-logo";
-import { MONOGRAPHS } from "@/data/monographs";
-import { Monograph } from "@/types/monograph";
-import { ArrowDownRight, BookOpen, Sparkles, CheckCircle2 } from "lucide-react";
+import { SAINTS_DATA, Saint } from "@/lib/data";
+import { ArrowDownRight, BookOpen, Sparkles, Calendar, Award, Heart } from "lucide-react";
 
 interface HeroProps {
-  onOpenReader: (monograph: Monograph) => void;
+  onOpenSaintStory: (saint: Saint) => void;
 }
 
-export function Hero({ onOpenReader }: HeroProps) {
-  const featuredMonograph = MONOGRAPHS[0]; // The Geometry of Silence
-  const [activeTab, setActiveTab] = useState<"cover" | "abstract" | "colophon">("cover");
+export function Hero({ onOpenSaintStory }: HeroProps) {
+  const featuredSaint = SAINTS_DATA[0]; // St. Francis of Assisi
+  const [activeTab, setActiveTab] = useState<"dates" | "quote" | "patronage">("dates");
 
   return (
     <section className="relative min-h-[92vh] flex flex-col justify-between pt-12 pb-20 overflow-hidden">
@@ -37,39 +36,39 @@ export function Hero({ onOpenReader }: HeroProps) {
             <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-[rgba(194,189,206,0.18)] bg-[#352741]/80 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF2477] shadow-[0_0_8px_#FF2477]" />
               <span className="text-[11px] font-[200] tracking-[0.3em] uppercase text-[#F8F6FA]">
-                Volume IV • An Archival Monograph Compendium
+                The Illuminated Book of Christian Saints
               </span>
             </div>
 
             {/* Main Editorial Headline */}
             <div className="space-y-4">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-[100] uppercase tracking-[0.14em] sm:tracking-[0.18em] text-[#F8F6FA] leading-[1.18] sm:leading-[1.15]">
-                Where <span className="text-[#FF2477] font-[200]">Silence</span> &amp; Modern Form Resonate
+                Sacred Lives <span className="text-[#FF2477] font-[200]">&amp; Enduring</span> Chronicles
               </h1>
               <div className="h-[1px] w-24 bg-gradient-to-r from-[#FF2477] to-transparent" />
             </div>
 
             {/* Editorial Lead Excerpt */}
             <p className="text-base sm:text-lg font-[200] text-[#C2BDCE] leading-relaxed max-w-xl tracking-wide">
-              SaintsBook operates at the delicate threshold between architectural silence and typographic discipline. We curate rare monographs, permanent physical folios, and avant-garde criticism — bound in geometric pink-on-plum harmony.
+              An architectural digital illuminated book dedicated to the stories, divine callings, and enduring legacies of Christian saints. Documenting dates of birth, beatification, canonisation, and annual feast days across two millennia.
             </p>
 
             {/* Call To Actions */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <a
-                href="#monographs"
-                className="px-8 py-3.5 rounded bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-xs uppercase tracking-[0.28em] font-[200] transition-all shadow-[0_0_25px_rgba(255,36,119,0.35)] hover:shadow-[0_0_35px_rgba(255,36,119,0.55)] text-center flex items-center justify-center gap-2 group"
+                href="#saints"
+                className="px-8 py-3.5 rounded-lg bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-xs uppercase tracking-[0.28em] font-[200] transition-all shadow-[0_0_25px_rgba(255,36,119,0.35)] hover:shadow-[0_0_35px_rgba(255,36,119,0.55)] text-center flex items-center justify-center gap-2 group"
               >
-                <span>Explore Works</span>
+                <span>Explore All Saints</span>
                 <ArrowDownRight className="w-4 h-4 stroke-[1.5] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
               </a>
 
               <button
-                onClick={() => onOpenReader(featuredMonograph)}
-                className="px-6 py-3.5 rounded border border-[rgba(194,189,206,0.25)] hover:border-[#FF2477] bg-[#433352]/40 hover:bg-[#FF2477]/10 text-xs uppercase tracking-[0.28em] font-[200] text-[#F8F6FA] transition-all flex items-center justify-center gap-2 group"
+                onClick={() => onOpenSaintStory(featuredSaint)}
+                className="px-6 py-3.5 rounded-lg border border-[rgba(194,189,206,0.25)] hover:border-[#FF2477] bg-[#433352]/40 hover:bg-[#FF2477]/10 text-xs uppercase tracking-[0.28em] font-[200] text-[#F8F6FA] transition-all flex items-center justify-center gap-2 group"
               >
                 <BookOpen className="w-4 h-4 stroke-[1.5] text-[#FF2477]" />
-                <span>Read Featured Entry</span>
+                <span>Featured: {featuredSaint.name}</span>
               </button>
             </div>
 
@@ -77,162 +76,169 @@ export function Hero({ onOpenReader }: HeroProps) {
             <div className="pt-6 border-t border-[rgba(194,189,206,0.12)] grid grid-cols-3 gap-6 text-left">
               <div>
                 <span className="block text-2xl font-[100] text-[#F8F6FA] tracking-widest">
-                  42
+                  {SAINTS_DATA.length}
                 </span>
                 <span className="text-[10px] font-[200] tracking-[0.25em] uppercase text-[#C2BDCE]/70">
-                  Archived Folios
+                  Canonised Lives
                 </span>
               </div>
               <div>
                 <span className="block text-2xl font-[100] text-[#FF2477] tracking-widest">
-                  100%
+                  365
                 </span>
                 <span className="text-[10px] font-[200] tracking-[0.25em] uppercase text-[#C2BDCE]/70">
-                  Monoline Typo
+                  Feast Days
                 </span>
               </div>
               <div>
                 <span className="block text-2xl font-[100] text-[#F8F6FA] tracking-widest">
-                  #3B2D47
+                  2,000+
                 </span>
                 <span className="text-[10px] font-[200] tracking-[0.25em] uppercase text-[#C2BDCE]/70">
-                  Deep Plum Base
+                  Years Recorded
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Interactive Featured Monograph Card */}
+          {/* Right Column: Interactive Featured Saint Card */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md rounded-xl border border-[rgba(194,189,206,0.2)] bg-[#433352] p-7 shadow-[0_30px_70px_rgba(0,0,0,0.55)] backdrop-blur-md overflow-hidden group">
+            <div className="relative mx-auto max-w-md rounded-2xl border border-[rgba(194,189,206,0.2)] bg-[#433352] p-7 shadow-[0_30px_70px_rgba(0,0,0,0.55)] backdrop-blur-md overflow-hidden group">
               {/* Card Aura */}
               <div className="absolute -top-24 -right-24 w-60 h-60 bg-[#FF2477]/15 rounded-full blur-[80px] pointer-events-none" />
 
-              {/* Monograph Header */}
+              {/* Saint Header Row */}
               <div className="flex items-center justify-between pb-5 border-b border-[rgba(194,189,206,0.12)]">
                 <div className="flex items-center gap-2 text-xs font-[200] tracking-[0.25em] uppercase text-[#FF2477]">
                   <Sparkles className="w-3.5 h-3.5 stroke-[1.5]" />
-                  <span>Featured Release</span>
+                  <span>Featured Saint</span>
                 </div>
-                <span className="text-[10px] font-mono tracking-widest uppercase px-2 py-0.5 rounded bg-[#2e2238] border border-[rgba(194,189,206,0.15)] text-[#C2BDCE]">
-                  {featuredMonograph.catalogNumber}
+                <span className="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[#FF2477]/30 text-[#FF2477]">
+                  Feast: {featuredSaint.feastDate}
                 </span>
               </div>
 
-              {/* Interactive Card View Tabs */}
-              <div className="flex gap-2 my-4 p-1 rounded bg-[#33253e] border border-[rgba(194,189,206,0.1)] text-[10px] uppercase font-[200] tracking-[0.2em]">
+              {/* Saint Title & Epithet */}
+              <div className="py-4 space-y-1.5 text-center">
+                <div className="py-1">
+                  <SaintsBookLogo size="sm" />
+                </div>
+                <h3 className="text-2xl font-[100] tracking-[0.18em] uppercase text-[#F8F6FA] leading-snug">
+                  {featuredSaint.name}
+                </h3>
+                <p className="text-xs font-[200] text-[#FF2477] tracking-[0.14em] uppercase">
+                  {featuredSaint.epithet}
+                </p>
+              </div>
+
+              {/* View Switcher Tabs */}
+              <div className="flex gap-2 my-3 p-1 rounded-lg bg-[#33253e] border border-[rgba(194,189,206,0.1)] text-[10px] uppercase font-[200] tracking-[0.2em]">
                 <button
-                  onClick={() => setActiveTab("cover")}
+                  onClick={() => setActiveTab("dates")}
                   className={`flex-1 py-1.5 rounded transition-colors ${
-                    activeTab === "cover"
+                    activeTab === "dates"
                       ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)]"
                       : "text-[#C2BDCE]/70 hover:text-white"
                   }`}
                 >
-                  Monograph
+                  Key Dates
                 </button>
                 <button
-                  onClick={() => setActiveTab("abstract")}
+                  onClick={() => setActiveTab("quote")}
                   className={`flex-1 py-1.5 rounded transition-colors ${
-                    activeTab === "abstract"
+                    activeTab === "quote"
                       ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)]"
                       : "text-[#C2BDCE]/70 hover:text-white"
                   }`}
                 >
-                  Abstract
+                  Reflection
                 </button>
                 <button
-                  onClick={() => setActiveTab("colophon")}
+                  onClick={() => setActiveTab("patronage")}
                   className={`flex-1 py-1.5 rounded transition-colors ${
-                    activeTab === "colophon"
+                    activeTab === "patronage"
                       ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)]"
                       : "text-[#C2BDCE]/70 hover:text-white"
                   }`}
                 >
-                  Colophon
+                  Patronage
                 </button>
               </div>
 
-              {/* View 1: Cover Presentation */}
-              {activeTab === "cover" && (
-                <div className="space-y-6 py-2 animate-in fade-in duration-200">
-                  <div className="p-6 rounded-lg bg-[#30233b] border border-[rgba(194,189,206,0.14)] text-center space-y-4">
-                    <div className="text-[10px] uppercase font-[200] tracking-[0.35em] text-[#C2BDCE]/70">
-                      SaintsBook Monograph Folio
-                    </div>
-
-                    <div className="py-2">
-                      <SaintsBookLogo size="sm" />
-                    </div>
-
-                    <div className="h-[1px] w-12 mx-auto bg-[#FF2477]/40" />
-
-                    <h3 className="text-xl sm:text-2xl font-[100] tracking-[0.2em] uppercase text-[#F8F6FA] leading-snug">
-                      {featuredMonograph.title}
-                    </h3>
-
-                    <p className="text-xs font-[200] text-[#FF2477] tracking-[0.15em] uppercase">
-                      By {featuredMonograph.author}
-                    </p>
-                  </div>
-
-                  <blockquote className="border-l border-[#FF2477] pl-4 py-1 text-xs font-[200] italic text-[#C2BDCE] leading-relaxed">
-                    {featuredMonograph.pullQuote}
-                  </blockquote>
-                </div>
-              )}
-
-              {/* View 2: Abstract */}
-              {activeTab === "abstract" && (
-                <div className="space-y-4 py-2 animate-in fade-in duration-200">
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#FF2477] block">
-                    Curatorial Summary
-                  </span>
-                  <p className="text-xs font-[200] text-[#F8F6FA] leading-relaxed tracking-wide">
-                    {featuredMonograph.abstract}
-                  </p>
-                  <div className="p-3 rounded bg-[#33253e] border border-[rgba(194,189,206,0.1)] text-[11px] font-[200] text-[#C2BDCE]">
-                    <span className="text-[#FF2477]">Key Thesis: </span>
-                    {featuredMonograph.excerpt}
-                  </div>
-                </div>
-              )}
-
-              {/* View 3: Colophon */}
-              {activeTab === "colophon" && (
-                <div className="space-y-3 py-2 text-xs font-[200] animate-in fade-in duration-200">
-                  <div className="flex justify-between py-1.5 border-b border-[rgba(194,189,206,0.1)]">
-                    <span className="text-[#C2BDCE]/70 tracking-widest uppercase">Format</span>
-                    <span className="text-[#F8F6FA] text-right">{featuredMonograph.editionDetails.format}</span>
-                  </div>
-                  <div className="flex justify-between py-1.5 border-b border-[rgba(194,189,206,0.1)]">
-                    <span className="text-[#C2BDCE]/70 tracking-widest uppercase">Extent</span>
-                    <span className="text-[#F8F6FA]">{featuredMonograph.editionDetails.pages} Pages</span>
-                  </div>
-                  <div className="flex justify-between py-1.5 border-b border-[rgba(194,189,206,0.1)]">
-                    <span className="text-[#C2BDCE]/70 tracking-widest uppercase">Curator</span>
-                    <span className="text-[#F8F6FA]">{featuredMonograph.editionDetails.curator}</span>
-                  </div>
-                  <div className="flex justify-between py-1.5 border-b border-[rgba(194,189,206,0.1)]">
-                    <span className="text-[#C2BDCE]/70 tracking-widest uppercase">Status</span>
-                    <span className="text-[#FF2477] font-[300] tracking-wider flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      {featuredMonograph.editionDetails.stock}
+              {/* Tab 1: Key Dates */}
+              {activeTab === "dates" && (
+                <div className="space-y-2.5 py-2 animate-in fade-in duration-200 text-xs font-[200]">
+                  <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px]">
+                      <Calendar className="w-3 h-3 text-[#FF2477]" /> Date of Birth
                     </span>
+                    <span className="text-[#F8F6FA]">{featuredSaint.dateOfBirth}</span>
+                  </div>
+                  <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px]">
+                      <Sparkles className="w-3 h-3 text-[#FF2477]" /> Beatified Date
+                    </span>
+                    <span className="text-[#F8F6FA] text-right">{featuredSaint.beatifiedDate}</span>
+                  </div>
+                  <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px]">
+                      <Award className="w-3 h-3 text-[#FF2477]" /> Canonised Date
+                    </span>
+                    <span className="text-[#F8F6FA] text-right">{featuredSaint.canonisedDate}</span>
+                  </div>
+                  <div className="p-2.5 rounded-lg bg-[#463354] border border-[#FF2477]/40 flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-[#FF2477] uppercase tracking-wider text-[10px]">
+                      <Heart className="w-3 h-3 text-[#FF2477]" /> Feast Day
+                    </span>
+                    <span className="text-white font-mono">{featuredSaint.feastDate}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 2: Quote */}
+              {activeTab === "quote" && (
+                <div className="space-y-4 py-2 animate-in fade-in duration-200">
+                  <blockquote className="border-l-2 border-[#FF2477] pl-4 py-1 text-xs font-[200] italic text-[#C2BDCE] leading-relaxed">
+                    “{featuredSaint.quote}”
+                  </blockquote>
+                  <p className="text-[11px] font-[200] text-[#C2BDCE]/80 leading-relaxed">
+                    {featuredSaint.story[0]}
+                  </p>
+                </div>
+              )}
+
+              {/* Tab 3: Patronage */}
+              {activeTab === "patronage" && (
+                <div className="space-y-3 py-2 animate-in fade-in duration-200 text-xs font-[200]">
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#FF2477] block">
+                    Patron Of
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {featuredSaint.patronage.map((p) => (
+                      <span
+                        key={p}
+                        className="px-2.5 py-1 rounded-full bg-[#352741] border border-[rgba(194,189,206,0.15)] text-[#F8F6FA] text-[10px] tracking-wider"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="pt-2 text-[10px] text-[#C2BDCE]/70">
+                    <span className="text-[#FF2477]">Era: </span> {featuredSaint.era} ({featuredSaint.location})
                   </div>
                 </div>
               )}
 
               {/* Card Footer Action */}
               <div className="pt-5 mt-4 border-t border-[rgba(194,189,206,0.12)] flex items-center justify-between">
-                <div className="text-[10px] uppercase font-[200] tracking-[0.25em] text-[#C2BDCE]/70">
-                  {featuredMonograph.readTime}
-                </div>
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C2BDCE]/70">
+                  {featuredSaint.story.length} Story Chapters
+                </span>
                 <button
-                  onClick={() => onOpenReader(featuredMonograph)}
+                  onClick={() => onOpenSaintStory(featuredSaint)}
                   className="inline-flex items-center gap-1.5 text-xs uppercase font-[200] tracking-[0.22em] text-[#FF2477] hover:text-[#ff4b91] transition-colors"
                 >
-                  <span>Open Full Monograph</span>
+                  <span>Read Full Story</span>
                   <ArrowDownRight className="w-3.5 h-3.5 stroke-[1.5]" />
                 </button>
               </div>
@@ -241,19 +247,19 @@ export function Hero({ onOpenReader }: HeroProps) {
         </div>
       </div>
 
-      {/* Subtle Ticker at bottom of hero */}
+      {/* Liturgical Ticker */}
       <div className="w-full border-y border-[rgba(194,189,206,0.12)] bg-[#33253e]/60 py-3 mt-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between text-[10px] sm:text-[11px] font-[200] uppercase tracking-[0.3em] text-[#C2BDCE]/80 overflow-x-auto whitespace-nowrap gap-8">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF2477]" />
-            <span>SAINTSBOOK ARCHIVE</span>
+            <span>SAINTSBOOK DIGITAL ARCHIVE</span>
           </div>
           <span className="text-[#FF2477]">•</span>
-          <span>HAIRLINE GEOMETRIC PURITY</span>
+          <span>DATES OF BIRTH &amp; BEATIFICATION</span>
           <span className="text-[#FF2477]">•</span>
-          <span>PINK ON DEEP PLUM IDENTITY</span>
+          <span>SOLEMN CANONISATIONS &amp; FEAST DAYS</span>
           <span className="text-[#FF2477]">•</span>
-          <span>GLOBAL CIRCULATION VOL. IV</span>
+          <span>MULTI-PARAGRAPH SACRED STORIES</span>
         </div>
       </div>
     </section>

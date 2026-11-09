@@ -21,10 +21,10 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Curations", href: "#curations" },
-    { label: "Monographs", href: "#monographs" },
+    { label: "Saints Chronicles", href: "#saints" },
+    { label: "Feast Calendar", href: "#calendar" },
     { label: "Manifesto", href: "#manifesto" },
-    { label: "Archive Index", href: "#archive" },
+    { label: "Patron Register", href: "#inscription" },
   ];
 
   return (
@@ -73,7 +73,7 @@ export function Navbar() {
           <div className="hidden sm:flex items-center gap-4">
             <a
               href="#inscription"
-              className="relative group overflow-hidden px-4 py-2 rounded border border-[rgba(194,189,206,0.25)] bg-[#433352]/50 hover:border-[#FF2477] text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA] transition-all duration-300 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,36,119,0.15)] hover:shadow-[0_0_20px_rgba(255,36,119,0.3)]"
+              className="relative group overflow-hidden px-4 py-2 rounded-lg border border-[rgba(194,189,206,0.25)] bg-[#433352]/50 hover:border-[#FF2477] text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA] transition-all duration-300 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,36,119,0.15)] hover:shadow-[0_0_20px_rgba(255,36,119,0.3)]"
             >
               <span className="relative z-10">Inscribe</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[1.5] text-[#FF2477] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -122,7 +122,7 @@ export function Navbar() {
                   setMobileMenuOpen(false);
                   setIdentityModalOpen(true);
                 }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded border border-[#FF2477]/40 text-xs uppercase font-[200] tracking-[0.25em] text-[#FF2477] bg-[#FF2477]/10"
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg border border-[#FF2477]/40 text-xs uppercase font-[200] tracking-[0.25em] text-[#FF2477] bg-[#FF2477]/10"
               >
                 <Sparkles className="w-3.5 h-3.5 stroke-[1.5]" />
                 Identity Guide
@@ -130,7 +130,7 @@ export function Navbar() {
               <a
                 href="#inscription"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center py-2.5 rounded bg-[#FF2477] text-white text-xs uppercase font-[200] tracking-[0.25em]"
+                className="w-full flex items-center justify-center py-2.5 rounded-lg bg-[#FF2477] text-white text-xs uppercase font-[200] tracking-[0.25em]"
               >
                 Inscribe as Patron
               </a>

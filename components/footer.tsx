@@ -27,7 +27,7 @@ export function Footer({ onOpenIdentityGuide }: FooterProps) {
           <div className="md:col-span-5 space-y-4">
             <SaintsBookLogo size="lg" glow />
             <p className="text-xs font-[200] text-[#C2BDCE] leading-relaxed max-w-sm tracking-wide mt-3">
-              An independent cultural archive dedicated to contemporary architectural silence, monoline typographic purity, and enduring critical thought.
+              An architectural digital illuminated book chronicling the holy lives, milestones, and enduring stories of Christian saints.
             </p>
             <div className="flex items-center gap-3 pt-2 text-[10px] font-mono tracking-widest text-[#FF2477]">
               <span>#3B2D47</span>
@@ -41,25 +41,25 @@ export function Footer({ onOpenIdentityGuide }: FooterProps) {
           {/* Nav Column 1 */}
           <div className="md:col-span-2 space-y-3">
             <h4 className="text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA]">
-              Curations
+              Saints Canon
             </h4>
             <ul className="space-y-2 text-xs font-[200] tracking-wider text-[#C2BDCE]/80">
-              <li><a href="#monographs" className="hover:text-[#FF2477] transition-colors">Monographs</a></li>
-              <li><a href="#monographs" className="hover:text-[#FF2477] transition-colors">Architecture</a></li>
-              <li><a href="#monographs" className="hover:text-[#FF2477] transition-colors">Typography</a></li>
-              <li><a href="#monographs" className="hover:text-[#FF2477] transition-colors">Criticism</a></li>
+              <li><a href="#saints" className="hover:text-[#FF2477] transition-colors">Early Church</a></li>
+              <li><a href="#saints" className="hover:text-[#FF2477] transition-colors">Medieval Saints</a></li>
+              <li><a href="#saints" className="hover:text-[#FF2477] transition-colors">Reformation Era</a></li>
+              <li><a href="#saints" className="hover:text-[#FF2477] transition-colors">Modern Saints</a></li>
             </ul>
           </div>
 
           {/* Nav Column 2 */}
           <div className="md:col-span-2 space-y-3">
             <h4 className="text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA]">
-              Archive
+              Ledger
             </h4>
             <ul className="space-y-2 text-xs font-[200] tracking-wider text-[#C2BDCE]/80">
-              <li><a href="#archive" className="hover:text-[#FF2477] transition-colors">Ledger Index</a></li>
+              <li><a href="#calendar" className="hover:text-[#FF2477] transition-colors">Feast Calendar</a></li>
               <li><a href="#manifesto" className="hover:text-[#FF2477] transition-colors">Manifesto</a></li>
-              <li><a href="#inscription" className="hover:text-[#FF2477] transition-colors">Patron Vault</a></li>
+              <li><a href="#inscription" className="hover:text-[#FF2477] transition-colors">Patron Register</a></li>
               <li>
                 <button
                   onClick={onOpenIdentityGuide}
@@ -78,8 +78,8 @@ export function Footer({ onOpenIdentityGuide }: FooterProps) {
             </h4>
             <div className="text-[11px] font-[200] space-y-1.5 text-[#C2BDCE]/70 leading-relaxed">
               <p>Typeface: Geometric Sans (Outfit ExtraLight)</p>
-              <p>Format: Physical 120gsm Munken &amp; Digital Monograph</p>
-              <p>ISSN: 2831-9042 // Volume IV</p>
+              <p>Palette: Deep Plum (#3B2D47) &amp; Neon Pink (#FF2477)</p>
+              <p>Data Source: lib/data.ts</p>
               <p className="font-mono text-[10px] text-[#FF2477] pt-1">
                 40.7128° N, 74.0060° W // ZURICH • NY
               </p>
