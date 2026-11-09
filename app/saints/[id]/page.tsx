@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { SAINTS_DATA } from "@/lib/data";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { ArrowLeft, ArrowRight, Calendar, Sparkles, Award, Heart } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Sparkles, Award, Heart, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -70,9 +70,20 @@ export default async function SaintStoryPage({
 
           {/* Saint Masthead Title */}
           <header className="space-y-5 text-center max-w-3xl mx-auto">
-            <span className="inline-block text-xs uppercase font-[200] tracking-[0.35em] text-[#FF2477]">
-              {saint.era} • {saint.location}
-            </span>
+            <div className="flex items-center justify-center gap-2 text-xs uppercase font-[200] tracking-[0.28em] text-[#FF2477] flex-wrap">
+              <span>{saint.era}</span>
+              <span>•</span>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(saint.location)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 underline underline-offset-4 decoration-[#FF2477]/40 hover:text-white hover:decoration-[#FF2477] transition-colors"
+                title={`View ${saint.location} on Google Maps`}
+              >
+                <MapPin className="w-3.5 h-3.5 stroke-[1.5] text-[#FF2477]" />
+                <span>{saint.location}</span>
+              </a>
+            </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-[100] uppercase tracking-[0.16em] text-[#F8F6FA] leading-tight">
               {saint.name}
@@ -194,6 +205,20 @@ export default async function SaintStoryPage({
                 {saint.attributes}
               </p>
             )}
+
+            <div className="pt-2 border-t border-[rgba(194,189,206,0.08)] flex items-center justify-between text-xs font-[200] flex-wrap gap-2">
+              <span className="text-[10px] uppercase tracking-[0.25em] text-[#C2BDCE]/60">Historical Location</span>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(saint.location)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#F8F6FA] hover:text-[#FF2477] underline underline-offset-4 decoration-[#FF2477]/40 flex items-center gap-1.5 transition-colors"
+                title={`Open ${saint.location} on Google Maps`}
+              >
+                <MapPin className="w-3.5 h-3.5 stroke-[1.5] text-[#FF2477]" />
+                <span>{saint.location}</span>
+              </a>
+            </div>
           </div>
 
           {/* Sequential Saint Navigation */}

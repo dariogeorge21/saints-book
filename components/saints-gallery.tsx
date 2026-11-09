@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { SAINTS_DATA } from "@/lib/data";
-import { ArrowUpRight, ArrowRight, Calendar, Award } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Calendar, Award, MapPin } from "lucide-react";
 
 export function SaintsGallery() {
   // Landing page displays exactly 3 featured saints as requested
@@ -50,14 +50,21 @@ export function SaintsGallery() {
               <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-[#FF2477] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="space-y-5">
-                {/* Feast Date & Era Badge */}
-                <div className="flex items-center justify-between text-[11px] font-[200]">
+                {/* Feast Date & Clickable Location Anchor */}
+                <div className="flex items-center justify-between text-[11px] font-[200] gap-2 flex-wrap">
                   <span className="px-2.5 py-1 rounded-full bg-[#FF2477]/15 border border-[#FF2477]/30 text-[#FF2477] font-mono tracking-wider uppercase text-[10px]">
                     Feast: {saint.feastDate}
                   </span>
-                  <span className="text-[10px] tracking-widest uppercase text-[#C2BDCE]/70">
-                    {saint.era}
-                  </span>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(saint.location)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[10px] tracking-wider uppercase text-[#C2BDCE]/70 hover:text-[#FF2477] transition-colors underline underline-offset-2 decoration-[rgba(194,189,206,0.2)] hover:decoration-[#FF2477]"
+                    title={`View ${saint.location} on Google Maps`}
+                  >
+                    <MapPin className="w-3 h-3 text-[#FF2477] stroke-[1.5]" />
+                    <span className="line-clamp-1">{saint.location}</span>
+                  </a>
                 </div>
 
                 {/* Saint Name & Epithet */}

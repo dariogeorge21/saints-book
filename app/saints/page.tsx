@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SAINTS_DATA } from "@/lib/data";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { Search, Filter, ArrowUpRight, ArrowLeft, Calendar, Award } from "lucide-react";
+import { Search, Filter, ArrowUpRight, ArrowLeft, Calendar, Award, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function AllSaintsPage() {
@@ -110,14 +110,21 @@ export default function AllSaintsPage() {
                 className="group relative rounded-2xl border border-[rgba(194,189,206,0.15)] bg-[#433352]/60 hover:bg-[#433352] p-7 flex flex-col justify-between transition-all duration-300 hover:border-[#FF2477]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:-translate-y-1"
               >
                 <div className="space-y-5">
-                  {/* Top Meta */}
-                  <div className="flex items-center justify-between text-[11px] font-[200]">
+                  {/* Top Meta: Feast Date & Clickable Location Anchor */}
+                  <div className="flex items-center justify-between text-[11px] font-[200] gap-2 flex-wrap">
                     <span className="px-2.5 py-1 rounded-full bg-[#FF2477]/15 border border-[#FF2477]/30 text-[#FF2477] font-mono tracking-wider uppercase text-[10px]">
                       Feast: {saint.feastDate}
                     </span>
-                    <span className="text-[10px] tracking-widest uppercase text-[#C2BDCE]/70">
-                      {saint.era}
-                    </span>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(saint.location)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[10px] tracking-wider uppercase text-[#C2BDCE]/70 hover:text-[#FF2477] transition-colors underline underline-offset-2 decoration-[rgba(194,189,206,0.2)] hover:decoration-[#FF2477]"
+                      title={`View ${saint.location} on Google Maps`}
+                    >
+                      <MapPin className="w-3 h-3 text-[#FF2477] stroke-[1.5]" />
+                      <span className="line-clamp-1">{saint.location}</span>
+                    </a>
                   </div>
 
                   {/* Name & Epithet */}

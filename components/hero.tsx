@@ -228,8 +228,19 @@ export function Hero() {
                       </span>
                     ))}
                   </div>
-                  <div className="pt-2 text-[10px] text-[#C2BDCE]/70">
-                    <span className="text-[#FF2477]">Era: </span> {featuredSaint.era} ({featuredSaint.location})
+                  <div className="pt-2 text-[10px] text-[#C2BDCE]/70 flex items-center gap-1">
+                    <span className="text-[#FF2477]">Era: </span>
+                    <span>{featuredSaint.era} (</span>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(featuredSaint.location)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 decoration-[#FF2477]/40 hover:text-[#FF2477] transition-colors"
+                      title={`View ${featuredSaint.location} on Google Maps`}
+                    >
+                      {featuredSaint.location}
+                    </a>
+                    <span>)</span>
                   </div>
                 </div>
               )}
