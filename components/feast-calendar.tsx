@@ -1,15 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { SAINTS_DATA, Saint } from "@/lib/data";
+import Link from "next/link";
+import { SAINTS_DATA } from "@/lib/data";
 import { ArrowUpRight, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface FeastCalendarProps {
-  onSelectSaint: (saint: Saint) => void;
-}
-
-export function FeastCalendar({ onSelectSaint }: FeastCalendarProps) {
+export function FeastCalendar() {
   const [selectedMonth, setSelectedMonth] = useState<string>("ALL");
   const [search, setSearch] = useState("");
 
@@ -38,9 +35,9 @@ export function FeastCalendar({ onSelectSaint }: FeastCalendarProps) {
 
   return (
     <section id="calendar" className="py-24 relative border-t border-[rgba(194,189,206,0.12)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative space-y-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[rgba(194,189,206,0.14)]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[rgba(194,189,206,0.14)]">
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 text-xs font-[200] tracking-[0.3em] uppercase text-[#FF2477]">
               <span>[ LITURGICAL LEDGER &amp; CHRONOLOGY ]</span>
@@ -66,7 +63,7 @@ export function FeastCalendar({ onSelectSaint }: FeastCalendarProps) {
         </div>
 
         {/* Month Filter Pills */}
-        <div className="flex gap-2 py-6 overflow-x-auto text-xs uppercase font-[200] tracking-[0.2em] no-scrollbar">
+        <div className="flex gap-2 py-2 overflow-x-auto text-xs uppercase font-[200] tracking-[0.2em] no-scrollbar">
           {months.map((m) => (
             <button
               key={m}
@@ -83,7 +80,7 @@ export function FeastCalendar({ onSelectSaint }: FeastCalendarProps) {
           ))}
         </div>
 
-        {/* Table of Saints */}
+        {/* Table of Saints with Direct Page Links */}
         <div className="rounded-2xl border border-[rgba(194,189,206,0.16)] bg-[#433352]/40 overflow-hidden shadow-2xl backdrop-blur-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-[200]">
@@ -102,14 +99,18 @@ export function FeastCalendar({ onSelectSaint }: FeastCalendarProps) {
                 {filtered.map((s) => (
                   <tr
                     key={s.id}
-                    onClick={() => onSelectSaint(s)}
-                    className="hover:bg-[#433352]/90 transition-colors group cursor-pointer"
+                    className="hover:bg-[#433352]/90 transition-colors group"
                   >
                     <td className="py-4 px-6 font-mono text-[11px] text-[#FF2477] tracking-wider whitespace-nowrap">
                       {s.feastDate}
                     </td>
                     <td className="py-4 px-6 text-[#F8F6FA] uppercase tracking-[0.14em] font-[200] whitespace-nowrap">
-                      {s.name}
+                      <Link
+                        href={`/saints/${s.id}`}
+                        className="hover:text-[#FF2477] transition-colors"
+                      >
+                        {s.name}
+                      </Link>
                     </td>
                     <td className="py-4 px-6 text-[#C2BDCE]/80 tracking-wide whitespace-nowrap">
                       {s.dateOfBirth}
@@ -126,16 +127,13 @@ export function FeastCalendar({ onSelectSaint }: FeastCalendarProps) {
                       </span>
                     </td>
                     <td className="py-4 px-6 text-right">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSelectSaint(s);
-                        }}
+                      <Link
+                        href={`/saints/${s.id}`}
                         className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] text-[#C2BDCE] group-hover:text-[#FF2477] transition-colors"
                       >
-                        <span>Read</span>
+                        <span>Dedicated Page</span>
                         <ArrowUpRight className="w-3.5 h-3.5 stroke-[1.5]" />
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}

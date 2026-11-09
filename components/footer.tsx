@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { SaintsBookLogo } from "./saintsbook-logo";
 import { ArrowUp } from "lucide-react";
 
 interface FooterProps {
-  onOpenIdentityGuide: () => void;
+  onOpenIdentityGuide?: () => void;
 }
 
 export function Footer({ onOpenIdentityGuide }: FooterProps) {
@@ -61,12 +62,21 @@ export function Footer({ onOpenIdentityGuide }: FooterProps) {
               <li><a href="#manifesto" className="hover:text-[#FF2477] transition-colors">Manifesto</a></li>
               <li><a href="#inscription" className="hover:text-[#FF2477] transition-colors">Patron Register</a></li>
               <li>
-                <button
-                  onClick={onOpenIdentityGuide}
-                  className="hover:text-[#FF2477] text-left transition-colors uppercase tracking-[0.16em]"
-                >
-                  Identity Guide
-                </button>
+                {onOpenIdentityGuide ? (
+                  <button
+                    onClick={onOpenIdentityGuide}
+                    className="hover:text-[#FF2477] text-left transition-colors uppercase tracking-[0.16em]"
+                  >
+                    Identity Guide
+                  </button>
+                ) : (
+                  <Link
+                    href="/#manifesto"
+                    className="hover:text-[#FF2477] text-left transition-colors uppercase tracking-[0.16em]"
+                  >
+                    Manifesto
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

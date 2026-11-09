@@ -21,10 +21,10 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Saints Chronicles", href: "#saints" },
-    { label: "Feast Calendar", href: "#calendar" },
-    { label: "Manifesto", href: "#manifesto" },
-    { label: "Patron Register", href: "#inscription" },
+    { label: "Featured", href: "/#saints" },
+    { label: "All Saints", href: "/saints" },
+    { label: "Feast Calendar", href: "/#calendar" },
+    { label: "Manifesto", href: "/#manifesto" },
   ];
 
   return (
@@ -50,13 +50,13 @@ export function Navbar() {
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="text-xs uppercase font-[200] tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#FF2477] hover:after:w-full after:transition-all after:duration-300"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
 
             {/* Design Spec Trigger */}
@@ -69,16 +69,15 @@ export function Navbar() {
             </button>
           </nav>
 
-          {/* Right Action Trigger */}
+          {/* Right Action Trigger: Clear Navigation Direct on Page Load */}
           <div className="hidden sm:flex items-center gap-4">
-            <a
-              href="#inscription"
-              className="relative group overflow-hidden px-4 py-2 rounded-lg border border-[rgba(194,189,206,0.25)] bg-[#433352]/50 hover:border-[#FF2477] text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA] transition-all duration-300 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,36,119,0.15)] hover:shadow-[0_0_20px_rgba(255,36,119,0.3)]"
+            <Link
+              href="/saints"
+              className="relative group overflow-hidden px-4 py-2 rounded-lg border border-[#FF2477]/40 bg-[#FF2477]/15 hover:bg-[#FF2477] text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA] hover:text-white transition-all duration-300 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,36,119,0.2)] hover:shadow-[0_0_25px_rgba(255,36,119,0.5)]"
             >
-              <span className="relative z-10">Inscribe</span>
-              <ArrowUpRight className="w-3.5 h-3.5 stroke-[1.5] text-[#FF2477] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#FF2477]/10 to-[#FF2477]/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
+              <span className="relative z-10">Start Reading</span>
+              <ArrowUpRight className="w-3.5 h-3.5 stroke-[1.5] text-[#FF2477] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,18 +104,25 @@ export function Navbar() {
           <div className="md:hidden bg-[#352741] border-b border-[rgba(194,189,206,0.15)] px-6 py-6 space-y-4 animate-in slide-in-from-top-2 duration-200">
             <div className="space-y-3">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-sm uppercase font-[200] tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] py-1.5"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
 
             <div className="pt-4 border-t border-[rgba(194,189,206,0.12)] space-y-3">
+              <Link
+                href="/saints"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center py-2.5 rounded-lg bg-[#FF2477] text-white text-xs uppercase font-[200] tracking-[0.25em]"
+              >
+                Start Reading
+              </Link>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
@@ -127,13 +133,6 @@ export function Navbar() {
                 <Sparkles className="w-3.5 h-3.5 stroke-[1.5]" />
                 Identity Guide
               </button>
-              <a
-                href="#inscription"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center py-2.5 rounded-lg bg-[#FF2477] text-white text-xs uppercase font-[200] tracking-[0.25em]"
-              >
-                Inscribe as Patron
-              </a>
             </div>
           </div>
         )}
