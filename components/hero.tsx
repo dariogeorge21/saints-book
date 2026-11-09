@@ -232,7 +232,7 @@ export function Hero({ onOpenSaintStory }: HeroProps) {
               {/* Card Footer Action */}
               <div className="pt-5 mt-4 border-t border-[rgba(194,189,206,0.12)] flex items-center justify-between">
                 <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C2BDCE]/70">
-                  {featuredSaint.story.length} Story Chapters
+                  Full Sacred Chronicle
                 </span>
                 <button
                   onClick={() => onOpenSaintStory(featuredSaint)}

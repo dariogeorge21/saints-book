@@ -228,7 +228,7 @@ export function SaintStoryModal({
           </div>
 
           {/* Multiple Paragraphs of the Saint's Story */}
-          <div className="max-w-2xl mx-auto space-y-8 pt-4">
+          <div className="max-w-2xl mx-auto space-y-6 pt-4">
             <div className="flex items-center gap-4">
               <span className="text-xs uppercase font-[200] tracking-[0.3em] text-[#FF2477]">
                 The Story &amp; Divine Life
@@ -236,17 +236,15 @@ export function SaintStoryModal({
               <div className="flex-1 h-[1px] bg-[rgba(194,189,206,0.12)]" />
             </div>
 
-            <div className="space-y-6">
+            {/* Paragraphs with natural editorial gaps and no numeric labels */}
+            <div className="space-y-7 pt-2">
               {saint.story.map((paragraph, index) => (
-                <div key={index} className="relative pl-6 border-l border-[rgba(194,189,206,0.15)] space-y-2">
-                  <span className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-[#FF2477]/80" />
-                  <span className="text-[10px] font-mono tracking-widest uppercase text-[#FF2477]">
-                    Paragraph {index + 1}
-                  </span>
-                  <p className={`font-[300] tracking-wide text-[#C2BDCE] ${fontSizeClasses}`}>
-                    {paragraph}
-                  </p>
-                </div>
+                <p
+                  key={index}
+                  className={`font-[300] tracking-wide text-[#C2BDCE] ${fontSizeClasses}`}
+                >
+                  {paragraph}
+                </p>
               ))}
             </div>
           </div>
