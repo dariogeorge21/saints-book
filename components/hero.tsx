@@ -231,7 +231,7 @@ export function Hero() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 className={cn(
-                  "relative mx-auto w-full rounded-2xl border border-[rgba(194,189,206,0.18)] bg-[#433352]/90 p-7 shadow-[0_30px_70px_rgba(0,0,0,0.55)] backdrop-blur-md overflow-hidden select-none",
+                  "relative mx-auto w-full rounded-2xl border border-[rgba(194,189,206,0.18)] bg-[#433352]/90 p-5 sm:p-7 shadow-[0_30px_70px_rgba(0,0,0,0.55)] backdrop-blur-md overflow-hidden select-none",
                   isFlipping &&
                     (flipDirection === "next"
                       ? "animate-saint-3d-next"
@@ -284,17 +284,16 @@ export function Hero() {
                 )}
 
                 {/* Saint Header Row: Featured Badge & Dynamic Feast Date */}
-                <div className="flex items-center justify-between pb-4 border-b border-[rgba(194,189,206,0.12)]">
-                  <div className="flex items-center gap-2 text-xs font-[200] tracking-[0.25em] uppercase text-[#FF2477]">
-                    <Sparkles className="w-3.5 h-3.5 stroke-[1.5] animate-pulse" />
+                <div className="flex flex-wrap items-center justify-between gap-2.5 pb-4 border-b border-[rgba(194,189,206,0.12)]">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-[200] tracking-[0.16em] sm:tracking-[0.25em] uppercase text-[#FF2477] shrink-0 min-w-0">
+                    <Sparkles className="w-3.5 h-3.5 stroke-[1.5] animate-pulse shrink-0" />
                     <span>{t("gallery.badge")}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[#FF2477]/30 text-[#FF2477]">
-                      {String(currentIndex + 1).padStart(2, "0")} /{" "}
-                      {String(SAINTS_DATA.length).padStart(2, "0")}
+                  <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                    <span className="text-[10px] font-mono tracking-wider sm:tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[#FF2477]/30 text-[#FF2477] whitespace-nowrap shrink-0 leading-none">
+                      {String(currentIndex + 1).padStart(2, "0")}&nbsp;/&nbsp;{String(SAINTS_DATA.length).padStart(2, "0")}
                     </span>
-                    <span className="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[rgba(194,189,206,0.15)] text-[#C2BDCE]">
+                    <span className="text-[10px] font-mono tracking-wider sm:tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[rgba(194,189,206,0.15)] text-[#C2BDCE] whitespace-nowrap shrink-0 leading-none">
                       {localizedFeatured.feastDate}
                     </span>
                   </div>
@@ -317,11 +316,11 @@ export function Hero() {
                 </div>
 
                 {/* View Switcher Tabs */}
-                <div className="flex gap-2 my-3 p-1 rounded-lg bg-[#33253e] border border-[rgba(194,189,206,0.1)] text-[10px] uppercase font-[200] tracking-[0.2em]">
+                <div className="flex gap-1.5 sm:gap-2 my-3 p-1 rounded-lg bg-[#33253e] border border-[rgba(194,189,206,0.1)] text-[9px] sm:text-[10px] uppercase font-[200] tracking-[0.14em] sm:tracking-[0.2em]">
                   <button
                     onClick={() => setActiveTab("dates")}
                     className={cn(
-                      "flex-1 py-1.5 rounded transition-colors cursor-pointer",
+                      "flex-1 py-1.5 px-1 rounded transition-colors cursor-pointer truncate",
                       activeTab === "dates"
                         ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)]"
                         : "text-[#C2BDCE]/70 hover:text-white"
@@ -332,7 +331,7 @@ export function Hero() {
                   <button
                     onClick={() => setActiveTab("quote")}
                     className={cn(
-                      "flex-1 py-1.5 rounded transition-colors cursor-pointer",
+                      "flex-1 py-1.5 px-1 rounded transition-colors cursor-pointer truncate",
                       activeTab === "quote"
                         ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)]"
                         : "text-[#C2BDCE]/70 hover:text-white"
@@ -343,7 +342,7 @@ export function Hero() {
                   <button
                     onClick={() => setActiveTab("patronage")}
                     className={cn(
-                      "flex-1 py-1.5 rounded transition-colors cursor-pointer",
+                      "flex-1 py-1.5 px-1 rounded transition-colors cursor-pointer truncate",
                       activeTab === "patronage"
                         ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)]"
                         : "text-[#C2BDCE]/70 hover:text-white"
@@ -356,33 +355,33 @@ export function Hero() {
                 {/* Tab 1: Key Dates */}
                 {activeTab === "dates" && (
                   <div className="space-y-2.5 py-2 animate-in fade-in duration-200 text-xs font-[200]">
-                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px]">
-                        <Calendar className="w-3 h-3 text-[#FF2477]" /> {t("story.dob")}
+                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between gap-2">
+                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px] shrink-0">
+                        <Calendar className="w-3 h-3 text-[#FF2477] shrink-0" /> {t("story.dob")}
                       </span>
-                      <span className="text-[#F8F6FA]">{localizedFeatured.dateOfBirth}</span>
+                      <span className="text-[#F8F6FA] text-right truncate text-[11px] sm:text-xs">{localizedFeatured.dateOfBirth}</span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px]">
-                        <Sparkles className="w-3 h-3 text-[#FF2477]" /> {t("story.beatified")}
+                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between gap-2">
+                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px] shrink-0">
+                        <Sparkles className="w-3 h-3 text-[#FF2477] shrink-0" /> {t("story.beatified")}
                       </span>
-                      <span className="text-[#F8F6FA] text-right truncate max-w-[220px]">
+                      <span className="text-[#F8F6FA] text-right truncate text-[11px] sm:text-xs max-w-[200px]">
                         {localizedFeatured.beatifiedDate}
                       </span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px]">
-                        <Award className="w-3 h-3 text-[#FF2477]" /> {t("story.canonised")}
+                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between gap-2">
+                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px] shrink-0">
+                        <Award className="w-3 h-3 text-[#FF2477] shrink-0" /> {t("story.canonised")}
                       </span>
-                      <span className="text-[#F8F6FA] text-right truncate max-w-[220px]">
+                      <span className="text-[#F8F6FA] text-right truncate text-[11px] sm:text-xs max-w-[200px]">
                         {localizedFeatured.canonisedDate}
                       </span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-[#463354] border border-[#FF2477]/40 flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-[#FF2477] uppercase tracking-wider text-[10px]">
-                        <Heart className="w-3 h-3 text-[#FF2477]" /> {t("story.feastDay")}
+                    <div className="p-2.5 rounded-lg bg-[#463354] border border-[#FF2477]/40 flex items-center justify-between gap-2">
+                      <span className="flex items-center gap-1.5 text-[#FF2477] uppercase tracking-wider text-[10px] shrink-0">
+                        <Heart className="w-3 h-3 text-[#FF2477] shrink-0" /> {t("story.feastDay")}
                       </span>
-                      <span className="text-white font-mono">{localizedFeatured.feastDate}</span>
+                      <span className="text-white font-mono text-[11px] sm:text-xs whitespace-nowrap">{localizedFeatured.feastDate}</span>
                     </div>
                   </div>
                 )}
@@ -419,17 +418,17 @@ export function Hero() {
                 )}
 
                 {/* Direct Redirect & In-Card Navigation Controls */}
-                <div className="pt-4 mt-3 border-t border-[rgba(194,189,206,0.12)] flex items-center justify-between">
+                <div className="pt-4 mt-3 border-t border-[rgba(194,189,206,0.12)] flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
                   <Link
                     href={`/saints/${currentSaint.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs uppercase font-[200] tracking-[0.22em] text-[#FF2477] hover:text-[#ff4b91] transition-colors group"
+                    className="inline-flex items-center gap-1.5 text-xs uppercase font-[200] tracking-[0.18em] sm:tracking-[0.22em] text-[#FF2477] hover:text-[#ff4b91] transition-colors group shrink-0"
                   >
                     <span>{t("gallery.readChronicle")}</span>
                     <ArrowDownRight className="w-3.5 h-3.5 stroke-[1.5] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
                   </Link>
 
                   {/* Manual 3D Switch Controls */}
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 shrink-0">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
