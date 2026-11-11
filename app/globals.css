@@ -101,6 +101,35 @@
   }
 }
 
+/* Smooth language switch transition */
+@keyframes langFadeTransition {
+  0% {
+    opacity: 0.6;
+    filter: blur(2px);
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+.lang-switch-active {
+  animation: langFadeTransition 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Native script typographic enhancement */
+[lang="ml"], .font-malayalam, html[lang="ml"] body {
+  font-family: "Google Sans", "Noto Sans Malayalam", "Gayathri", "Manjari", system-ui, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+[lang="hi"], .font-hindi, html[lang="hi"] body {
+  font-family: "Tiro Devanagari Hindi", "Noto Sans Devanagari", "Mangal", system-ui, serif;
+  letter-spacing: 0.02em;
+}
+
 /* Subtle editorial scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
