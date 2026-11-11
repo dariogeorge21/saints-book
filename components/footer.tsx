@@ -56,7 +56,15 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-[200] tracking-wide text-[#C2BDCE]/70">
             <div className="flex items-center gap-2 text-center sm:text-left">
               <span>{t("footer.creator")}</span>
-              <span className="text-[#F8F6FA] font-[300]">Dario George</span>
+              <a
+                href="https://dariogeorge.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#F8F6FA] font-[300] hover:text-[#FF2477] transition-colors underline underline-offset-4 decoration-[rgba(194,189,206,0.3)] hover:decoration-[#FF2477]"
+                title="Dario George (dariogeorge.in)"
+              >
+                Dario George
+              </a>
             </div>
 
             {/* Social Links */}
