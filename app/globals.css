@@ -145,3 +145,65 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #FF2477;
 }
+
+/* 3D Center-Pivot X & Y Axis Rotating Showcase */
+@keyframes saint3dRotateNext {
+  0% {
+    transform: perspective(1300px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  48% {
+    transform: perspective(1300px) rotateX(16deg) rotateY(-82deg) scale(0.9) translateZ(-60px);
+    opacity: 0.12;
+    filter: blur(2px);
+  }
+  52% {
+    transform: perspective(1300px) rotateX(-16deg) rotateY(82deg) scale(0.9) translateZ(-60px);
+    opacity: 0.12;
+    filter: blur(2px);
+  }
+  100% {
+    transform: perspective(1300px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes saint3dRotatePrev {
+  0% {
+    transform: perspective(1300px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  48% {
+    transform: perspective(1300px) rotateX(-16deg) rotateY(82deg) scale(0.9) translateZ(-60px);
+    opacity: 0.12;
+    filter: blur(2px);
+  }
+  52% {
+    transform: perspective(1300px) rotateX(16deg) rotateY(-82deg) scale(0.9) translateZ(-60px);
+    opacity: 0.12;
+    filter: blur(2px);
+  }
+  100% {
+    transform: perspective(1300px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+.animate-saint-3d-next {
+  animation: saint3dRotateNext 700ms cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+}
+
+.animate-saint-3d-prev {
+  animation: saint3dRotatePrev 700ms cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+}
+
