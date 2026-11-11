@@ -86,9 +86,9 @@ export function SaintsBookLogo({
     >
       {/* SAINTS in #FF2477 with chevron A */}
       <span className="inline-flex items-center text-[#FF2477] font-[100] transition-colors duration-300 group-hover:text-[#ff4b91]">
-        <span>S</span>
+        <span className="inline-block relative -mr-[0.1em]">S</span>
         {/* Geometric Inverted Chevron A matching the exact logo */}
-        <span className="inline-block relative px-[0.04em]">
+        <span className="inline-block relative px-[0.09em]">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -96,7 +96,7 @@ export function SaintsBookLogo({
             strokeWidth="1.15"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-[0.82em] h-[0.88em] inline-block align-baseline -mb-[0.02em]"
+            className="w-[0.82em] h-[0.88em] inline-block align-baseline -mb-[0.11em] -ml-[0.1em] stroke-[1.15]"
           >
             <polyline points="3,21 12,3 21,21" />
           </svg>
