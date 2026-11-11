@@ -200,7 +200,7 @@ export function Hero() {
             </div>
 
             {/* Archival Attributes Meter */}
-            <div className="pt-6 border-t border-[rgba(194,189,206,0.12)] grid grid-cols-3 gap-6 text-left">
+            <div className="pt-6 border-t border-[rgba(194,189,206,0.12)] grid grid-cols-2 gap-8 max-w-sm text-left">
               <div>
                 <span className="block text-2xl font-[100] text-[#F8F6FA] tracking-widest">
                   {SAINTS_DATA.length}
@@ -211,14 +211,6 @@ export function Hero() {
               </div>
               <div>
                 <span className="block text-2xl font-[100] text-[#FF2477] tracking-widest">
-                  365
-                </span>
-                <span className="text-[10px] font-[200] tracking-[0.25em] uppercase text-[#C2BDCE]/70">
-                  Feast Days
-                </span>
-              </div>
-              <div>
-                <span className="block text-2xl font-[100] text-[#F8F6FA] tracking-widest">
                   2,000+
                 </span>
                 <span className="text-[10px] font-[200] tracking-[0.25em] uppercase text-[#C2BDCE]/70">
