@@ -1,3 +1,19 @@
+export type SupportedLanguage = "en" | "ml" | "hi";
+
+export interface SaintTranslation {
+  name: string;
+  epithet: string;
+  dateOfBirth?: string;
+  beatifiedDate?: string;
+  canonisedDate?: string;
+  feastDate?: string;
+  location?: string;
+  patronage?: string[];
+  attributes?: string;
+  quote?: string;
+  story: string[];
+}
+
 export interface Saint {
   id: string;
   name: string;
@@ -14,6 +30,10 @@ export interface Saint {
   attributes: string;
   quote: string;
   story: string[]; // Divided into multiple rich editorial paragraphs
+  translations?: {
+    ml?: SaintTranslation;
+    hi?: SaintTranslation;
+  };
 }
 
 export const SAINTS_DATA: Saint[] = [
@@ -35,8 +55,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Born into a prosperous merchant family in Assisi around 1181 or 1182, Francis first dreamed of adventure and military glory. Illness, imprisonment and prayer gradually changed his priorities, drawing him toward a life shaped by the Gospel.",
       "After hearing Christ call him to rebuild His Church, Francis embraced poverty, cared for lepers and gathered companions who became the Franciscan Order. His joyful preaching placed peace, humility and care for creation at the heart of Christian life.",
-      "In 1219, during the Fifth Crusade, he travelled to Egypt and met Sultan al-Kamil in an effort to speak about faith and peace. In 1224, Francis received the stigmata at Mount La Verna. He died at the Porziuncola on 3 October 1226."
+      "In 1219, during the Fifth Crusade, he travelled to Egypt and met Sultan al-Kamil in an effort to speak about faith and peace. In 1224, Francis received the stigmata at Mount La Verna. He died at the Porziuncola on 3 October 1226.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ ഫ്രാൻസിസ് അസീസി",
+        epithet: "ഫ്രാൻസിസ്കൻ സഭയുടെ സ്ഥാപകൻ • പ്രകൃതിയുടെ മധ്യസ്ഥൻ",
+        dateOfBirth: "ഏകദേശം 1181 / 1182",
+        beatifiedDate: "പുരാതന സഭാ പാരമ്പര്യം",
+        canonisedDate: "1228 ജൂലൈ 16 — ഗ്രിഗറി ഒൻപതാമൻ മാർപാപ്പ",
+        feastDate: "ഒക്ടോബർ 4",
+        location: "അസീസി, ഇറ്റലി",
+        patronage: ["മൃഗങ്ങൾ", "പരിസ്ഥിതി", "ഇറ്റലി", "വ്യാപാരികൾ", "സമാധാനം"],
+        attributes: "ഫ്രാൻസിസ്കൻ സന്യാസ വസ്ത്രം, തൗ കുരിശ്, പക്ഷികൾ, കുഞ്ഞാട്, പഞ്ചക്ഷതങ്ങൾ",
+        quote: "സകല സൃഷ്ടികളിലൂടെയും എൻ്റെ കർത്താവേ, അങ്ങ് വാഴ്ത്തപ്പെടുമാറാകട്ടെ. — സൃഷ്ടികളുടെ ഗീതം",
+        story: [
+          "1181 അല്ലെങ്കിൽ 1182 കാലഘട്ടത്തിൽ അസീസിയിലെ ഒരു സമ്പന്ന വ്യാപാരി കുടുംബത്തിൽ ജനിച്ച ഫ്രാൻസിസ് ആദ്യം ആഗ്രഹിച്ചത് യുദ്ധവീര്യവും പ്രശസ്തിയുമായിരുന്നു. എന്നാൽ അസുഖവും തടവുജീവിതവും ആഴമേറിയ പ്രാർത്ഥനയും അദ്ദേഹത്തിന്റെ ചിന്തകളെ മാറ്റിമറിക്കുകയും സുവിശേഷാധിഷ്ഠിത ജീവിതത്തിലേക്ക് നയിക്കുകയും ചെയ്തു.",
+          "തന്റെ സഭയെ പുനർനിർമ്മിക്കാൻ ക്രിസ്തുവിൽ നിന്നുള്ള വിളി ശ്രവിച്ച ഫ്രാൻസിസ് ദാരിദ്ര്യം സ്വീകരിക്കുകയും കുഷ്ഠരോഗികളെ ശുശ്രൂഷിക്കുകയും ചെയ്തു. അദ്ദേഹത്തോടൊപ്പം ചേർന്ന സഹോദരങ്ങൾ പിന്നീട് ഫ്രാൻസിസ്കൻ സന്യാസ സമൂഹമായി മാറി. സമാധാനവും എളിമയും സൃഷ്ടിയോടുള്ള ആദരവും നിറഞ്ഞതായിരുന്നു അദ്ദേഹത്തിന്റെ വചനഘോഷണം.",
+          "1219-ൽ അഞ്ചാം കുരിശുയുദ്ധകാലത്ത് വിശ്വാസത്തെയും സമാധാനത്തെയും കുറിച്ച് സംഭാഷണം നടത്താൻ അദ്ദേഹം ഈജിപ്തിലേക്ക് യാത്ര തിരിച്ച് അൽ-കാമിൽ സുൽത്താനെ സന്ദർശിച്ചു. 1224-ൽ ലാ വെർണ മലയിൽ വെച്ച് ഫ്രാൻസിസിന് പഞ്ചക്ഷതങ്ങൾ ലഭിച്ചു. 1226 ഒക്ടോബർ 3-ന് പോർസിയുങ്കോളയിൽ വെച്ച് അദ്ദേഹം സ്വർഗ്ഗീയ സമ്മാനത്തിനായി യാത്രയായി.",
+        ],
+      },
+      hi: {
+        name: "संत फ्रांसिस असीसी",
+        epithet: "फ्रांसिस्कन धर्मसंघ के संस्थापक • पर्यावरण के संरक्षक",
+        dateOfBirth: "लगभग 1181 / 1182",
+        beatifiedDate: "प्राचीन कलीसियाई परंपरा",
+        canonisedDate: "16 जुलाई 1228 — पोप ग्रेगरी नवम द्वारा",
+        feastDate: "4 अक्टूबर",
+        location: "असीसी, इटली",
+        patronage: ["पशु", "पारिस्थितिकी", "इटली", "व्यापारी", "शांति"],
+        attributes: "भूरा फ्रांसिस्कन वस्त्र, ताऊ क्रॉस, पक्षी, मेमना, पंच घाव (स्टिग्माटा)",
+        quote: "हे मेरे प्रभु, अपनी समस्त सृष्टि के द्वारा आपकी स्तुति हो। — सृष्टि का स्तोत्र",
+        story: [
+          "1181 या 1182 के आसपास असीसी के एक समृद्ध व्यापारी परिवार में जन्मे फ्रांसिस ने पहले वीरता और सैन्य ख्याति के सपने देखे थे। लेकिन बीमारी, कारावास और प्रार्थना ने धीरे-धीरे उनकी प्राथमिकताओं को बदल दिया और उन्हें सुसमाचार के मार्ग पर अग्रसर किया।",
+          "मसीह की उस पुकार को सुनकर कि 'जाओ और मेरी कलीसिया का पुनर्निर्माण करो', फ्रांसिस ने स्वेच्छा से निर्धनता को गले लगाया, कुष्ठ रोगियों की सेवा की और साथियों को एकत्र किया जो बाद में फ्रांसिस्कन धर्मसंघ बने। उनके आनंदमय उपदेशों ने शांति, विनम्रता और प्रकृति के प्रति आदर को ईसाई जीवन के केंद्र में रखा।",
+          "1219 में पांचवें क्रूसेड के दौरान, उन्होंने विश्वास और शांति पर चर्चा करने के लिए मिस्र की यात्रा की और सुल्तान अल-कामिल से भेंट की। 1224 में ला वर्ना पर्वत पर उन्हें ईसा मसीह के पवित्र घाव (स्टिग्माटा) प्राप्त हुए। 3 अक्टूबर 1226 को पोर्ज़िउनकोला में उनका स्वर्गवास हुआ।",
+        ],
+      },
+    },
   },
   {
     id: "st-alphonsa",
@@ -56,8 +112,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Born Annakutty Muttathupadathu in Kudamalur, Kerala, on 19 August 1910, Alphonsa faced loss and hardship from an early age. Her quiet faith and desire for religious life grew under the care of her family.",
       "She joined the Franciscan Clarist Congregation and took the name Alphonsa. Much of her religious life was marked by recurring illness, yet she met suffering with prayer, patience and a deep love for Christ.",
-      "Her gentle presence became a lasting example of faith lived through hardship. She died at Bharananganam on 28 July 1946 and was canonized in 2008, becoming the first woman of Indian origin to be declared a saint by the Catholic Church."
+      "Her gentle presence became a lasting example of faith lived through hardship. She died at Bharananganam on 28 July 1946 and was canonized in 2008, becoming the first woman of Indian origin to be declared a saint by the Catholic Church.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ അൽഫോൻസാമ്മ",
+        epithet: "ഭാരതത്തിന്റെ പ്രഥമ വനിതാ വിശുദ്ധ • സഹനത്തിന്റെ ധന്യസാക്ഷി",
+        dateOfBirth: "1910 ആഗസ്റ്റ് 19",
+        beatifiedDate: "1986 ഫെബ്രുവരി 8 — ജോൺ പോൾ രണ്ടാമൻ മാർപാപ്പ",
+        canonisedDate: "2008 ഒക്ടോബർ 12 — ബെനഡിക്ട് പതിനാറാമൻ മാർപാപ്പ",
+        feastDate: "ജൂലൈ 28",
+        location: "കുടമാളൂർ & ഭരണങ്ങാനം, കേരളം, ഇന്ത്യ",
+        patronage: ["രോഗികൾ", "കഷ്ടത അനുഭവിക്കുന്നവർ", "വിദ്യാർത്ഥികൾ", "കേരളം"],
+        attributes: "ഫ്രാൻസിസ്കൻ ക്ലാരിസ്റ്റ് സന്യാസ വസ്ത്രം, ക്രൂശിതരൂപം, ജപമാല, പ്രാർത്ഥനാ പുസ്തകം",
+        quote: "സഹനത്തിന്റെ ഒരു ബലിവസ്തുവായിരിക്കാൻ കർത്താവ് എന്നെ നിശ്ചയിച്ചിരിക്കുന്നുവെന്ന് ഞാൻ അറിയുന്നു. — വിശുദ്ധ അൽഫോൻസാമ്മ",
+        story: [
+          "1910 ആഗസ്റ്റ് 19-ന് കേരളത്തിലെ കോട്ടയം കുടമാളൂരിൽ മുട്ടത്തുപാടത്ത് കുടുംബത്തിൽ അന്നക്കുട്ടിയായി ജനിച്ച അൽഫോൻസാമ്മ കുട്ടിക്കാലം മുതൽ വേദനകളും പ്രതിസന്ധികളും നേരിട്ടു. മാതാപിതാക്കളുടെ വിയോഗത്തിനിടയിലും പ്രാർത്ഥനയിലും സന്യാസ ജീവിതത്തോടുള്ള ആഗ്രഹത്തിലും വളർന്നു.",
+          "ഫ്രാൻസിസ്കൻ ക്ലാരിസ്റ്റ് കോൺഗ്രിഗേഷനിൽ (FCC) ചേർന്ന് അൽഫോൻസ എന്ന പേര് സ്വീകരിച്ചു. സന്യാസ ജീവിതകാലം മുഴുവൻ ഗുരുതരമായ രോഗപീഡകളാൽ നിറഞ്ഞതായിരുന്നെങ്കിലും, സഹനങ്ങളെ ക്രിസ്തുവിനോടുള്ള സ്നേഹത്തോടെയും പുഞ്ചിരിയോടെയും അവർ സ്വീകരിച്ചു.",
+          "കഷ്ടതകളിലൂടെ വിശുദ്ധി പ്രാപിച്ച അൽഫോൻസാമ്മയുടെ ജീവിതം ലോകത്തിന് വലിയൊരു മാതൃകയാണ്. 1946 ജൂലൈ 28-ന് ഭരണങ്ങാനത്ത് വെച്ച് അന്തരിച്ച അൽഫോൻസാമ്മയെ 2008-ൽ കത്തോലിക്കാ സഭ വിശുദ്ധയായി പ്രഖ്യാപിച്ചു, ഭാരതത്തിൽ ജനിച്ച ആദ്യത്തെ വനിതാ വിശുദ്ധയായി അവർ മാറി.",
+        ],
+      },
+      hi: {
+        name: "संत अल्फोंसा",
+        epithet: "भारत की पहली महिला संत • धैर्यवान विश्वास की साक्षी",
+        dateOfBirth: "19 अगस्त 1910",
+        beatifiedDate: "8 फरवरी 1986 — पोप जॉन पॉल द्वितीय द्वारा",
+        canonisedDate: "12 अक्टूबर 2008 — पोप बेनेडिक्ट सोलहवें द्वारा",
+        feastDate: "28 जुलाई",
+        location: "कुदमालूर और भरनांगानम, केरल, भारत",
+        patronage: ["बीमार लोग", "पीड़ा सहने वाले", "विद्यार्थी", "केरल"],
+        attributes: "क्लारिस्ट धर्मबहन का वस्त्र, क्रूस, माला, प्रार्थना पुस्तक",
+        quote: "मुझे लगता है कि प्रभु ने मुझे दुख-सहन के एक जीवित बलिदान के रूप में चुना है। — संत अल्फोंसा",
+        story: [
+          "19 अगस्त 1910 को केरल के कुदमालूर में अन्नाकुट्टी मुत्ताथुपदथु के रूप में जन्मी अल्फोंसा ने कम उम्र से ही कई कठिनाइयों और प्रियजनों के वियोग का सामना किया। परिवार की देखरेख में उनका शांत विश्वास और सन्यास जीवन के प्रति आकर्षण बढ़ता गया।",
+          "वह फ्रांसिस्कन क्लारिस्ट धर्मसंघ में शामिल हुईं और अल्फोंसा नाम ग्रहण किया। उनके धार्मिक जीवन का अधिकांश भाग निरंतर शारीरिक बीमारियों से घिरा रहा, फिर भी उन्होंने प्रत्येक पीड़ा को प्रार्थना, धैर्य और मसीह के प्रति असीम प्रेम से स्वीकार किया।",
+          "कष्टों के बीच उनकी कोमल उपस्थिति और गहरा विश्वास प्रेरणा का स्रोत बने। 28 जुलाई 1946 को भरनांगानम में उनका स्वर्गवास हुआ और 2008 में उन्हें संत घोषित किया गया, जिससे वह कैथोलिक कलीसिया द्वारा संत घोषित की जाने वाली भारतीय मूल की पहली महिला बनीं।",
+        ],
+      },
+    },
   },
   {
     id: "st-euphrasia",
@@ -77,8 +169,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Born Rose Eluvathingal in Kattoor, Kerala, on 17 October 1877, she grew up in a home shaped by prayer and devotion to Mary. From childhood, she felt drawn to a life of consecration and entered the Congregation of the Mother of Carmel.",
       "Euphrasia became known for her deep devotion to the Blessed Sacrament and her long hours of prayer. Her fellow sisters affectionately called her the “Praying Mother,” while those around her experienced her kindness, humility and concern for the sick.",
-      "Her life joined quiet contemplation with practical love for others. She died on 29 August 1952 and was canonized by Pope Francis on 23 November 2014."
+      "Her life joined quiet contemplation with practical love for others. She died on 29 August 1952 and was canonized by Pope Francis on 23 November 2014.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ എവുപ്രാസ്യാമ്മ",
+        epithet: "പ്രാർത്ഥിക്കുന്ന അമ്മ • കർമ്മലീത്താ സന്യാസിനി",
+        dateOfBirth: "1877 ഒക്ടോബർ 17",
+        beatifiedDate: "2006 ഡിസംബർ 3 — ബെനഡിക്ട് പതിനാറാമൻ മാർപാപ്പ",
+        canonisedDate: "2014 നവംബർ 23 — ഫ്രാൻസിസ് മാർപാപ്പ",
+        feastDate: "ആഗസ്റ്റ് 29",
+        location: "കാട്ടൂർ & ഒല്ലൂർ, തൃശൂർ, കേരളം, ഇന്ത്യ",
+        patronage: ["ധ്യാന പ്രാർത്ഥന", "സന്യാസിനികൾ", "രോഗികൾ", "കേരളം"],
+        attributes: "കർമ്മലീത്താ വസ്ത്രം, ക്രൂശിതരൂപം, ജപമാല, തിരുവോസ്തി അരുളിക്ക",
+        quote: "മരണശേഷവും ഞാൻ ഇത് മറക്കില്ല. — വിശുദ്ധ എവുപ്രാസ്യാമ്മ",
+        story: [
+          "1877 ഒക്ടോബർ 17-ന് തൃശൂരിലെ കാട്ടൂരിൽ എലുവത്തിങ്കൽ കുടുംബത്തിൽ റോസയായി ജനിച്ച അവർ മാതാവിനോടുള്ള ഭക്തിയിലും പ്രാർത്ഥനയിലുമാണ് വളർന്നത്. കുട്ടിക്കാലം മുതൽ സമർപ്പിത ജീവിതത്തിലേക്ക് ആകൃഷ്ടയായ അവർ സി.എം.സി. (കൺഗ്രിഗേഷൻ ഓഫ് ദി മദർ ഓഫ് കാർമൽ) സഭയിൽ ചേർന്നു.",
+          "വിശുദ്ധ കുർബാനയോടുള്ള അഗാധമായ സ്നേഹവും മണിക്കൂറുകൾ നീളുന്ന ഏകാന്ത പ്രാർത്ഥനയുമായിരുന്നു എവുപ്രാസ്യയുടെ പ്രത്യേകത. സഹസന്യാസിനികൾ അവരെ 'പ്രാർത്ഥിക്കുന്ന അമ്മ' എന്ന് സ്നേഹപൂർവ്വം വിളിച്ചു. രോഗികളോടും ആവശ്യക്കാരോടും അവർ അതീവ കാരുണ്യം കാണിച്ചു.",
+          "നിശബ്ദമായ ധ്യാനവും മറ്റുള്ളവരോടുള്ള പ്രായോഗിക സ്നേഹവും സമന്വയിപ്പിച്ച ജീവിതമായിരുന്നു അവരുടേത്. 1952 ആഗസ്റ്റ് 29-ന് ഒല്ലൂരിൽ വെച്ച് ദിവംഗതയായ അമ്മയെ 2014 നവംബർ 23-ന് ഫ്രാൻസിസ് മാർപാപ്പ വിശുദ്ധയായി പ്രഖ്യാപിച്ചു.",
+        ],
+      },
+      hi: {
+        name: "संत युफ्रेसिया",
+        epithet: "प्रार्थना करने वाली मां • कार्मेलाइट तपस्वी",
+        dateOfBirth: "17 अक्टूबर 1877",
+        beatifiedDate: "3 दिसंबर 2006 — पोप बेनेडिक्ट सोलहवें द्वारा",
+        canonisedDate: "23 नवंबर 2014 — पोप फ्रांसिस द्वारा",
+        feastDate: "29 अगस्त",
+        location: "कट्टूर और ओल्लूर, त्रिशूर, केरल, भारत",
+        patronage: ["ध्यानमयी प्रार्थना", "धर्मबहनें", "बीमार लोग", "केरल"],
+        attributes: "कार्मेलाइट वस्त्र, क्रूस, माला, पवित्र यूखरिस्त संदूक",
+        quote: "मैं इसे मृत्यु के बाद भी नहीं भूलूंगी। — संत युफ्रेसिया",
+        story: [
+          "17 अक्टूबर 1877 को केरल के कट्टूर में रोज़ एलुवाथिंगल के रूप में जन्मी युफ्रेसिया एक ऐसे परिवार में पली-बढ़ीं जहां प्रार्थना और माता मरियम के प्रति गहरी भक्ति थी। बचपन से ही उन्होंने ईश्वर को समर्पित जीवन की प्रेरणा महसूस की और 'कांग्रिगेशन ऑफ द मदर ऑफ कार्मेल' में प्रवेश किया।",
+          "युफ्रेसिया परमपावन संस्कार (यूखरिस्त) के प्रति अपनी अनन्य भक्ति और घंटों की निरंतर प्रार्थना के लिए जानी जाने लगीं। साथी धर्मबहनें उन्हें आदर से 'प्रार्थना करने वाली मां' कहती थीं।",
+          "उनका जीवन शांत ध्यान और दूसरों के प्रति व्यावहारिक प्रेम का सुंदर संगम था। 29 अगस्त 1952 को उनका निधन हुआ और 23 नवंबर 2014 को पोप फ्रांसिस द्वारा उन्हें संत घोषित किया गया।",
+        ],
+      },
+    },
   },
   {
     id: "st-kuriakose-elias-chavara",
@@ -98,8 +226,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Born in Kainakary, Kerala, on 10 February 1805, Kuriakose Elias Chavara was ordained a priest in 1829. His life became closely linked with the spiritual and social growth of the Syro-Malabar Church.",
       "In 1831, he joined Fathers Thomas Palackal and Thomas Porukara in establishing the first indigenous religious congregation for men in India, now known as the Carmelites of Mary Immaculate (CMI). He later helped establish a congregation for women with Father Leopold Beccaro.",
-      "Chavara championed education, publishing and care for people in need, encouraging churches to support schools for children. Guided by the motto “Sanctification of oneself and the salvation of others,” he died on 3 January 1871 and was canonized in 2014."
+      "Chavara championed education, publishing and care for people in need, encouraging churches to support schools for children. Guided by the motto “Sanctification of oneself and the salvation of others,” he died on 3 January 1871 and was canonized in 2014.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ കുര്യാക്കോസ് ഏലിയാസ് ചാവറ",
+        epithet: "വൈദികൻ, നവോത്ഥാന നായകൻ, വിദ്യാഭ്യാസ ദാർശനികൻ • സി.എം.ഐ. സഹസ്ഥാപകൻ",
+        dateOfBirth: "1805 ഫെബ്രുവരി 10",
+        beatifiedDate: "1986 ഫെബ്രുവരി 8 — ജോൺ പോൾ രണ്ടാമൻ മാർപാപ്പ",
+        canonisedDate: "2014 നവംബർ 23 — ഫ്രാൻസിസ് മാർപാപ്പ",
+        feastDate: "ജനുവരി 3",
+        location: "കൈനകരി, മാന്നാനം & കൂനമ്മാവ്, കേരളം, ഇന്ത്യ",
+        patronage: ["കുടുംബങ്ങൾ", "വിദ്യാഭ്യാസം", "വൈദികർ", "കേരളം", "സീറോ മലബാർ സഭ"],
+        attributes: "കർമ്മലീത്താ വസ്ത്രം, വൈദിക ഉത്തരീയം, ഗ്രന്ഥം, തൂലിക",
+        quote: "ആത്മവിശുദ്ധീകരണവും പരരക്ഷയും. — വിശുദ്ധ ചാവറയച്ചന്റെ ആപ്തവാക്യം",
+        story: [
+          "1805 ഫെബ്രുവരി 10-ന് ആലപ്പുഴയിലെ കൈനകരിയിൽ ജനിച്ച കുര്യാക്കോസ് ഏലിയാസ് ചാവറ 1829-ൽ വൈദികനായി അഭിഷിക്തനായി. സീറോ മലബാർ സഭയുടെയും കേരള സമൂഹത്തിന്റെയും ആത്മീയ-സാമൂഹിക നവോത്ഥാനത്തിൽ നിർണ്ണായക പങ്കുവഹിച്ചു.",
+          "1831-ൽ ഫാ. തോമസ് പാലയ്ക്കൽ, ഫാ. തോമസ് പോരൂക്കര എന്നിവർക്കൊപ്പം ചേർന്ന് ഭാരതത്തിലെ പ്രഥമ തദ്ദേശീയ സന്യാസ സമൂഹമായ സി.എം.ഐ. (കാർമ്മലൈറ്റ്സ് ഓഫ് മേരി ഇമ്മാക്കുലേറ്റ്) സ്ഥാപിച്ചു. പിന്നീട് ഫാ. ലിയോപോൾഡ് ബെക്കാറോയോടൊപ്പം വനിതകൾക്കായുള്ള സി.എം.സി. സഭയ്ക്കും തുടക്കം കുറിച്ചു.",
+          "'പള്ളിക്കൂടം' എന്ന വിപ്ലവകരമായ ആശയത്തിലൂടെ എല്ലാ ദേവാലയങ്ങളോടും ചേർന്ന് വിദ്യാലയങ്ങൾ സ്ഥാപിച്ച് ജാതിമതഭേദമന്യേ എല്ലാവർക്കും വിദ്യാഭ്യാസം നൽകാൻ അദ്ദേഹം ആഹ്വാനം ചെയ്തു. 1871 ജനുവരി 3-ന് കൂനമ്മാവിൽ വെച്ച് ദിവംഗതനായ അദ്ദേഹത്തെ 2014-ൽ ഫ്രാൻസിസ് മാർപാപ്പ വിശുദ്ധനായി പ്രഖ്യാപിച്ചു.",
+        ],
+      },
+      hi: {
+        name: "संत कुरियाकोस एलियास चावरा",
+        epithet: "पुरोहित, शिक्षक और समाज सुधारक • सीएमआई सह-संस्थापक",
+        dateOfBirth: "10 फरवरी 1805",
+        beatifiedDate: "8 फरवरी 1986 — पोप जॉन पॉल द्वितीय द्वारा",
+        canonisedDate: "23 नवंबर 2014 — पोप फ्रांसिस द्वारा",
+        feastDate: "3 जनवरी",
+        location: "कैनाकरी, मन्नानम और कूनम्मावु, केरल, भारत",
+        patronage: ["परिवार", "शिक्षा", "पुरोहित", "केरल", "सीरो-मालाबार कलीसिया"],
+        attributes: "कार्मेलाइट वस्त्र, पुरोहिताई स्टोल, पुस्तक या पांडुलिपि",
+        quote: "स्वयं का पवित्रीकरण और दूसरों का उद्धार। — संत चावरा का आदर्श वाक्य",
+        story: [
+          "10 फरवरी 1805 को केरल के कैनाकरी में जन्मे कुरियाकोस एलियास चावरा 1829 में पुरोहित बने। उनका जीवन सीरो-मालाबार कलीसिया और पूरे समाज के आध्यात्मिक और सामाजिक उत्थान से गहराई से जुड़ गया।",
+          "1831 में उन्होंने फादर थॉमस पालाक्कल और फादर थॉमस पोरुकारा के साथ मिलकर भारत के पहले स्वदेशी पुरुष धर्मसंघ की स्थापना की, जिसे आज सीएमआई (कार्मिलाइट्स ऑफ मेरी इमैक्युलेट) के रूप में जाना जाता है। बाद में उन्होंने महिलाओं के लिए सीएमसी धर्मसंघ की स्थापना में भी महत्वपूर्ण भूमिका निभाई।",
+          "चावरा ने शिक्षा, मुद्रण और वंचितों की सेवा को बढ़ावा दिया और प्रत्येक गिरजाघर के साथ स्कूल ('पल्लीकूडम') खोलने की अनूठी पहल की। 3 जनवरी 1871 को उनका देहावसान हुआ और 2014 में उन्हें संत घोषित किया गया।",
+        ],
+      },
+    },
   },
   {
     id: "st-carlo-acutis",
@@ -119,8 +283,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Born in London on 3 May 1991, Carlo Acutis grew up in Milan and developed a lively faith from childhood. He loved computers, football and helping others, while making prayer and the Eucharist a regular part of his daily life.",
       "Carlo used his interest in technology to create an online exhibition documenting Eucharistic miracles. He also served as a catechist, helped people experiencing poverty and tried to make classmates feel included.",
-      "Diagnosed with an aggressive form of leukemia in 2006, he offered his suffering for the Church and the Pope. He died in Monza on 12 October 2006, aged 15, was beatified in 2020 and canonized on 7 September 2025."
+      "Diagnosed with an aggressive form of leukemia in 2006, he offered his suffering for the Church and the Pope. He died in Monza on 12 October 2006, aged 15, was beatified in 2020 and canonized on 7 September 2025.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ കാർലോ അക്യൂട്ടിസ്",
+        epithet: "മില്ലേനിയൽ വിശുദ്ധൻ • ഇന്റർനെറ്റിന്റെയും ദിവ്യകാരുണ്യത്തിന്റെയും പ്രേഷിതൻ",
+        dateOfBirth: "1991 മെയ് 3",
+        beatifiedDate: "2020 ഒക്ടോബർ 10 — ഫ്രാൻസിസ് മാർപാപ്പ",
+        canonisedDate: "2025 സെപ്റ്റംബർ 7",
+        feastDate: "ഒക്ടോബർ 12",
+        location: "ലണ്ടൻ, മിലാൻ & അസീസി, ഇറ്റലി",
+        patronage: ["യുവാക്കൾ", "വിദ്യാർത്ഥികൾ", "കമ്പ്യൂട്ടർ പ്രോഗ്രാമർമാർ", "ഇന്റർനെറ്റ് സുവിശേഷവൽക്കരണം"],
+        attributes: "നീല പോളോ ഷർട്ട്, ജീൻസ്, ലാപ്‌ടോപ്പ്, തിരുവോസ്തി അരുളിക്ക",
+        quote: "വിശുദ്ധ കുർബാനയാണ് സ്വർഗ്ഗത്തിലേക്കുള്ള എന്റെ രാജപാത. — വിശുദ്ധ കാർലോ അക്യൂട്ടിസ്",
+        story: [
+          "1991 മെയ് 3-ന് ലണ്ടനിൽ ജനിച്ച് ഇറ്റലിയിലെ മിലാനിൽ വളർന്ന കാർലോ അക്യൂട്ടിസ് ചെറുപ്പകാലം മുതലേ ആഴമേറിയ ഈശ്വരവിശ്വാസം കാത്തുസൂക്ഷിച്ചിരുന്നു. കമ്പ്യൂട്ടറുകളും ഫുട്ബോളും ഇഷ്ടപ്പെട്ടിരുന്നതിനൊപ്പം വിശുദ്ധ കുർബാനയും പ്രാർത്ഥനയും നിത്യജീവിതത്തിന്റെ ഭാഗമാക്കി.",
+          "സാങ്കേതികവിദ്യയിലുള്ള തന്റെ പ്രാവീണ്യം ഉപയോഗിച്ച് ലോകമെമ്പാടുമുള്ള ദിവ്യകാരുണ്യ അത്ഭുതങ്ങൾ രേഖപ്പെടുത്തുന്ന വെബ്സൈറ്റ് അദ്ദേഹം നിർമ്മിച്ചു. തെരുവിൽ അഗതികളെ സഹായിക്കാനും കൂട്ടുകാർക്ക് താങ്ങാകാനും എപ്പോഴും സമയം കണ്ടെത്തി.",
+          "2006-ൽ രക്താർബുദം ബാധിച്ചപ്പോൾ, തന്റെ വേദനകളെ സഭയ്ക്കും മാർപാപ്പയ്ക്കുമായി സമർപ്പിച്ചു. 2006 ഒക്ടോബർ 12-ന് 15-ാം വയസ്സിൽ മരണമടഞ്ഞ കാർലോയെ 2020-ൽ വാഴ്ത്തപ്പെട്ടവനായും തുടർന്ന് വിശുദ്ധനായും പ്രഖ്യാപിച്ചു.",
+        ],
+      },
+      hi: {
+        name: "संत कार्लो अकुतिस",
+        epithet: "मिलेनियल संत • यूखरिस्त के युवा गवाह",
+        dateOfBirth: "3 मई 1991",
+        beatifiedDate: "10 अक्टूबर 2020 — पोप फ्रांसिस द्वारा",
+        canonisedDate: "7 सितंबर 2025",
+        feastDate: "12 अक्टूबर",
+        location: "लंदन, मिलान और असीसी, इटली",
+        patronage: ["युवा", "छात्र", "कंप्यूटर प्रोग्रामर", "इंटरनेट सुसमाचार प्रचार"],
+        attributes: "नीली पोलो टी-शर्ट, जींस, बैकपैक, कंप्यूटर, यूखरिस्त संदूक",
+        quote: "पवित्र यूखरिस्त स्वर्ग की ओर जाने वाला मेरा राजमार्ग है। — संत कार्लो अकुतिस",
+        story: [
+          "3 मई 1991 को लंदन में जन्मे कार्लो अकुतिस मिलान में बड़े हुए और बचपन से ही उनमें गहरी आस्था थी। कंप्यूटर, फुटबॉल और दूसरों की सहायता करना उन्हें बेहद पसंद था, साथ ही दैनिक मिस्सा और यूखरिस्त उनके जीवन का अभिन्न हिस्सा था।",
+          "कार्लो ने अपनी तकनीकी प्रतिभा का उपयोग दुनिया भर के यूखरिस्तीय चमत्कारों का दस्तावेजीकरण करने वाली एक ऑनलाइन प्रदर्शनी बनाने के लिए किया। वह गरीबों की मदद करते थे और स्कूल में अलग-थलग पड़े सहपाठियों का सहारा बनते थे।",
+          "2006 में ल्यूकेमिया से पीड़ित होने पर उन्होंने अपनी पीड़ा कलीसिया और पोप के लिए अर्पित कर दी। 12 अक्टूबर 2006 को मात्र 15 वर्ष की आयु में उनका देहावसान हुआ। उन्हें 2020 में धन्य और बाद में संत घोषित किया गया।",
+        ],
+      },
+    },
   },
   {
     id: "st-augustine-of-hippo",
@@ -140,8 +340,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Born in Thagaste in Roman North Africa in 354, Augustine was gifted in learning but spent years searching for truth and meaning. His mother, St. Monica, continued to pray for him as he explored different philosophies and ways of life.",
       "In Milan, the preaching of St. Ambrose and his own reading of Scripture helped lead him toward Christianity. He was baptized by Ambrose in 387, returned to North Africa and later became a priest and then Bishop of Hippo.",
-      "Augustine wrote influential works including Confessions and The City of God, shaping Christian thought for generations. Remembered as one of the great Doctors of the Church, he died in Hippo on 28 August 430."
+      "Augustine wrote influential works including Confessions and The City of God, shaping Christian thought for generations. Remembered as one of the great Doctors of the Church, he died in Hippo on 28 August 430.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ അഗസ്റ്റിൻ",
+        epithet: "കൃപയുടെ വേദപാരംഗതൻ • ഹിപ്പോയിലെ മെത്രാൻ",
+        dateOfBirth: "354 നവംബർ 13",
+        beatifiedDate: "പുരാതന സഭാ പാരമ്പര്യം",
+        canonisedDate: "പുരാതന സഭാ അംഗീകാരം",
+        feastDate: "ആഗസ്റ്റ് 28",
+        location: "തഗാസ്തെ & ഹിപ്പോ റെജിയസ് (ഇന്നത്തെ അൾജീരിയ)",
+        patronage: ["ദൈവശാസ്ത്രജ്ഞർ", "തത്ത്വചിന്തകർ", "മനംമാറിയവർ", "പണ്ഡിതർ"],
+        attributes: "മെത്രാൻ വസ്ത്രം, അംശവടി, ജ്വലിക്കുന്ന ഹൃദയം, തുറന്ന പുസ്തകം, തൂവൽത്തൂലിക",
+        quote: "കർത്താവേ, അങ്ങേയ്ക്കായി അങ്ങ് ഞങ്ങളെ സൃഷ്ടിച്ചു; അങ്ങയിൽ വിശ്രമം കണ്ടെത്തുന്നതുവരെ ഞങ്ങളുടെ ഹൃദയം അസ്വസ്ഥമായിരിക്കും. — കുമ്പസാരങ്ങൾ",
+        story: [
+          "354-ൽ റോമൻ വടക്കേ ആഫ്രിക്കയിലെ തഗാസ്തെയിൽ ജനിച്ച അഗസ്റ്റിൻ അതിബുദ്ധിമാനായ ഒരു പണ്ഡിതനായിരുന്നു. എന്നാൽ വർഷങ്ങളോളം സത്യവും ജീവിതത്തിന്റെ അർത്ഥവും തേടി അദ്ദേഹം അലഞ്ഞു. അമ്മയായ വിശുദ്ധ മോനിക്ക അദ്ദേഹത്തിന്റെ മാനസാന്തരത്തിനായി കണ്ണീരോടെ പ്രാർത്ഥിച്ചു.",
+          "മിലാനിൽ വെച്ച് വിശുദ്ധ അംബ്രോസിന്റെ പ്രസംഗങ്ങളും വിശുദ്ധ ഗ്രന്ഥ വായനയും അദ്ദേഹത്തെ ക്രൈസ്തവ വിശ്വാസത്തിലേക്ക് അടുപ്പിച്ചു. 387-ൽ ജ്ഞാനസ്നാനം സ്വീകരിച്ച അദ്ദേഹം പിന്നീട് വടക്കേ ആഫ്രിക്കയിൽ തിരിച്ചെത്തി വൈദികനായും തുടർന്ന് ഹിപ്പോയിലെ മെത്രാനായും അഭിഷിക്തനായി.",
+          "'കൺഫെഷൻസ്', 'ദ സിറ്റി ഓഫ് ഗോഡ്' തുടങ്ങി ആഗോള ക്രൈസ്തവ ചിന്തയെ സ്വാധീനിച്ച വിഖ്യാത കൃതികൾ അദ്ദേഹം രചിച്ചു. തിരുസഭയുടെ മഹാനായ വേദപാരംഗതനായി അറിയപ്പെടുന്ന അദ്ദേഹം 430 ആഗസ്റ്റ് 28-ന് അന്തരിച്ചു.",
+        ],
+      },
+      hi: {
+        name: "संत ऑगस्टीन",
+        epithet: "ईश्वरीय कृपा के डॉक्टर • हिप्पो के धर्माध्यक्ष",
+        dateOfBirth: "13 नवंबर 354",
+        beatifiedDate: "प्राचीन कलीसियाई परंपरा",
+        canonisedDate: "प्राचीन कलीसियाई मान्यता",
+        feastDate: "28 अगस्त",
+        location: "थागास्ते और हिप्पो, उत्तरी अफ्रीका (वर्तमान अल्जीरिया)",
+        patronage: ["धर्मविज्ञानी", "दार्शनिक", "परिवर्तित विश्वासी", "विद्वान"],
+        attributes: "धर्माध्यक्षीय वस्त्र, जलता हुआ हृदय, खुली पुस्तक, पंख की कलम",
+        quote: "हे प्रभु, तूने हमें अपने लिए बनाया है, और जब तक हमारा हृदय तुझमें विश्राम न पाए, तब तक वह बेचैन रहता है। — कन्फेशंस",
+        story: [
+          "354 में उत्तरी अफ्रीका के थागास्ते में जन्मे ऑगस्टीन मेधावी विद्वान थे, लेकिन उन्होंने कई वर्ष सत्य और जीवन के अर्थ की व्यर्थ खोज में बिताए। उनकी मां संत मोनिका ने उनके रूपांतरण के लिए निरंतर अश्रुपूर्ण प्रार्थनाएं कीं।",
+          "मिलान में संत एम्ब्रोस के उपदेशों और पवित्र शास्त्र के अध्ययन ने उन्हें मसीही विश्वास की ओर आकर्षित किया। 387 में बपतिस्मा लेकर वह उत्तरी अफ्रीका लौटे और बाद में पुरोहित व हिप्पो के धर्माध्यक्ष बने।",
+          "ऑगस्टीन ने 'कन्फेशंस' और 'द सिटी ऑफ गॉड' जैसी प्रभावशाली रचनाएं लिखीं, जिन्होंने पीढ़ियों तक मसीही धर्मशास्त्र को आकार दिया। 28 अगस्त 430 को हिप्पो में उनका निधन हुआ।",
+        ],
+      },
+    },
   },
   {
     id: "st-joseph",
@@ -161,8 +397,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "The Gospels present Joseph as a just man from the line of David, betrothed to Mary. When an angel guided him in a dream, he welcomed Mary into his home and accepted the responsibility of caring for Jesus.",
       "Joseph protected his family when they fled to Egypt and later made their home in Nazareth. He worked as a carpenter and helped Jesus grow, offering an example of faithfulness through ordinary work and quiet responsibility.",
-      "Though the Gospels record no spoken words from Joseph, his actions reveal trust, courage and obedience. He is honoured as the spouse of Mary and guardian of the Holy Family; his solemnity is celebrated on 19 March."
+      "Though the Gospels record no spoken words from Joseph, his actions reveal trust, courage and obedience. He is honoured as the spouse of Mary and guardian of the Holy Family; his solemnity is celebrated on 19 March.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ യൗസേപ്പിതാവ്",
+        epithet: "പരിശുദ്ധ കന്യകാമറിയത്തിന്റെ ഭർത്താവ് • തിരുക്കുടുംബത്തിന്റെ സംരക്ഷകൻ",
+        dateOfBirth: "ഒന്നാം നൂറ്റാണ്ട്",
+        beatifiedDate: "പുരാതന സഭാ പാരമ്പര്യം",
+        canonisedDate: "പുരാതന സഭാ അംഗീകാരം",
+        feastDate: "മാർച്ച് 19",
+        location: "നസ്രത്ത് & ബെത്‌ലഹേം, ഗലീലി",
+        patronage: ["സാർവ്വത്രിക സഭ", "കുടുംബങ്ങൾ", "പിതാക്കന്മാർ", "തൊഴിലാളികൾ", "തച്ചന്മാർ"],
+        attributes: "തച്ചുപണി ഉപകരണങ്ങൾ, പൂത്തുലഞ്ഞ ദണ്ഡ്, ലില്ലിപ്പൂവ്, ഉണ്ണിയേശു",
+        quote: "കർത്താവിന്റെ ദൂതൻ കൽപ്പിച്ചതുപോലെ അവൻ പ്രവർത്തിച്ചു. — മത്തായി 1:24",
+        story: [
+          "ദാവീദ് രാജാവിന്റെ വംശത്തിൽ ജനിച്ച നീതിമാനായ മനുഷ്യനായാണ് സുവിശേഷങ്ങൾ വിശുദ്ധ യൗസേപ്പിതാവിനെ പരിചയപ്പെടുത്തുന്നത്. സ്വപ്നത്തിൽ ദൈവദൂതന്റെ സന്ദേശം ലഭിച്ചപ്പോൾ, സംശയങ്ങളൊന്നുമില്ലാതെ മറിയത്തെ ഭാര്യയായി സ്വീകരിക്കുകയും ഉണ്ണിയേശുവിന്റെ വളർത്തുപിതാവെന്ന ദൗത്യം സന്തോഷത്തോടെ ഏറ്റെടുക്കുകയും ചെയ്തു.",
+          "ഹെറോദേസ് രാജാവിന്റെ പീഡനങ്ങളിൽ നിന്ന് തിരുക്കുടുംബത്തെ രക്ഷിച്ച് ഈജിപ്തിലേക്ക് പലായനം ചെയ്തതും പിന്നീട് നസ്രത്തിൽ സാധാരണ ആശാരിപ്പണി ചെയ്ത് കുടുംബം പുലർത്തിയതും യൗസേപ്പാണ്. ശാന്തതയിലും വിശ്വസ്തതയിലുമുള്ള ഉത്തരവാദിത്തത്തിന്റെ ഉത്തമ മാതൃകയാണദ്ദേഹം.",
+          "വിശുദ്ധ ഗ്രന്ഥത്തിൽ യൗസേപ്പിതാവിന്റേതായി ഒരു വാക്ക് പോലും രേഖപ്പെടുത്തിയിട്ടില്ലെങ്കിലും, അദ്ദേഹത്തിന്റെ നിശ്ശബ്ദമായ കർമ്മങ്ങൾ പരിപൂർണ്ണ അനുസരണത്തിന്റെയും സമർപ്പണത്തിന്റെയും തെളിവാണ്. മാർച്ച് 19-ന് തിരുസഭ വിശുദ്ധന്റെ പ്രധാന തിരുനാൾ ആചരിക്കുന്നു.",
+        ],
+      },
+      hi: {
+        name: "संत जोसेफ (यूसुफ)",
+        epithet: "मरियम के पति • पवित्र परिवार के संरक्षक",
+        dateOfBirth: "प्रथम शताब्दी",
+        beatifiedDate: "प्राचीन कलीसियाई परंपरा",
+        canonisedDate: "प्राचीन कलीसियाई मान्यता",
+        feastDate: "19 मार्च",
+        location: "नासरत और बेथलेहेम, गलील",
+        patronage: ["सार्वभौमिक कलीसिया", "परिवार", "पिता", "श्रमिक", "बढ़ई"],
+        attributes: "बढ़ई के औजार, लिली का फूल, खिलती हुई छड़ी, बालक यीशु",
+        quote: "उसने प्रभु के दूत की आज्ञा के अनुसार किया। — मत्ती 1:24",
+        story: [
+          "सुसमाचार यूसुफ को दाऊद के वंश से एक धर्मपरायण और न्यायप्रिय पुरुष के रूप में प्रस्तुत करते हैं। जब स्वप्न में ईश्वर के दूत ने उनका मार्गदर्शन किया, तो उन्होंने निसंकोच मरियम को अपने घर में स्वीकार किया और बालक यीशु के पालन-पोषण का दायित्व लिया।",
+          "मिस्र भागने के कठिन समय में यूसुफ ने अपने परिवार की रक्षा की और बाद में नासरत में बढ़ई का काम करते हुए साधारण जीवन में निष्ठा और परिश्रम का अद्वितीय उदाहरण प्रस्तुत किया।",
+          "यद्यपि सुसमाचारों में यूसुफ का कोई बोला हुआ शब्द दर्ज नहीं है, फिर भी उनके कार्य अटूट विश्वास, साहस और आज्ञाकारिता को प्रकट करते हैं। 19 मार्च को कलीसिया उनका प्रमुख पर्व मनाती है।",
+        ],
+      },
+    },
   },
   {
     id: "st-jude-thaddeus",
@@ -182,8 +454,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Jude, also called Thaddaeus, was one of the Twelve Apostles chosen by Jesus. He is distinct from Judas Iscariot, and the Gospel of John remembers him asking Jesus why He would reveal Himself to His disciples and not to the world.",
       "After Pentecost, Christian tradition says Jude carried the Gospel to regions of the Middle East. Details of his later journeys and death are uncertain, so accounts of his missionary travels are best understood as tradition.",
-      "The Church celebrates his feast together with St. Simon on 28 October. Over time, devotion to Jude grew especially among people facing difficult or seemingly hopeless situations."
+      "The Church celebrates his feast together with St. Simon on 28 October. Over time, devotion to Jude grew especially among people facing difficult or seemingly hopeless situations.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ യൂദാ തദേവൂസ്",
+        epithet: "പ്രത്യാശയുടെ അപ്പസ്തോലൻ • അസാധ്യകാര്യങ്ങളുടെ മധ്യസ്ഥൻ",
+        dateOfBirth: "ഒന്നാം നൂറ്റാണ്ട്",
+        beatifiedDate: "പുരാതന സഭാ പാരമ്പര്യം",
+        canonisedDate: "പുരാതന സഭാ അംഗീകാരം",
+        feastDate: "ഒക്ടോബർ 28",
+        location: "ഗലീലി, മിഡിൽ ഈസ്റ്റ്",
+        patronage: ["അസാധ്യകാര്യങ്ങൾ", "പ്രതിസന്ധികൾ", "ആശുപത്രികൾ", "കഠിന സാഹചര്യങ്ങൾ"],
+        attributes: "ക്രിസ്തുവിന്റെ രൂപമുള്ള മെഡൽ, അഗ്നിനാളം, വടി",
+        quote: "ദൈവസ്നേഹത്തിൽ നിങ്ങളെത്തന്നെ കാത്തുസൂക്ഷിക്കുവിൻ. — യൂദാ 1:21",
+        story: [
+          "യേശു തിരഞ്ഞെടുത്ത പന്ത്രണ്ട് അപ്പസ്തോലന്മാരിൽ ഒരാളായിരുന്നു തദേവൂസ് എന്നും അറിയപ്പെടുന്ന യൂദാ. ഈശോയെ ഒറ്റി കൊടുത്ത യൂദാസ് സ്കറിയോത്തയിൽ നിന്ന് വ്യത്യസ്തനാണ് ഇദ്ദേഹം.",
+          "പെന്തക്കോസ്തായ്ക്ക് ശേഷം യൂദാ മിഡിൽ ഈസ്റ്റിലെ വിവിധ ദേശങ്ങളിൽ സുവിശേഷ പ്രഘോഷണം നടത്തിയതായി സഭാപാരമ്പര്യം സാക്ഷ്യപ്പെടുത്തുന്നു. കഷ്ടതകൾക്കിടയിലും ക്രിസ്തുവിശ്വാസത്തിൽ ഉറച്ചുനിന്ന അദ്ദേഹം രക്തസാക്ഷിത്വം വരിച്ചു.",
+          "ഒക്ടോബർ 28-ന് വിശുദ്ധ ശിമയോനൊപ്പം യൂദാ ശ്ലീഹായുടെ തിരുനാൾ ആഘോഷിക്കുന്നു. പരിഹരിക്കാനാവാത്ത പ്രശ്നങ്ങളിലും തീവ്ര നിരാശയിലും പെടുന്നവർക്ക് പ്രത്യാശ പകരുന്ന ശക്തനായ മധ്യസ്ഥനായി വിശുദ്ധ യൂദാ ലോകമെമ്പാടും വണങ്ങപ്പെടുന്നു.",
+        ],
+      },
+      hi: {
+        name: "संत यहूदा थद्दियस",
+        epithet: "आशा के प्रेरित • असंभव कार्यों के मध्यस्थ",
+        dateOfBirth: "प्रथम शताब्दी",
+        beatifiedDate: "प्राचीन कलीसियाई परंपरा",
+        canonisedDate: "प्राचीन कलीसियाई मान्यता",
+        feastDate: "28 अक्टूबर",
+        location: "गलील और मध्य पूर्व",
+        patronage: ["असंभव और कठिन परिस्थितियां", "अस्पताल", "निराशा में पड़े लोग"],
+        attributes: "मसीह के मुखमंडल वाला पदक, अग्नि की ज्वाला, लाठी",
+        quote: "परमेश्वर के प्रेम में अपने आप को सुरक्षित रखो। — यहूदा 1:21",
+        story: [
+          "यहूदा, जिन्हें थद्दियस भी कहा जाता है, ईसा मसीह द्वारा चुने गए बारह प्रेरितों में से एक थे। वह यहूदा इस्करियोती से सर्वथा भिन्न हैं जिन्होंने प्रभु को धोखा दिया था।",
+          "पेंतेकोस्त के बाद उन्होंने मध्य पूर्व के विभिन्न क्षेत्रों में सुसमाचार का प्रचार किया और अंततः विश्वास के लिए अपने प्राण न्योछावर कर शहीद हो गए।",
+          "कलीसिया 28 अक्टूबर को संत सिमोन के साथ उनका पर्व मनाती है। कठिन और असंभव प्रतीत होने वाली परिस्थितियों में लोग उनकी शक्तिशाली मध्यस्थता की प्रार्थना करते हैं।",
+        ],
+      },
+    },
   },
   {
     id: "st-matthew-apostle",
@@ -203,8 +511,44 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Before following Jesus, Matthew—also known as Levi—worked as a tax collector in Capernaum. Many people viewed tax collectors with suspicion, but Jesus called him with the simple words, “Follow me,” and Matthew left his work to become a disciple.",
       "Matthew welcomed Jesus to a meal with other tax collectors and people considered sinners. The moment showed the mercy at the heart of Jesus’ mission: He came not to call the self-righteous, but those who knew they needed God.",
-      "Christian tradition associates Matthew with the Gospel that bears his name. His feast is celebrated on 21 September, and his story reminds us that a new beginning is possible when we respond to God’s call."
+      "Christian tradition associates Matthew with the Gospel that bears his name. His feast is celebrated on 21 September, and his story reminds us that a new beginning is possible when we respond to God’s call.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ മത്തായി ശ്ലീഹാ",
+        epithet: "അപ്പസ്തോലനും സുവിശേഷകനും • ചുങ്കസ്ഥലത്തുനിന്ന് വിളിക്കപ്പെട്ടവൻ",
+        dateOfBirth: "ഒന്നാം നൂറ്റാണ്ട്",
+        beatifiedDate: "പുരാതന സഭാ പാരമ്പര്യം",
+        canonisedDate: "പുരാതന സഭാ അംഗീകാരം",
+        feastDate: "സെപ്റ്റംബർ 21",
+        location: "കഫർണാം, ഗലീലി",
+        patronage: ["അക്കൗണ്ടന്റുമാർ", "ബാങ്കർമാർ", "കണക്കെഴുത്തുകാർ", "നികുതി പിരിവുകാർ"],
+        attributes: "ചിറകുള്ള മനുഷ്യരൂപം, സുവിശേഷ ഗ്രന്ഥം, തൂലിക, പണസഞ്ചി",
+        quote: "ബലിയല്ല, കാരുണ്യമാണ് ഞാൻ ആഗ്രഹിക്കുന്നത്. — മത്തായി 9:13",
+        story: [
+          "യേശുവിനെ അനുഗമിക്കുന്നതിനു മുൻപ്, ലേവി എന്നും അറിയപ്പെട്ടിരുന്ന മത്തായി കഫർണാവിൽ ചുങ്കം പിരിക്കുന്നയാളായി ജോലി ചെയ്യുകയായിരുന്നു. സമൂഹത്തിൽ പലരും അവജ്ഞയോടെ കണ്ടിരുന്ന ഒരു ജോലിയായിരുന്നു അത്. എന്നാൽ യേശു 'എന്നെ അനുഗമിക്കുക' എന്ന് അരുളിച്ചെയ്തപ്പോൾ അദ്ദേഹം സർവ്വതും ഉപേക്ഷിച്ച് അപ്പസ്തോലനായി.",
+          "തുടർന്ന് മറ്റ് ചുങ്കക്കാരെയും പാപികളെയും ക്ഷണിച്ചുവരുത്തി മത്തായി തന്റെ ഭവനത്തിൽ യേശുവിനായി വിരുന്ന് ഒരുക്കി. നീതിമാന്മാരെയല്ല, പാപികളെ മാനസാന്തരത്തിലേക്ക് വിളിക്കാനാണ് താൻ വന്നതെന്ന കാരുണ്യത്തിന്റെ സന്ദേശമാണ് ആ നിമിഷം ലോകത്തിന് നൽകിയത്.",
+          "തന്റെ പേരിലുള്ള പ്രഥമ സുവിശേഷത്തിന്റെ രചയിതാവായി തിരുസഭ മത്തായിയെ ആദരിക്കുന്നു. സെപ്റ്റംബർ 21-നാണ് അദ്ദേഹത്തിന്റെ തിരുനാൾ ആഘോഷിക്കുന്നത്.",
+        ],
+      },
+      hi: {
+        name: "संत मैथ्यू (मत्ती प्रेरित)",
+        epithet: "प्रेरित और सुसमाचार लेखक • कर वसूली से बुलाए गए",
+        dateOfBirth: "प्रथम शताब्दी",
+        beatifiedDate: "प्राचीन कलीसियाई परंपरा",
+        canonisedDate: "प्राचीन कलीसियाई मान्यता",
+        feastDate: "21 सितंबर",
+        location: "कफरनहूम, गलील",
+        patronage: ["लेखाकार (अकाउंटेंट)", "बैंकर", "कर संग्राहक", "सीमा शुल्क अधिकारी"],
+        attributes: "पंखयुक्त मानव आकृति, सुसमाचार पुस्तक, कलम, धन की थैली",
+        quote: "मैं बलिदान नहीं, दया चाहता हूँ। — मत्ती 9:13",
+        story: [
+          "ईसा मसीह का अनुसरण करने से पहले, मैथ्यू—जिन्हें लेवी भी कहा जाता था—कफरनहूम में चुंगी चौकी पर कर वसूलने का काम करते थे। उस समय कर संग्राहकों को समाज में हेय दृष्टि से देखा जाता था, लेकिन यीशु ने उनसे 'मेरे पीछे आओ' कहा और मैथ्यू सब कुछ छोड़कर उनके शिष्य बन गए।",
+          "मैथ्यू ने अपने घर में यीशु और अन्य कर संग्राहकों के लिए एक बड़े भोज का आयोजन किया, जिसने प्रभु की असीम दया को प्रकट किया कि वे धर्मात्माओं को नहीं, बल्कि पापियों को मनफिराव के लिए बुलाने आए हैं।",
+          "मसीही परंपरा मत्ती के नाम से जाने जाने वाले पहले सुसमाचार का श्रेय उन्हें देती है। उनका पर्व 21 सितंबर को मनाया जाता है।",
+        ],
+      },
+    },
   },
   {
     id: "st-peter-apostle",
@@ -224,7 +568,43 @@ export const SAINTS_DATA: Saint[] = [
     story: [
       "Known first as Simon, Peter was a fisherman from Bethsaida who worked around the Sea of Galilee with his brother Andrew. Jesus called him to become a “fisher of people” and gave him the name Peter, meaning rock.",
       "Peter became a leading voice among the Twelve. He professed Jesus as the Messiah and received the symbolic keys of the Kingdom, yet he also knew fear and failure. After denying Jesus, he was restored and entrusted with caring for Christ’s flock.",
-      "Early Christian tradition remembers Peter preaching in Rome and dying there as a martyr during the persecution under Emperor Nero. Honoured as a foundational apostle and the first pope in Catholic tradition, he shares his feast day with St. Paul on 29 June."
+      "Early Christian tradition remembers Peter preaching in Rome and dying there as a martyr during the persecution under Emperor Nero. Honoured as a foundational apostle and the first pope in Catholic tradition, he shares his feast day with St. Paul on 29 June.",
     ],
+    translations: {
+      ml: {
+        name: "വിശുദ്ധ പത്രോസ് ശ്ലീഹാ",
+        epithet: "ശ്ലീഹന്മാരുടെ തലവൻ • സഭയുടെ പാറ",
+        dateOfBirth: "ഒന്നാം നൂറ്റാണ്ട്",
+        beatifiedDate: "പുരാതന സഭാ പാരമ്പര്യം",
+        canonisedDate: "പുരാതന സഭാ അംഗീകാരം",
+        feastDate: "ജൂൺ 29",
+        location: "ബെത്സയ്ദാ & കഫർണാം, ഗലീലി; റോം",
+        patronage: ["മാർപാപ്പമാർ", "മുക്കുവർ", "വല നിർമ്മാതാക്കൾ", "സാർവ്വത്രിക സഭ"],
+        attributes: "സ്വർഗ്ഗരാജ്യത്തിന്റെ രണ്ട് താക്കോലുകൾ, മീൻവല, വള്ളം, പൂവൻകോഴി",
+        quote: "കർത്താവേ, ഞങ്ങൾ ആരുടെ അടുത്തേക്ക് പോകും? നിത്യജീവന്റെ വചനങ്ങൾ അങ്ങയുടെ പക്കലുണ്ട്. — യോഹന്നാൻ 6:68",
+        story: [
+          "ശിമയോൻ എന്ന് ആദ്യം അറിയപ്പെട്ടിരുന്ന പത്രോസ്, ഗലീലി കടലിൽ സഹോദരൻ അന്ത്രയോസിനൊപ്പം മീൻപിടിത്തം നടത്തി ജീവിച്ചിരുന്ന ഒരു മുക്കുവനായിരുന്നു. യേശു അദ്ദേഹത്തെ വിളിച്ച് 'മനുഷ്യരെ പിടിക്കുന്നവനാക്കി' മാറ്റുകയും 'പാറ' എന്നർത്ഥമുള്ള പത്രോസ് എന്ന പേര് നൽകുകയും ചെയ്തു.",
+          "പന്ത്രണ്ട് ശിഷ്യന്മാരിൽ പ്രമുഖനായിരുന്ന പത്രോസ് യേശുവിനെ ജീവനുള്ള ദൈവത്തിന്റെ പുത്രനായ മിശിഹായായി ഏറ്റുപറഞ്ഞു. മനുഷ്യസഹജമായ ഭയം നിമിത്തം ക്രിസ്തുവിനെ മൂന്നുതവണ തള്ളിപ്പറഞ്ഞെങ്കിലും, കണ്ണീരോടെ പശ്ചാത്തപിച്ച അദ്ദേഹത്തെ യേശു തിരുസഭയുടെ അജപാലകനായി നിയോഗിച്ചു.",
+          "റോമിലെത്തി സഭയെ നയിച്ച പത്രോസ് നീറോ ചക്രവർത്തിയുടെ പീഡനകാലത്ത് തലകീഴായി കുരിശിലേറ്റപ്പെട്ട് രക്തസാക്ഷിത്വം വരിച്ചുവെന്നാണ് പാരമ്പര്യം. ആദ്യത്തെ മാർപാപ്പയായി ആദരിക്കപ്പെടുന്ന പത്രോസ് ശ്ലീഹായുടെ തിരുനാൾ ജൂൺ 29-ന് വിശുദ്ധ പൗലോസിനൊപ്പം ആചരിക്കുന്നു.",
+        ],
+      },
+      hi: {
+        name: "संत पीटर (पतरस प्रेरित)",
+        epithet: "प्रेरितों के प्रधान • कलीसिया की चट्टान",
+        dateOfBirth: "प्रथम शताब्दी",
+        beatifiedDate: "प्राचीन कलीसियाई परंपरा",
+        canonisedDate: "प्राचीन कलीसियाई मान्यता",
+        feastDate: "29 जून",
+        location: "बेथसैदा और कफरनहूम, गलील; रोम",
+        patronage: ["पोप पद", "मछुआरे", "जाल निर्माता", "सार्वभौमिक कलीसिया"],
+        attributes: "स्वर्ग के राज्य की दो कुंजियां, मछली पकड़ने का जाल, नाव, मुर्गा",
+        quote: "हे प्रभु, हम किसके पास जाएं? अनंत जीवन के वचन तो तेरे ही पास हैं। — यूहन्ना 6:68",
+        story: [
+          "पहले साइमन के नाम से जाने जाने वाले, पीटर बेथसैदा के एक साधारण मछुआरे थे जो गलील की झील में अपने भाई अन्द्रियास के साथ नाव चलाते थे। ईसा मसीह ने उन्हें 'मनुष्यों के मछुआरे' बनने के लिए बुलाया और उन्हें पतरस (चट्टान) नाम दिया।",
+          "बारह प्रेरितों में वह सबसे प्रमुख स्वर बने। उन्होंने यीशु को मसीह के रूप में स्वीकार किया और स्वर्ग के राज्य की प्रतीकात्मक कुंजियां प्राप्त कीं। यद्यपि मानवीय दुर्बलतावश उन्होंने तीन बार प्रभु को नकारा, परंतु सच्चे पश्चाताप के बाद प्रभु ने उन्हें अपनी भेड़ों की देखभाल का दायित्व सौंपा।",
+          "प्राचीन परंपरा के अनुसार, पीटर ने रोम में सुसमाचार का प्रचार किया और सम्राट नीरो के अत्याचारों के दौरान सिर नीचे करके क्रूस पर शहीद हुए। उन्हें कलीसिया के पहले पोप के रूप में सम्मानित किया जाता है और 29 जून को उनका पर्व मनाया जाता है।",
+        ],
+      },
+    },
   },
 ];
