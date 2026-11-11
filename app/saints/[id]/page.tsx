@@ -22,12 +22,47 @@ export async function generateMetadata({
   const saint = SAINTS_DATA.find((s) => s.id === id);
 
   if (!saint) {
-    return { title: "Saint Not Found — SaintsBook" };
+    return {
+      title: "Saint Not Found",
+      description: "The requested saint chronicle could not be found in the SaintsBook archive.",
+    };
   }
 
+  const excerpt = saint.story[0]?.slice(0, 160) || saint.epithet;
+
   return {
-    title: `${saint.name} — SaintsBook Chronicle`,
-    description: `The sacred life, milestones, and story of ${saint.name}. Feast Day: ${saint.feastDate}.`,
+    title: `${saint.name} — Sacred Life, Milestones & Story`,
+    description: `${saint.name} (${saint.epithet}): ${excerpt}... Feast Day: ${saint.feastDate}. Explore their complete chronicle on SaintsBook.`,
+    keywords: [
+      saint.name,
+      saint.epithet,
+      saint.location,
+      saint.feastDate,
+      ...saint.patronage,
+      "Christian Saint",
+      "Catholic Saint",
+      "SaintsBook",
+      "Hagiography",
+    ],
+    openGraph: {
+      title: `${saint.name} — SaintsBook Chronicle`,
+      description: `${saint.epithet} • Feast Day: ${saint.feastDate}. ${excerpt}...`,
+      type: "article",
+      images: [
+        {
+          url: "/saintsbook.png",
+          width: 800,
+          height: 800,
+          alt: `${saint.name} — SaintsBook Chronicle`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${saint.name} — SaintsBook Chronicle`,
+      description: `${saint.epithet} • Feast Day: ${saint.feastDate}`,
+      images: ["/saintsbook.png"],
+    },
   };
 }
 

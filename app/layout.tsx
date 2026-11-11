@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/app-providers";
@@ -9,12 +9,119 @@ const outfit = Outfit({
   weight: ["100", "200", "300", "400", "500", "600"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saints-book.vercel.app";
+
+export const viewport: Viewport = {
+  themeColor: "#3B2D47",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: "SaintsBook — Editorial & Digital Monograph Archive",
-  description: "A premium, contemporary editorial archive with a distinctive pink-on-plum visual identity.",
-  icons: {
-    icon: "/saintsbook.png",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "SaintsBook — Lives of Christian Saints, Chronicles & Feast Days",
+    template: "%s | SaintsBook",
   },
+  description:
+    "Discover the inspiring lives, canonisation milestones, quotes, and feast day calendar of Christian saints across 2,000+ years of Church history. Read complete chronicles in English, Malayalam, and Hindi.",
+  keywords: [
+    "SaintsBook",
+    "Christian Saints",
+    "Catholic Saints",
+    "Saints Chronicles",
+    "Feast Days Calendar",
+    "Canonised Lives",
+    "Hagiography",
+    "Patron Saints",
+    "St. Francis of Assisi",
+    "St. Alphonsa",
+    "St. Carlo Acutis",
+    "St. Euphrasia",
+    "St. Kuriakose Elias Chavara",
+    "Malayalam Saints",
+    "Hindi Saints",
+    "വിശുദ്ധർ",
+    "ക്രൈസ്തവ വിശുദ്ധർ",
+    "ईसाई संत",
+    "संतों की जीवनियाँ",
+  ],
+  authors: [
+    {
+      name: "Dario George",
+      url: "https://dariogeorge.in",
+    },
+  ],
+  creator: "Dario George",
+  publisher: "SaintsBook Archive",
+  applicationName: "SaintsBook",
+  generator: "Next.js",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/?lang=en",
+      ml: "/?lang=ml",
+      hi: "/?lang=hi",
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: ["ml_IN", "hi_IN"],
+    url: siteUrl,
+    siteName: "SaintsBook",
+    title: "SaintsBook — Lives of Christian Saints, Chronicles & Feast Days",
+    description:
+      "Discover the inspiring lives, canonisation milestones, quotes, and feast day calendar of Christian saints across 2,000+ years of Church history. Available in English, Malayalam, and Hindi.",
+    images: [
+      {
+        url: "/saintsbook.png",
+        width: 800,
+        height: 800,
+        alt: "SaintsBook — Archival Monograph Mark",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SaintsBook — Lives of Christian Saints, Chronicles & Feast Days",
+    description:
+      "Explore the inspiring lives, canonisation milestones, and feast day calendar of Christian saints across 2,000+ years of Church history.",
+    creator: "@dariogeorge21",
+    images: ["/saintsbook.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/saintsbook.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/manifest.json",
+  category: "Religion & Spirituality",
+  classification: "Christian Hagiography & Historical Archive",
 };
 
 export default function RootLayout({

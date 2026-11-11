@@ -1,6 +1,25 @@
 {
   "name": "saints-book",
   "version": "0.1.0",
+  "description": "An archival Christian hagiography exploring the lives, faith, canonisation milestones, and feast days of Christian saints across 2,000+ years of Church history.",
+  "author": "Dario George <https://dariogeorge.in>",
+  "homepage": "https://github.com/dariogeorge21/saints-book#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dariogeorge21/saints-book.git"
+  },
+  "keywords": [
+    "saints",
+    "christian-saints",
+    "hagiography",
+    "feast-days",
+    "nextjs",
+    "react",
+    "typescript",
+    "i18n",
+    "malayalam",
+    "hindi"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -1,21 +1,32 @@
 {
-  "name": "Saints Book",
-  "short_name": "Saints Book",
+  "name": "SaintsBook — Lives of Christian Saints & Chronicles",
+  "short_name": "SaintsBook",
+  "description": "An archival Christian hagiography exploring the lives, faith, canonisation milestones, and feast days of Christian saints across 2,000+ years of Church history.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#3B2D47",
+  "theme_color": "#3B2D47",
+  "categories": ["education", "books", "lifestyle"],
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
       "src": "/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/saintsbook.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
-  ],
-  "theme_color": "#000000",
-  "background_color": "#330000",
-  "display": "standalone"
+  ]
 }
