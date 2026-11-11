@@ -515,14 +515,6 @@ export function Hero() {
                 );
               })}
             </div>
-
-            {/* Micro Caption Note */}
-            <div className="mt-2 text-center">
-              <span className="text-[10px] font-mono tracking-wider uppercase text-[#C2BDCE]/40 inline-flex items-center gap-1.5">
-                <RotateCw className="w-2.5 h-2.5 stroke-[1.5] text-[#FF2477]" />
-                <span>Rotates on X &amp; Y Axis • Hover to pause</span>
-              </span>
-            </div>
           </div>
         </div>
       </div>
