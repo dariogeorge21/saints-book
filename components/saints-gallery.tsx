@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { SAINTS_DATA } from "@/lib/data";
+import { SAINTS } from "@/lib/content";
 import { useLanguage } from "@/lib/language-context";
 import { ArrowUpRight, ArrowRight, Calendar, Award, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export function SaintsGallery() {
   const { t, getSaintContent, isTransitioning } = useLanguage();
   // Landing page displays exactly 3 featured saints
-  const featuredThreeSaints = SAINTS_DATA.slice(0, 3);
+  const featuredThreeSaints = SAINTS.slice(0, 3);
 
   return (
     <section
@@ -43,7 +43,7 @@ export function SaintsGallery() {
             href="/saints"
             className="inline-flex items-center gap-2 text-xs uppercase font-[200] tracking-[0.25em] text-[#FF2477] hover:text-[#ff4b91] transition-colors group self-start md:self-end"
           >
-            <span>{t("gallery.viewAll", { count: SAINTS_DATA.length })}</span>
+            <span>{t("gallery.viewAll", { count: SAINTS.length })}</span>
             <ArrowRight className="w-3.5 h-3.5 stroke-[1.5] group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -155,7 +155,7 @@ export function SaintsGallery() {
             {t("story.archive")}
           </span>
           <h3 className="text-xl sm:text-2xl font-[100] uppercase tracking-[0.16em] text-[#F8F6FA]">
-            {t("gallery.viewAll", { count: SAINTS_DATA.length })}
+            {t("gallery.viewAll", { count: SAINTS.length })}
           </h3>
           <p className="text-xs sm:text-sm font-[200] text-[#C2BDCE] leading-relaxed max-w-xl mx-auto tracking-wide">
             {t("allSaints.lead")}

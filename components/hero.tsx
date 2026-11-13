@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { SaintsBookLogo } from "./saintsbook-logo";
-import { SAINTS_DATA } from "@/lib/data";
+import { SAINTS } from "@/lib/content";
 import { useLanguage } from "@/lib/language-context";
 import {
   ArrowDownRight,
@@ -38,7 +38,7 @@ export function Hero() {
 
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const currentSaint = SAINTS_DATA[currentIndex] || SAINTS_DATA[0];
+  const currentSaint = SAINTS[currentIndex] || SAINTS[0];
   const localizedFeatured = getSaintContent(currentSaint);
 
   // Core 3D rotation transition on both X and Y axes from center
@@ -65,12 +65,12 @@ export function Hero() {
   );
 
   const handleNext = useCallback(() => {
-    const nextIdx = (currentIndex + 1) % SAINTS_DATA.length;
+    const nextIdx = (currentIndex + 1) % SAINTS.length;
     handleRotate(nextIdx, "next");
   }, [currentIndex, handleRotate]);
 
   const handlePrev = useCallback(() => {
-    const prevIdx = (currentIndex - 1 + SAINTS_DATA.length) % SAINTS_DATA.length;
+    const prevIdx = (currentIndex - 1 + SAINTS.length) % SAINTS.length;
     handleRotate(prevIdx, "prev");
   }, [currentIndex, handleRotate]);
 
@@ -203,7 +203,7 @@ export function Hero() {
             <div className="pt-6 border-t border-[rgba(194,189,206,0.12)] grid grid-cols-2 gap-8 max-w-sm text-left">
               <div>
                 <span className="block text-2xl font-[100] text-[#F8F6FA] tracking-widest">
-                  {SAINTS_DATA.length}
+                  {SAINTS.length}
                 </span>
                 <span className="text-[10px] font-[200] tracking-[0.25em] uppercase text-[#C2BDCE]/70">
                   Canonised Lives
@@ -291,7 +291,7 @@ export function Hero() {
                   </div>
                   <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                     <span className="text-[10px] font-mono tracking-wider sm:tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[#FF2477]/30 text-[#FF2477] whitespace-nowrap shrink-0 leading-none">
-                      {String(currentIndex + 1).padStart(2, "0")}&nbsp;/&nbsp;{String(SAINTS_DATA.length).padStart(2, "0")}
+                      {String(currentIndex + 1).padStart(2, "0")}&nbsp;/&nbsp;{String(SAINTS.length).padStart(2, "0")}
                     </span>
                     <span className="text-[10px] font-mono tracking-wider sm:tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[rgba(194,189,206,0.15)] text-[#C2BDCE] whitespace-nowrap shrink-0 leading-none">
                       {localizedFeatured.feastDate}
@@ -486,7 +486,7 @@ export function Hero() {
 
             {/* 10 Saint Indicators / Dots with Tooltips */}
             <div className="mt-4 flex items-center justify-center gap-1.5 flex-wrap max-w-md mx-auto px-2">
-              {SAINTS_DATA.map((saint, idx) => {
+              {SAINTS.map((saint, idx) => {
                 const localized = getSaintContent(saint);
                 const isActive = idx === currentIndex;
                 return (

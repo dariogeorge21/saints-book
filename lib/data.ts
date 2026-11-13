@@ -1,3 +1,12 @@
+/**
+ * PRESERVED ARCHIVE DATASET
+ * -------------------------------------------------------------
+ * This dataset is preserved as an archival reference.
+ * The active SaintsBook application reads its content dynamically
+ * from the @/content directory via @/lib/content.
+ * -------------------------------------------------------------
+ */
+
 export interface SaintTranslation {
   name: string;
   epithet: string;

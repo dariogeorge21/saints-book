@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { SAINTS_DATA } from "@/lib/data";
+import { SAINTS } from "@/lib/content";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { useLanguage } from "@/lib/language-context";
@@ -22,7 +22,7 @@ export default function AllSaintsPage() {
     "Modern Era",
   ];
 
-  const filteredSaints = SAINTS_DATA.filter((saint) => {
+  const filteredSaints = SAINTS.filter((saint) => {
     const matchesEra = selectedEra === "ALL" || saint.era === selectedEra;
     const q = searchQuery.toLowerCase().trim();
     if (q === "") return matchesEra;
@@ -75,7 +75,7 @@ export default function AllSaintsPage() {
             <span className="text-[10px] font-mono tracking-widest text-[#FF2477] uppercase px-3 py-1 rounded-full bg-[#FF2477]/10 border border-[#FF2477]/30">
               {t("allSaints.saintsCount", {
                 filtered: filteredSaints.length,
-                total: SAINTS_DATA.length,
+                total: SAINTS.length,
               })}
             </span>
           </div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { SAINTS_DATA } from "@/lib/data";
+import { SAINTS } from "@/lib/content";
 import { useLanguage } from "@/lib/language-context";
 import { ArrowUpRight, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -24,7 +24,7 @@ export function FeastCalendar() {
     "October",
   ];
 
-  const filtered = SAINTS_DATA.filter((s) => {
+  const filtered = SAINTS.filter((s) => {
     const matchesMonth = selectedMonth === "ALL" || s.feastMonth === selectedMonth;
     const q = search.toLowerCase().trim();
     if (q === "") return matchesMonth;

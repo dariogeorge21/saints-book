@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { useLanguage, PersistenceMode } from "@/lib/language-context";
 import { SUPPORTED_LANGUAGES, SupportedLanguage } from "@/lib/i18n";
-import { SAINTS_DATA } from "@/lib/data";
+import { SAINTS } from "@/lib/content";
 import {
   Globe,
   Settings,
@@ -60,7 +60,7 @@ export default function SettingsPage() {
   };
 
   // Preview sample saint (St. Alphonsa)
-  const sampleSaint = SAINTS_DATA[1];
+  const sampleSaint = SAINTS[1] || SAINTS[0];
   const sampleContent = getSaintContent(sampleSaint, language);
 
   const currentLangObj = SUPPORTED_LANGUAGES.find((l) => l.code === language);

@@ -13,7 +13,7 @@ import {
   SUPPORTED_LANGUAGES,
   UI_TRANSLATIONS,
 } from "./i18n";
-import { Saint, SaintTranslation } from "./data";
+import { Saint, SaintTranslation } from "./content";
 
 export type PersistenceMode = "permanent" | "remember_7days" | "ask_each_time";
 

@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { SAINTS_DATA, Saint } from "@/lib/data";
+import { SAINTS, Saint } from "@/lib/content";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { useLanguage } from "@/lib/language-context";
@@ -40,7 +40,7 @@ export default function FeastCalendarPage() {
   const { t, getSaintContent, isTransitioning, language } = useLanguage();
   const [search, setSearch] = useState("");
   const [selectedMonth, setSelectedMonth] = useState<string>("ALL");
-  const [upcomingSaint, setUpcomingSaint] = useState<Saint>(SAINTS_DATA[0]);
+  const [upcomingSaint, setUpcomingSaint] = useState<Saint>(SAINTS[0]);
 
   const months = [
     "ALL",
@@ -60,10 +60,10 @@ export default function FeastCalendarPage() {
     const currentMonth = today.getMonth();
     const currentDay = today.getDate();
 
-    let closestSaint = SAINTS_DATA[0];
+    let closestSaint = SAINTS[0];
     let minDaysDiff = Infinity;
 
-    for (const saint of SAINTS_DATA) {
+    for (const saint of SAINTS) {
       const parsed = parseFeastDate(saint.feastDate);
       if (!parsed) continue;
 
@@ -89,7 +89,7 @@ export default function FeastCalendarPage() {
   }, []);
 
   const filteredSaints = useMemo(() => {
-    return SAINTS_DATA.filter((s) => {
+    return SAINTS.filter((s) => {
       const matchesMonth = selectedMonth === "ALL" || s.feastMonth === selectedMonth;
       const q = search.toLowerCase().trim();
       if (q === "") return matchesMonth;

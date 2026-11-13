@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Saint } from "@/lib/data";
+import { Saint } from "@/lib/content";
 import { X, Calendar, Award, Sparkles, Heart, Share2, Check, Bookmark, ArrowLeft, ArrowRight } from "lucide-react";
 
 interface SaintStoryModalProps {

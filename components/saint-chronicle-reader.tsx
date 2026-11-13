@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Saint } from "@/lib/data";
+import { Saint } from "@/lib/content";
 import { useLanguage } from "@/lib/language-context";
 import { SUPPORTED_LANGUAGES, SupportedLanguage } from "@/lib/i18n";
 import {
