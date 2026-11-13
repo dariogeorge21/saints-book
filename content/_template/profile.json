@@ -1,0 +1,51 @@
+{
+  "id": "st-example-slug",
+  "name": "St. Example Name",
+  "latinName": "Sanctus Exemplum",
+  "epithet": "Epithet or Title • Patron of Topic",
+  "dateOfBirth": "Month Day, Year",
+  "beatifiedDate": "Day Month Year by Pope Name",
+  "canonisedDate": "Day Month Year by Pope Name",
+  "feastDate": "Month Day",
+  "feastMonth": "Month",
+  "era": "Early Church | Medieval | Renaissance & Reformation | Modern Era",
+  "location": "City, Region, Country",
+  "patronage": [
+    "Patronage 1",
+    "Patronage 2"
+  ],
+  "attributes": "Sacred symbols, habit, cross, book, etc.",
+  "quote": "Memorable quote or spiritual words of wisdom.",
+  "translations": {
+    "ml": {
+      "name": "വിശുദ്ധന്റെ പേര്",
+      "epithet": "വിശേഷണം അല്ലെങ്കിൽ ശീർഷകം",
+      "dateOfBirth": "ജനന തീയതി",
+      "beatifiedDate": "വാഴ്ത്തപ്പെട്ട തീയതി",
+      "canonisedDate": "വിശുദ്ധ പദവി തീയതി",
+      "feastDate": "തിരുനാൾ തീയതി",
+      "location": "സ്ഥലം, രാജ്യം",
+      "patronage": [
+        "മധ്യസ്ഥത 1",
+        "മധ്യസ്ഥത 2"
+      ],
+      "attributes": "വിശുദ്ധ ചിഹ്നങ്ങൾ",
+      "quote": "വിശുദ്ധന്റെ വാക്കുകൾ അല്ലെങ്കിൽ ഉദ്ധരണി"
+    },
+    "hi": {
+      "name": "संत का नाम",
+      "epithet": "उपाधि या विशेषण",
+      "dateOfBirth": "जन्म तिथि",
+      "beatifiedDate": "धन्य घोषित तिथि",
+      "canonisedDate": "संत घोषित तिथि",
+      "feastDate": "पर्व तिथि",
+      "location": "स्थान, देश",
+      "patronage": [
+        "संरक्षण 1",
+        "संरक्षण 2"
+      ],
+      "attributes": "पवित्र प्रतीक",
+      "quote": "संत के अनमोल वचन"
+    }
+  }
+}

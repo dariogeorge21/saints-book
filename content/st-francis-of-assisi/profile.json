@@ -1,0 +1,60 @@
+{
+  "id": "st-francis-of-assisi",
+  "name": "St. Francis of Assisi",
+  "latinName": "Sanctus Franciscus Assisiensis",
+  "epithet": "Founder of the Franciscans • Patron of Ecology",
+  "dateOfBirth": "c. 1181 / 1182",
+  "beatifiedDate": "Pre-congregation (no separate beatification recorded)",
+  "canonisedDate": "16 July 1228 by Pope Gregory IX",
+  "feastDate": "October 4",
+  "feastMonth": "October",
+  "era": "Medieval",
+  "location": "Assisi, Italy",
+  "patronage": [
+    "Animals",
+    "Ecology",
+    "Italy",
+    "Merchants",
+    "Peace"
+  ],
+  "attributes": "Brown Franciscan habit, Tau cross, birds, lamb, stigmata",
+  "quote": "Praised be You, my Lord, through all Your creatures. — Canticle of the Creatures",
+  "translations": {
+    "ml": {
+      "name": "വിശുദ്ധ ഫ്രാൻസിസ് അസീസി",
+      "epithet": "ഫ്രാൻസിസ്കൻ സഭയുടെ സ്ഥാപകൻ • പ്രകൃതിയുടെ മധ്യസ്ഥൻ",
+      "dateOfBirth": "ഏകദേശം 1181 / 1182",
+      "beatifiedDate": "പുരാതന സഭാ പാരമ്പര്യം",
+      "canonisedDate": "1228 ജൂലൈ 16 — ഗ്രിഗറി ഒൻപതാമൻ മാർപാപ്പ",
+      "feastDate": "ഒക്ടോബർ 4",
+      "location": "അസീസി, ഇറ്റലി",
+      "patronage": [
+        "മൃഗങ്ങൾ",
+        "പരിസ്ഥിതി",
+        "ഇറ്റലി",
+        "വ്യാപാരികൾ",
+        "സമാധാനം"
+      ],
+      "attributes": "ഫ്രാൻസിസ്കൻ സന്യാസ വസ്ത്രം, തൗ കുരിശ്, പക്ഷികൾ, കുഞ്ഞാട്, പഞ്ചക്ഷതങ്ങൾ",
+      "quote": "സകല സൃഷ്ടികളിലൂടെയും എൻ്റെ കർത്താവേ, അങ്ങ് വാഴ്ത്തപ്പെടുമാറാകട്ടെ. — സൃഷ്ടികളുടെ ഗീതം"
+    },
+    "hi": {
+      "name": "संत फ्रांसिस असीसी",
+      "epithet": "फ्रांसिस्कन धर्मसंघ के संस्थापक • पर्यावरण के संरक्षक",
+      "dateOfBirth": "लगभग 1181 / 1182",
+      "beatifiedDate": "प्राचीन कलीसियाई परंपरा",
+      "canonisedDate": "16 जुलाई 1228 — पोप ग्रेगरी नवम द्वारा",
+      "feastDate": "4 अक्टूबर",
+      "location": "असीसी, इटली",
+      "patronage": [
+        "पशु",
+        "पारिस्थितिकी",
+        "इटली",
+        "व्यापारी",
+        "शांति"
+      ],
+      "attributes": "भूरा फ्रांसिस्कन वस्त्र, ताऊ क्रॉस, पक्षी, मेमना, पंच घाव (स्टिग्माटा)",
+      "quote": "हे मेरे प्रभु, अपनी समस्त सृष्टि के द्वारा आपकी स्तुति हो। — सृष्टि का स्तोत्र"
+    }
+  }
+}

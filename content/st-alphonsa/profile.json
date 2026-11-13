@@ -1,0 +1,58 @@
+{
+  "id": "st-alphonsa",
+  "name": "St. Alphonsa",
+  "latinName": "Sancta Alphonsa ab Immaculata Conceptione",
+  "epithet": "India’s First Woman Saint • Witness of Patient Faith",
+  "dateOfBirth": "August 19, 1910",
+  "beatifiedDate": "8 February 1986 by Pope John Paul II",
+  "canonisedDate": "12 October 2008 by Pope Benedict XVI",
+  "feastDate": "July 28",
+  "feastMonth": "July",
+  "era": "Modern Era",
+  "location": "Kudamalur & Bharananganam, Kerala, India",
+  "patronage": [
+    "The Sick",
+    "People Facing Illness",
+    "Those Who Suffer",
+    "Students",
+    "Kerala"
+  ],
+  "attributes": "Franciscan Clarist habit, crucifix, rosary, prayer book",
+  "quote": "I feel that the Lord has destined me to be an oblation, a sacrifice of suffering.",
+  "translations": {
+    "ml": {
+      "name": "വിശുദ്ധ അൽഫോൻസാമ്മ",
+      "epithet": "ഭാരതത്തിന്റെ പ്രഥമ വനിതാ വിശുദ്ധ • സഹനത്തിന്റെ ധന്യസാക്ഷി",
+      "dateOfBirth": "1910 ആഗസ്റ്റ് 19",
+      "beatifiedDate": "1986 ഫെബ്രുവരി 8 — ജോൺ പോൾ രണ്ടാമൻ മാർപാപ്പ",
+      "canonisedDate": "2008 ഒക്ടോബർ 12 — ബെനഡിക്ട് പതിനാറാമൻ മാർപാപ്പ",
+      "feastDate": "ജൂലൈ 28",
+      "location": "കുടമാളൂർ & ഭരണങ്ങാനം, കേരളം, ഇന്ത്യ",
+      "patronage": [
+        "രോഗികൾ",
+        "കഷ്ടത അനുഭവിക്കുന്നവർ",
+        "വിദ്യാർത്ഥികൾ",
+        "കേരളം"
+      ],
+      "attributes": "ഫ്രാൻസിസ്കൻ ക്ലാരിസ്റ്റ് സന്യാസ വസ്ത്രം, ക്രൂശിതരൂപം, ജപമാല, പ്രാർത്ഥനാ പുസ്തകം",
+      "quote": "സഹനത്തിന്റെ ഒരു ബലിവസ്തുവായിരിക്കാൻ കർത്താവ് എന്നെ നിശ്ചയിച്ചിരിക്കുന്നുവെന്ന് ഞാൻ അറിയുന്നു."
+    },
+    "hi": {
+      "name": "संत अल्फोंसा",
+      "epithet": "भारत की पहली महिला संत • धैर्यवान विश्वास की साक्षी",
+      "dateOfBirth": "19 अगस्त 1910",
+      "beatifiedDate": "8 फरवरी 1986 — पोप जॉन पॉल द्वितीय द्वारा",
+      "canonisedDate": "12 अक्टूबर 2008 — पोप बेनेडिक्ट सोलहवें द्वारा",
+      "feastDate": "28 जुलाई",
+      "location": "कुदमालूर और भरनांगानम, केरल, भारत",
+      "patronage": [
+        "बीमार लोग",
+        "पीड़ा सहने वाले",
+        "विद्यार्थी",
+        "केरल"
+      ],
+      "attributes": "क्लारिस्ट धर्मबहन का वस्त्र, क्रूस, माला, प्रार्थना पुस्तक",
+      "quote": "मुझे लगता है कि प्रभु ने मुझे दुख-सहन के एक जीवित बलिदान के रूप में चुना है।"
+    }
+  }
+}
