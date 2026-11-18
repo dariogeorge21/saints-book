@@ -117,6 +117,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguage, Record<string, string>> 
     // Story Page
     "story.back": "Back to All Saints",
     "story.chronicle": "Life Story",
+    "story.fullChronicle": "Full Chronicle",
+    "story.shortSummary": "Short Summary",
+    "story.storyMode": "Format",
+    "story.readingTime": "{minutes} min read",
     "story.archive": "SaintsBook Archive",
     "story.dob": "Date of Birth",
     "story.beatified": "Beatification Date",
@@ -266,6 +270,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguage, Record<string, string>> 
     // Story Page
     "story.back": "എല്ലാ വിശുദ്ധരിലേക്കും മടങ്ങുക",
     "story.chronicle": "ജീവിതകഥ",
+    "story.fullChronicle": "വിശദമായ ജീവചരിത്രം",
+    "story.shortSummary": "സംക്ഷിപ്ത രൂപം",
+    "story.storyMode": "വായനാരീതി",
+    "story.readingTime": "{minutes} മിനിറ്റ് വായന",
     "story.archive": "SaintsBook Archive",
     "story.dob": "ജനനത്തീയതി",
     "story.beatified": "വാഴ്ത്തപ്പെട്ട പദവി പ്രഖ്യാപിച്ച തീയതി",
@@ -415,6 +423,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguage, Record<string, string>> 
     // Story Page
     "story.back": "सभी संतों पर वापस जाएँ",
     "story.chronicle": "जीवन-कथा",
+    "story.fullChronicle": "विस्तृत जीवन-कथा",
+    "story.shortSummary": "संक्षिप्त परिचय",
+    "story.storyMode": "पठन शैली",
+    "story.readingTime": "{minutes} मिनट का पठन",
     "story.archive": "SaintsBook Archive",
     "story.dob": "जन्म तिथि",
     "story.beatified": "धन्य घोषित किए जाने की तारीख",

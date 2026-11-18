@@ -28,7 +28,7 @@ export interface LocalizedSaintContent {
   patronage: string[];
   attributes: string;
   quote: string;
-  story: string[];
+  story?: string[];
 }
 
 interface StoredPreference {
@@ -67,9 +67,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<SupportedLanguage>("en");
   const [mode, setModeState] = useState<PersistenceMode>("remember_7days");
   const [expiresAt, setExpiresAt] = useState<number | null>(null);
+  const [remainingDays, setRemainingDays] = useState<number | null>(null);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const [showPrompt, setShowPrompt] = useState<boolean>(false);
-  const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [_isInitialized, setIsInitialized] = useState<boolean>(false);
 
   // Initialize preference on mount
   useEffect(() => {
@@ -233,14 +234,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguageState("en");
     setModeState("remember_7days");
     setExpiresAt(null);
+    setRemainingDays(null);
     setShowPrompt(false);
   }, []);
 
-  // Compute remaining days if 7-day memory is active
-  const remainingDays =
-    mode === "remember_7days" && expiresAt
-      ? Math.max(0, Math.ceil((expiresAt - Date.now()) / (24 * 60 * 60 * 1000)))
-      : null;
+  // Update remaining days safely in an effect
+  useEffect(() => {
+    if (mode === "remember_7days" && expiresAt) {
+      const days = Math.max(0, Math.ceil((expiresAt - Date.now()) / (24 * 60 * 60 * 1000)));
+      setRemainingDays(days);
+    } else {
+      setRemainingDays(null);
+    }
+  }, [mode, expiresAt]);
 
   // Translation helper
   const t = useCallback(
@@ -276,7 +282,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
           patronage: saint.patronage,
           attributes: saint.attributes,
           quote: saint.quote,
-          story: saint.story,
+          story: saint.story || [],
         };
       }
 
@@ -294,7 +300,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
           patronage: saint.patronage,
           attributes: saint.attributes,
           quote: saint.quote,
-          story: saint.story,
+          story: saint.story || [],
         };
       }
 
@@ -309,7 +315,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         patronage: translation.patronage || saint.patronage,
         attributes: translation.attributes || saint.attributes,
         quote: translation.quote || saint.quote,
-        story: translation.story && translation.story.length > 0 ? translation.story : saint.story,
+        story: translation.story && translation.story.length > 0 ? translation.story : saint.story || [],
       };
     },
     [language]

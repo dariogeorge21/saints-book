@@ -1,18 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo, useDeferredValue } from "react";
 import Link from "next/link";
 import { SAINTS } from "@/lib/content";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { useLanguage } from "@/lib/language-context";
-import { Search, Filter, ArrowUpRight, ArrowLeft, Calendar, Award, MapPin } from "lucide-react";
+import { SaintsSearchBar } from "@/components/saints-search-bar";
+import {
+  Filter,
+  ArrowUpRight,
+  ArrowLeft,
+  Calendar,
+  Award,
+  MapPin,
+  SearchX,
+  RotateCcw,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function AllSaintsPage() {
   const { t, getSaintContent, isTransitioning, language } = useLanguage();
   const [selectedEra, setSelectedEra] = useState<string>("ALL");
   const [searchQuery, setSearchQuery] = useState("");
+
+  // React 19 useDeferredValue keeps input instant while concurrently computing filtered items
+  const deferredQuery = useDeferredValue(searchQuery);
 
   const eras = [
     "ALL",
@@ -22,28 +35,41 @@ export default function AllSaintsPage() {
     "Modern Era",
   ];
 
-  const filteredSaints = SAINTS.filter((saint) => {
-    const matchesEra = selectedEra === "ALL" || saint.era === selectedEra;
-    const q = searchQuery.toLowerCase().trim();
-    if (q === "") return matchesEra;
+  // Efficient, memoized search matching across all fields and localized scripts
+  const filteredSaints = useMemo(() => {
+    const q = deferredQuery.toLowerCase().trim();
 
-    const loc = getSaintContent(saint);
-    const matchesSearch =
-      saint.name.toLowerCase().includes(q) ||
-      loc.name.toLowerCase().includes(q) ||
-      saint.epithet.toLowerCase().includes(q) ||
-      loc.epithet.toLowerCase().includes(q) ||
-      saint.feastDate.toLowerCase().includes(q) ||
-      loc.feastDate.toLowerCase().includes(q) ||
-      saint.location.toLowerCase().includes(q) ||
-      loc.location.toLowerCase().includes(q) ||
-      saint.patronage.some((p) => p.toLowerCase().includes(q)) ||
-      loc.patronage.some((p) => p.toLowerCase().includes(q)) ||
-      saint.story.some((p) => p.toLowerCase().includes(q)) ||
-      loc.story.some((p) => p.toLowerCase().includes(q));
+    return SAINTS.filter((saint) => {
+      const matchesEra = selectedEra === "ALL" || saint.era === selectedEra;
+      if (q === "") return matchesEra;
 
-    return matchesEra && matchesSearch;
-  });
+      const loc = getSaintContent(saint);
+      const matchesSearch =
+        saint.name.toLowerCase().includes(q) ||
+        loc.name.toLowerCase().includes(q) ||
+        (saint.latinName && saint.latinName.toLowerCase().includes(q)) ||
+        saint.epithet.toLowerCase().includes(q) ||
+        loc.epithet.toLowerCase().includes(q) ||
+        saint.feastDate.toLowerCase().includes(q) ||
+        loc.feastDate.toLowerCase().includes(q) ||
+        (saint.feastMonth && saint.feastMonth.toLowerCase().includes(q)) ||
+        saint.location.toLowerCase().includes(q) ||
+        loc.location.toLowerCase().includes(q) ||
+        saint.patronage.some((p) => p.toLowerCase().includes(q)) ||
+        loc.patronage.some((p) => p.toLowerCase().includes(q)) ||
+        saint.attributes.toLowerCase().includes(q) ||
+        loc.attributes.toLowerCase().includes(q) ||
+        saint.quote.toLowerCase().includes(q) ||
+        loc.quote.toLowerCase().includes(q);
+
+      return matchesEra && matchesSearch;
+    });
+  }, [selectedEra, deferredQuery, getSaintContent]);
+
+  const handleResetFilters = () => {
+    setSelectedEra("ALL");
+    setSearchQuery("");
+  };
 
   return (
     <div
@@ -62,7 +88,7 @@ export default function AllSaintsPage() {
             isTransitioning && "lang-switch-active"
           )}
         >
-          {/* Breadcrumb Back */}
+          {/* Breadcrumb Navigation & Saint Count Pill */}
           <div className="flex items-center justify-between border-b border-[rgba(194,189,206,0.12)] pb-4">
             <Link
               href="/"
@@ -93,23 +119,28 @@ export default function AllSaintsPage() {
             </p>
           </header>
 
-          {/* Search & Era Filter Bar */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 py-4 border-y border-[rgba(194,189,206,0.1)]">
+          {/* Interactive Search & Era Filter Controls */}
+          <section
+            aria-label="Filter and search saints archive"
+            className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 py-6 border-y border-[rgba(194,189,206,0.1)]"
+          >
             {/* Era Filter Pills with Full Localization */}
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
               <Filter className="w-3.5 h-3.5 text-[#C2BDCE]/60 mr-1 shrink-0 stroke-[1.5]" />
               {eras.map((era) => {
                 const eraLabel = t(`era.${era}`);
+                const isSelected = selectedEra === era;
                 return (
                   <button
                     key={era}
                     onClick={() => setSelectedEra(era)}
                     className={cn(
                       "px-3.5 py-1.5 rounded-full text-xs font-[200] tracking-[0.2em] uppercase whitespace-nowrap transition-all cursor-pointer",
-                      selectedEra === era
-                        ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)]"
+                      isSelected
+                        ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
                         : "bg-[#352741] text-[#C2BDCE] hover:text-[#F8F6FA] hover:bg-[#433352] border border-[rgba(194,189,206,0.12)]"
                     )}
+                    aria-pressed={isSelected}
                   >
                     {eraLabel}
                   </button>
@@ -117,18 +148,17 @@ export default function AllSaintsPage() {
               })}
             </div>
 
-            {/* Search Input */}
-            <div className="w-full md:w-80 relative">
-              <Search className="w-4 h-4 stroke-[1.5] absolute left-3.5 top-1/2 -translate-y-1/2 text-[#C2BDCE]/60" />
-              <input
-                type="text"
+            {/* Accessible Saints Search Bar with live counter and shortcuts */}
+            <div className="w-full lg:w-96">
+              <SaintsSearchBar
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={setSearchQuery}
                 placeholder={t("allSaints.searchPlaceholder")}
-                className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#33253e] border border-[rgba(194,189,206,0.18)] focus:border-[#FF2477] focus:outline-none text-xs font-[200] tracking-wide text-[#F8F6FA] placeholder-[#C2BDCE]/50"
+                resultCount={filteredSaints.length}
+                totalCount={SAINTS.length}
               />
             </div>
-          </div>
+          </section>
 
           {/* Saints Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -195,9 +225,9 @@ export default function AllSaintsPage() {
                       </div>
                     </div>
 
-                    {/* Excerpt */}
-                    <p className="text-xs font-[200] text-[#C2BDCE] leading-relaxed line-clamp-3 tracking-wide">
-                      {localized.story[0]}
+                    {/* Quote Wisdom Snippet */}
+                    <p className="text-xs font-[200] text-[#C2BDCE] leading-relaxed line-clamp-3 tracking-wide italic">
+                      {localized.quote ? `“${localized.quote}”` : localized.epithet}
                     </p>
 
                     {/* Patronage Pills */}
@@ -233,19 +263,34 @@ export default function AllSaintsPage() {
             })}
           </div>
 
+          {/* Atmospheric Empty Search State */}
           {filteredSaints.length === 0 && (
-            <div className="text-center py-16 space-y-3">
-              <p className="text-sm font-[200] text-[#C2BDCE]/70">
-                {t("allSaints.noResults")}
-              </p>
+            <div
+              role="status"
+              className="text-center py-20 px-4 max-w-md mx-auto space-y-5 rounded-2xl bg-[#352741]/40 border border-[rgba(194,189,206,0.12)]"
+            >
+              <div className="w-14 h-14 mx-auto rounded-full bg-[#FF2477]/10 border border-[#FF2477]/30 flex items-center justify-center text-[#FF2477]">
+                <SearchX className="w-6 h-6 stroke-[1.5]" />
+              </div>
+              <div className="space-y-1.5">
+                <h3 className="text-lg font-[300] uppercase tracking-wider text-[#F8F6FA]">
+                  No Saints Found
+                </h3>
+                <p className="text-xs font-[200] text-[#C2BDCE]/70 leading-relaxed">
+                  {searchQuery ? (
+                    <>No chronicles match &ldquo;<span className="text-white">{searchQuery}</span>&rdquo; in the selected era.</>
+                  ) : (
+                    t("allSaints.noResults")
+                  )}
+                </p>
+              </div>
               <button
-                onClick={() => {
-                  setSelectedEra("ALL");
-                  setSearchQuery("");
-                }}
-                className="px-4 py-2 rounded-lg bg-[#FF2477]/20 border border-[#FF2477]/40 text-xs font-[200] text-white hover:bg-[#FF2477] transition-all cursor-pointer"
+                type="button"
+                onClick={handleResetFilters}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF2477] text-white text-xs font-[200] uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(255,36,119,0.3)] hover:shadow-[0_0_25px_rgba(255,36,119,0.5)] transition-all cursor-pointer"
               >
-                {t("allSaints.clearFilter")}
+                <RotateCcw className="w-3.5 h-3.5 stroke-[2]" />
+                <span>Reset All Filters</span>
               </button>
             </div>
           )}

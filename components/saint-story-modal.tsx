@@ -238,7 +238,7 @@ export function SaintStoryModal({
 
             {/* Paragraphs with natural editorial gaps and no numeric labels */}
             <div className="space-y-7 pt-2">
-              {saint.story.map((paragraph, index) => (
+              {(saint.story || []).map((paragraph, index) => (
                 <p
                   key={index}
                   className={`font-[300] tracking-wide text-[#C2BDCE] ${fontSizeClasses}`}

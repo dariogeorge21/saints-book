@@ -1,0 +1,534 @@
+"use client";
+
+import React, { useState, useMemo } from "react";
+import Link from "next/link";
+import {
+  Calendar,
+  Sparkles,
+  Award,
+  Heart,
+  MapPin,
+  Languages,
+  ArrowLeft,
+  ArrowRight, 
+  BookOpen,
+  Share2,
+  Check,
+  Type,
+  AlignLeft,
+} from "lucide-react";
+
+import { useLanguage } from "@/lib/language-context";
+import { SUPPORTED_LANGUAGES, SupportedLanguage } from "@/lib/i18n";
+import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { cn } from "@/lib/utils";
+import type { SaintReaderProps, StoryFormat } from "./types";
+
+/**
+ * Calculates estimated reading time in minutes from markdown content.
+ * Accounts for word count in Latin scripts and character length in Indic scripts.
+ */
+function calculateReadingTime(text: string, language: SupportedLanguage): number {
+  if (!text) return 1;
+
+  if (language === "ml" || language === "hi") {
+    // Indic scripts: estimate ~450 characters per minute of reading
+    const charCount = text.replace(/\s+/g, "").length;
+    return Math.max(1, Math.ceil(charCount / 450));
+  }
+
+  // English: standard ~200 words per minute
+  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(wordCount / 200));
+}
+
+/**
+ * SaintReader Component
+ *
+ * Professional client-side reader for Christian saint chronicles.
+ * Supports:
+ * - Rich Markdown rendering with bold, italics, tables, and headers
+ * - Dual story formats: "longStory" (Full Chronicle) & "shortStory" (Short Summary)
+ * - Multilingual switching across English, Malayalam, and Hindi
+ * - Adjustable font sizing (Comfortable, Standard, Large)
+ * - Dynamic reading time estimation
+ * - Four-date canonical milestone matrix
+ * - Sequential saint navigation
+ */
+export function SaintReader({
+  saint,
+  stories,
+  prevSaint,
+  nextSaint,
+}: SaintReaderProps) {
+  const {
+    language: globalLanguage,
+    getSaintContent,
+    t,
+    isTransitioning: isGlobalTransitioning,
+  } = useLanguage();
+
+  // Local reader language override (allows independent story language exploration)
+  const [overrideLanguage, setOverrideLanguage] =
+    useState<SupportedLanguage | null>(null);
+  const [isLocalTransitioning, setIsLocalTransitioning] =
+    useState<boolean>(false);
+
+  // Active language in reader: user override if selected, otherwise global active language
+  const readerLanguage = overrideLanguage ?? globalLanguage;
+
+  // Story format selection: "longStory" (default) or "shortStory"
+  const [storyFormat, setStoryFormat] = useState<StoryFormat>("longStory");
+
+  // Reader typography preference: sm | md | lg
+  const [fontSize, setFontSize] = useState<"sm" | "md" | "lg">("md");
+
+  // Share button confirmation feedback state
+  const [hasCopiedShare, setHasCopiedShare] = useState<boolean>(false);
+
+  /**
+   * Smoothly transitions the reader when switching languages.
+   */
+  const handleLanguageChange = (lang: SupportedLanguage) => {
+    setIsLocalTransitioning(true);
+    setOverrideLanguage(lang);
+    const timer = setTimeout(() => {
+      setIsLocalTransitioning(false);
+    }, 280);
+    return () => clearTimeout(timer);
+  };
+
+  /**
+   * Handles sharing the saint chronicle citation to clipboard.
+   */
+  const handleShareCitation = async () => {
+    const citation = `SaintsBook: The Chronicle of ${saint.name} (${saint.epithet}) — Feast Day: ${saint.feastDate}`;
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(citation);
+        setHasCopiedShare(true);
+        setTimeout(() => setHasCopiedShare(false), 2200);
+      }
+    } catch (error) {
+      console.warn("Unable to copy to clipboard", error);
+    }
+  };
+
+  // Localized metadata (name, epithet, milestones, patronages, quote)
+  const localized = getSaintContent(saint, readerLanguage);
+
+  /**
+   * Resolves the active markdown text from the single source of truth (content files).
+   * Priority:
+   * 1. stories[readerLanguage][storyFormat] (preloaded from server via content files mapped in index.json)
+   * 2. Fallback to English chronicle: stories["en"][storyFormat]
+   */
+  const activeMarkdownContent = useMemo(() => {
+    // 1. Direct language match from preloaded server bundle
+    const directMatch = stories[readerLanguage]?.[storyFormat];
+    if (directMatch && directMatch.trim()) {
+      return directMatch;
+    }
+
+    // 2. Fallback to English chronicle
+    const englishFallback = stories["en"]?.[storyFormat];
+    if (englishFallback && englishFallback.trim()) {
+      return englishFallback;
+    }
+
+    return "";
+  }, [stories, readerLanguage, storyFormat]);
+
+  // Estimated reading time in minutes for the active story
+  const readingTime = useMemo(() => {
+    return calculateReadingTime(activeMarkdownContent, readerLanguage);
+  }, [activeMarkdownContent, readerLanguage]);
+
+  // Font size classes applied to the chronicle body
+  const fontSizeStyle = {
+    sm: "text-sm sm:text-base leading-relaxed",
+    md: "text-base sm:text-lg leading-relaxed sm:leading-loose",
+    lg: "text-lg sm:text-xl leading-loose",
+  }[fontSize];
+
+  return (
+    <div
+      className={cn(
+        "space-y-12 transition-all duration-300",
+        (isGlobalTransitioning || isLocalTransitioning) && "lang-switch-active",
+        readerLanguage === "ml" && "font-malayalam",
+        readerLanguage === "hi" && "font-hindi"
+      )}
+    >
+      {/* =========================================================================
+          TOP ACTION BAR: Breadcrumb, Language Switcher, Font Resizer & Share
+         ========================================================================= */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[rgba(194,189,206,0.12)] pb-6">
+        {/* Back Link */}
+        <Link
+          href="/saints"
+          className="inline-flex items-center gap-2 text-xs uppercase font-[200] tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 stroke-[1.5] group-hover:-translate-x-1 transition-transform" />
+          <span>{t("story.back")}</span>
+        </Link>
+
+        {/* Reader Controls: Language Tabs, Font Sizing & Share */}
+        <div className="flex items-center flex-wrap gap-2 self-stretch sm:self-auto justify-between sm:justify-end">
+          {/* Font Size Adjuster */}
+          <div
+            className="flex items-center gap-1 bg-[#352741]/80 p-1 rounded-xl border border-[rgba(194,189,206,0.15)]"
+            title="Adjust reading font size"
+            role="group"
+            aria-label="Font size adjuster"
+          >
+            <Type className="w-3.5 h-3.5 ml-1.5 text-[#C2BDCE]/60 stroke-[1.5]" />
+            <button
+              onClick={() => setFontSize("sm")}
+              className={cn(
+                "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                fontSize === "sm"
+                  ? "bg-[#FF2477] text-white"
+                  : "text-[#C2BDCE]/70 hover:text-white"
+              )}
+              aria-label="Small font size"
+            >
+              A-
+            </button>
+            <button
+              onClick={() => setFontSize("md")}
+              className={cn(
+                "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                fontSize === "md"
+                  ? "bg-[#FF2477] text-white"
+                  : "text-[#C2BDCE]/70 hover:text-white"
+              )}
+              aria-label="Default font size"
+            >
+              A
+            </button>
+            <button
+              onClick={() => setFontSize("lg")}
+              className={cn(
+                "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                fontSize === "lg"
+                  ? "bg-[#FF2477] text-white"
+                  : "text-[#C2BDCE]/70 hover:text-white"
+              )}
+              aria-label="Large font size"
+            >
+              A+
+            </button>
+          </div>
+
+          {/* Share Button */}
+          <button
+            onClick={handleShareCitation}
+            className="p-2 rounded-xl bg-[#352741]/80 border border-[rgba(194,189,206,0.15)] text-[#C2BDCE] hover:text-[#FF2477] transition-colors cursor-pointer"
+            title="Copy citation link"
+            aria-label="Share this chronicle"
+          >
+            {hasCopiedShare ? (
+              <Check className="w-4 h-4 text-green-400 stroke-[1.5]" />
+            ) : (
+              <Share2 className="w-4 h-4 stroke-[1.5]" />
+            )}
+          </button>
+
+          {/* Language Switcher Tabs */}
+          <div className="flex items-center gap-1 bg-[#352741]/80 p-1 rounded-xl border border-[rgba(194,189,206,0.15)]">
+            <div className="flex items-center gap-1.5 px-2 text-[10px] uppercase font-[200] tracking-[0.2em] text-[#FF2477] hidden md:flex">
+              <Languages className="w-3.5 h-3.5" />
+              <span>{t("story.readIn")}</span>
+            </div>
+
+            <div className="flex items-center gap-1">
+              {SUPPORTED_LANGUAGES.map((lang) => {
+                const isCurrent = readerLanguage === lang.code;
+                return (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code)}
+                    className={cn(
+                      "px-3 py-1 rounded-lg text-xs font-[200] tracking-wide transition-all cursor-pointer",
+                      isCurrent
+                        ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
+                        : "text-[#C2BDCE]/80 hover:text-white hover:bg-[#433352]/60"
+                    )}
+                    title={`Read chronicle in ${lang.label}`}
+                  >
+                    {lang.nativeLabel}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* =========================================================================
+          MASTHEAD HEADER: Era, Canonical Title, Latin Inscription & Location
+         ========================================================================= */}
+      <header className="space-y-5 text-center max-w-3xl mx-auto">
+        <div className="flex items-center justify-center gap-2 text-xs uppercase font-[200] tracking-[0.28em] text-[#FF2477] flex-wrap">
+          <span>{saint.era}</span>
+          <span>•</span>
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+              localized.location
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 underline underline-offset-4 decoration-[#FF2477]/40 hover:text-white hover:decoration-[#FF2477] transition-colors"
+            title={`View ${localized.location} on Google Maps`}
+          >
+            <MapPin className="w-3.5 h-3.5 stroke-[1.5] text-[#FF2477]" />
+            <span>{localized.location}</span>
+          </a>
+        </div>
+
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-[100] uppercase tracking-[0.16em] text-[#F8F6FA] leading-tight">
+          {localized.name}
+        </h1>
+
+        {saint.latinName && (
+          <p className="text-sm font-[200] italic text-[#C2BDCE]/70 tracking-widest">
+            {saint.latinName}
+          </p>
+        )}
+
+        <p className="text-xs sm:text-sm font-[200] text-[#FF2477] tracking-[0.2em] uppercase pt-1">
+          {localized.epithet}
+        </p>
+
+        <div className="h-[1px] w-16 mx-auto bg-gradient-to-r from-transparent via-[#FF2477] to-transparent mt-4" />
+      </header>
+
+      {/* =========================================================================
+          FOUR-DATE CANONICAL MILESTONE MATRIX
+         ========================================================================= */}
+      <section
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6 rounded-2xl bg-[#352741]/60 border border-[rgba(194,189,206,0.14)] backdrop-blur-sm shadow-[0_15px_40px_rgba(0,0,0,0.3)]"
+        aria-label="Canonical Milestones"
+      >
+        {/* 1. Date of Birth */}
+        <div className="space-y-1.5 p-3 rounded-lg bg-[#30233b]/70 border border-[rgba(194,189,206,0.08)]">
+          <div className="flex items-center gap-1.5 text-[10px] uppercase font-[200] tracking-[0.25em] text-[#C2BDCE]/70">
+            <Calendar className="w-3 h-3 text-[#FF2477] stroke-[1.5]" />
+            <span>{t("story.dob")}</span>
+          </div>
+          <p className="text-xs sm:text-sm font-[200] text-[#F8F6FA] tracking-wide">
+            {localized.dateOfBirth || "Historical tradition"}
+          </p>
+        </div>
+
+        {/* 2. Beatified Date */}
+        <div className="space-y-1.5 p-3 rounded-lg bg-[#30233b]/70 border border-[rgba(194,189,206,0.08)]">
+          <div className="flex items-center gap-1.5 text-[10px] uppercase font-[200] tracking-[0.25em] text-[#C2BDCE]/70">
+            <Sparkles className="w-3 h-3 text-[#FF2477] stroke-[1.5]" />
+            <span>{t("story.beatified")}</span>
+          </div>
+          <p className="text-xs font-[200] text-[#F8F6FA] tracking-wide leading-snug">
+            {localized.beatifiedDate || "Pre-congregation"}
+          </p>
+        </div>
+
+        {/* 3. Canonised Date */}
+        <div className="space-y-1.5 p-3 rounded-lg bg-[#30233b]/70 border border-[rgba(194,189,206,0.08)]">
+          <div className="flex items-center gap-1.5 text-[10px] uppercase font-[200] tracking-[0.25em] text-[#C2BDCE]/70">
+            <Award className="w-3 h-3 text-[#FF2477] stroke-[1.5]" />
+            <span>{t("story.canonised")}</span>
+          </div>
+          <p className="text-xs font-[200] text-[#F8F6FA] tracking-wide leading-snug">
+            {localized.canonisedDate || "Universal veneration"}
+          </p>
+        </div>
+
+        {/* 4. Feast Date */}
+        <div className="space-y-1.5 p-3 rounded-lg bg-[#463354] border border-[#FF2477]/40 shadow-[0_0_15px_rgba(255,36,119,0.15)]">
+          <div className="flex items-center gap-1.5 text-[10px] uppercase font-[200] tracking-[0.25em] text-[#FF2477]">
+            <Heart className="w-3 h-3 text-[#FF2477] stroke-[1.5]" />
+            <span>{t("story.feastDay")}</span>
+          </div>
+          <p className="text-xs sm:text-sm font-[300] text-white tracking-widest">
+            {localized.feastDate}
+          </p>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          INSPIRATIONAL QUOTE BLOCK
+         ========================================================================= */}
+      {localized.quote && (
+        <div className="p-8 sm:p-10 rounded-2xl bg-[#352741]/50 border-l-2 border-[#FF2477] border-y border-r border-[rgba(194,189,206,0.12)] max-w-3xl mx-auto shadow-md">
+          <blockquote className="text-base sm:text-xl font-[200] italic text-[#F8F6FA] tracking-wide leading-relaxed">
+            “{localized.quote}”
+          </blockquote>
+          <div className="mt-3 text-right text-xs font-[200] uppercase tracking-[0.25em] text-[#FF2477]">
+            — {localized.name}
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          DEDICATED STORY SECTION (WITH LONG STORY / SHORT STORY TOGGLE)
+         ========================================================================= */}
+      <article className="max-w-3xl mx-auto space-y-8 pt-4">
+        {/* Story Format Selector & Metadata Bar */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-4 border-b border-[rgba(194,189,206,0.12)]">
+          {/* Toggle between Long Story (Full Chronicle) and Short Story (Summary) */}
+          <div
+            className="inline-flex items-center bg-[#30233b] p-1 rounded-xl border border-[rgba(194,189,206,0.14)]"
+            role="tablist"
+            aria-label="Story format selection"
+          >
+            {/* 1. Full Chronicle (longStory) */}
+            <button
+              role="tab"
+              aria-selected={storyFormat === "longStory"}
+              onClick={() => setStoryFormat("longStory")}
+              className={cn(
+                "flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-[200] tracking-wider uppercase transition-all cursor-pointer",
+                storyFormat === "longStory"
+                  ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
+                  : "text-[#C2BDCE]/70 hover:text-white hover:bg-[#433352]/40"
+              )}
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>{t("story.fullChronicle")}</span>
+            </button>
+
+            {/* 2. Short Summary (shortStory) */}
+            <button
+              role="tab"
+              aria-selected={storyFormat === "shortStory"}
+              onClick={() => setStoryFormat("shortStory")}
+              className={cn(
+                "flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-[200] tracking-wider uppercase transition-all cursor-pointer",
+                storyFormat === "shortStory"
+                  ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
+                  : "text-[#C2BDCE]/70 hover:text-white hover:bg-[#433352]/40"
+              )}
+            >
+              <AlignLeft className="w-3.5 h-3.5" />
+              <span>{t("story.shortSummary")}</span>
+            </button>
+          </div>
+
+          {/* Reading Time & Archive Identifier */}
+          <div className="flex items-center justify-between sm:justify-end gap-3 text-[10px] font-mono tracking-widest text-[#C2BDCE]/60 uppercase">
+            <span className="px-2.5 py-1 rounded-full bg-[#352741] border border-[rgba(194,189,206,0.1)] text-[#FF2477]">
+              {t("story.readingTime", { minutes: readingTime })}
+            </span>
+            <span>
+              {t("story.archive")} • {SUPPORTED_LANGUAGES.find((l) => l.code === readerLanguage)?.label}
+            </span>
+          </div>
+        </div>
+
+        {/* Dynamic Markdown Chronicle Content */}
+        <div className={cn("markdown-container", fontSizeStyle)}>
+          <MarkdownRenderer content={activeMarkdownContent} />
+        </div>
+      </article>
+
+      {/* =========================================================================
+          PATRONAGE & ICONOGRAPHY COLOPHON
+         ========================================================================= */}
+      <footer className="max-w-3xl mx-auto p-6 rounded-2xl bg-[#32243d] border border-[rgba(194,189,206,0.12)] space-y-4">
+        {/* Patronages */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-[10px] uppercase font-[200] tracking-[0.25em] text-[#FF2477]">
+            {t("story.patronages")}
+          </span>
+          {localized.patronage.map((p) => (
+            <span
+              key={p}
+              className="px-2.5 py-1 rounded-full text-[10px] font-[200] uppercase tracking-[0.16em] bg-[#3B2D47] text-[#C2BDCE] border border-[rgba(194,189,206,0.15)]"
+            >
+              {p}
+            </span>
+          ))}
+        </div>
+
+        {/* Iconography */}
+        {localized.attributes && (
+          <p className="text-xs font-[200] text-[#C2BDCE]/80 tracking-wide">
+            <span className="text-[#FF2477] uppercase tracking-wider text-[10px]">
+              {t("story.iconography")}{" "}
+            </span>
+            {localized.attributes}
+          </p>
+        )}
+
+        {/* Geographic Sanctuary */}
+        <div className="pt-2 border-t border-[rgba(194,189,206,0.08)] flex items-center justify-between text-xs font-[200] flex-wrap gap-2">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-[#C2BDCE]/60">
+            {t("story.location")}
+          </span>
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+              localized.location
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#F8F6FA] hover:text-[#FF2477] underline underline-offset-4 decoration-[#FF2477]/40 flex items-center gap-1.5 transition-colors"
+            title={`Open ${localized.location} on Google Maps`}
+          >
+            <MapPin className="w-3.5 h-3.5 stroke-[1.5] text-[#FF2477]" />
+            <span>{localized.location}</span>
+          </a>
+        </div>
+      </footer>
+
+      {/* =========================================================================
+          SEQUENTIAL SAINT NAVIGATION (Prev / All / Next)
+         ========================================================================= */}
+      <nav
+        className="flex items-center justify-between border-t border-[rgba(194,189,206,0.14)] pt-8 max-w-3xl mx-auto"
+        aria-label="Sequential Saint Navigation"
+      >
+        {prevSaint ? (
+          <Link
+            href={`/saints/${prevSaint.id}`}
+            className="flex items-center gap-2 text-xs font-[200] uppercase tracking-[0.22em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4 stroke-[1.5] group-hover:-translate-x-1 transition-transform" />
+            <div className="text-left">
+              <span className="block text-[9px] text-[#C2BDCE]/50 tracking-widest">
+                {t("story.prev")}
+              </span>
+              <span className="font-[300]">{prevSaint.name}</span>
+            </div>
+          </Link>
+        ) : (
+          <div />
+        )}
+
+        <Link
+          href="/saints"
+          className="px-4 py-2 rounded-lg border border-[rgba(194,189,206,0.18)] hover:border-[#FF2477] text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA] hover:text-white transition-all bg-[#352741]/50 cursor-pointer"
+        >
+          {t("story.viewAll")}
+        </Link>
+
+        {nextSaint ? (
+          <Link
+            href={`/saints/${nextSaint.id}`}
+            className="flex items-center gap-2 text-xs font-[200] uppercase tracking-[0.22em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group text-right cursor-pointer"
+          >
+            <div>
+              <span className="block text-[9px] text-[#C2BDCE]/50 tracking-widest">
+                {t("story.next")}
+              </span>
+              <span className="font-[300]">{nextSaint.name}</span>
+            </div>
+            <ArrowRight className="w-4 h-4 stroke-[1.5] group-hover:translate-x-1 transition-transform" />
+          </Link>
+        ) : (
+          <div />
+        )}
+      </nav>
+    </div>
+  );
+}

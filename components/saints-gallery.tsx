@@ -116,9 +116,9 @@ export function SaintsGallery() {
                     </div>
                   </div>
 
-                  {/* Story Excerpt */}
+                  {/* Story Excerpt / Quote */}
                   <p className="text-xs font-[200] text-[#C2BDCE] leading-relaxed line-clamp-3 tracking-wide">
-                    {localized.story[0]}
+                    {localized.story?.[0] || (localized.quote ? `“${localized.quote}”` : localized.epithet)}
                   </p>
 
                   {/* Patronage Pills */}

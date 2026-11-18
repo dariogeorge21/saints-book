@@ -393,7 +393,7 @@ export function Hero() {
                       “{localizedFeatured.quote}”
                     </blockquote>
                     <p className="text-[11px] font-[200] text-[#C2BDCE]/80 leading-relaxed line-clamp-3">
-                      {localizedFeatured.story[0]}
+                      {localizedFeatured.story?.[0] || localizedFeatured.epithet}
                     </p>
                   </div>
                 )}

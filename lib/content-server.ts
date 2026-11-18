@@ -8,21 +8,24 @@ import {
   type CompleteSaint,
 } from "./content";
 
-function getProjectPath(...segments: string[]): string {
-  return path.join(process.cwd(), ...segments);
+const CONTENT_ROOT = path.join(process.cwd(), "content");
+
+function getContentPath(...segments: string[]): string {
+  return path.join(CONTENT_ROOT, ...segments);
 }
 
 /**
  * Loads the structured profile for a saint from content/[id]/profile.json.
+ * Uses index.json mapping if available, or falls back to standard content path.
  * Server-only function.
  */
 export async function getSaintProfile(id: string): Promise<SaintProfile | null> {
   const summary = getSaintSummary(id);
-  const relPath = summary?.profile || path.join("content", id, "profile.json");
-  const fullPath = getProjectPath(relPath);
+  const rel = summary?.profile ? summary.profile.replace(/^content[\\/]/, "") : `${id}/profile.json`;
+  const fullPath = path.join(process.cwd(), "content", rel);
 
   try {
-    const raw = await fs.readFile(fullPath, "utf-8");
+    const raw = await fs.readFile(/*turbopackIgnore: true*/ fullPath, "utf-8");
     return JSON.parse(raw) as SaintProfile;
   } catch (error) {
     console.error(`[content] Failed to load profile for ${id}:`, error);
@@ -31,7 +34,8 @@ export async function getSaintProfile(id: string): Promise<SaintProfile | null> 
 }
 
 /**
- * Loads the raw markdown story for a saint.
+ * Loads the raw markdown story for a saint directly from the content folder.
+ * Uses index.json story mapping as the single source of truth.
  * Server-only function.
  */
 export async function getSaintStory(
@@ -39,9 +43,25 @@ export async function getSaintStory(
   language: ContentLanguage = "en",
   kind: StoryKind = "shortStory"
 ): Promise<string | null> {
+  const summary = getSaintSummary(id);
+
+  // 1. First priority: mapped file path registered in content/index.json
+  const mappedRelPath = summary?.stories?.[language]?.[kind];
+  if (mappedRelPath) {
+    try {
+      const rel = mappedRelPath.replace(/^content[\\/]/, "");
+      const fullMappedPath = path.join(process.cwd(), "content", rel);
+      return await fs.readFile(/*turbopackIgnore: true*/ fullMappedPath, "utf-8");
+    } catch {
+      // Continue to candidate paths if mapped file failed
+    }
+  }
+
+  // 2. Direct filesystem resolution in content folder
   const candidates = [
-    getProjectPath("content", id, language, `${kind}.md`),
-    getProjectPath(
+    path.join(process.cwd(), "content", id, language, `${kind}.md`),
+    path.join(
+      process.cwd(),
       "content",
       id,
       language,
@@ -51,7 +71,7 @@ export async function getSaintStory(
 
   for (const filePath of candidates) {
     try {
-      const content = await fs.readFile(filePath, "utf-8");
+      const content = await fs.readFile(/*turbopackIgnore: true*/ filePath, "utf-8");
       return content;
     } catch {
       // Continue to next candidate
@@ -63,6 +83,7 @@ export async function getSaintStory(
 
 /**
  * Loads the complete saint bundle (profile + all stories in all languages).
+ * Fetches all markdown files from the content folder mapped in index.json.
  * Server-only function.
  */
 export async function getCompleteSaint(id: string): Promise<CompleteSaint | null> {

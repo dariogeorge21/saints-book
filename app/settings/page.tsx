@@ -336,7 +336,7 @@ export default function SettingsPage() {
               )}
 
               <p className="text-xs sm:text-sm font-[200] leading-relaxed text-[#C2BDCE] tracking-wide">
-                {sampleContent.story[0]}
+                {sampleContent.story?.[0] || sampleContent.epithet}
               </p>
             </div>
           </section>

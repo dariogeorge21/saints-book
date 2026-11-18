@@ -9,22 +9,13 @@ const contentDir = path.join(projectRoot, "content");
 const indexFile = path.join(contentDir, "index.json");
 
 /**
- * Extracts clean narrative paragraphs from markdown, filtering out headings (#, ##).
+ * Synchronizes content/index.json as the master registry manifest.
+ *
+ * Architecture Rule:
+ * Stories are NEVER inlined or typed in index.json.
+ * index.json maps saint metadata (from profile.json) and registers the exact file paths
+ * to the markdown chronicles (shortStory.md, longStory.md) across all supported languages.
  */
-function extractParagraphsFromMarkdown(markdown) {
-  if (!markdown) return [];
-  // Strip markdown headings (# ...)
-  const lines = markdown
-    .split(/\r?\n/)
-    .filter((line) => !line.trim().startsWith("#"))
-    .join("\n");
-
-  return lines
-    .split(/\n\s*\n/)
-    .map((block) => block.trim().replace(/\s+/g, " "))
-    .filter((block) => block.length > 0);
-}
-
 async function syncIndex() {
   console.log("🔍 Scanning content directory at:", contentDir);
 
@@ -44,7 +35,7 @@ async function syncIndex() {
       const profileRaw = await fs.readFile(profilePath, "utf-8");
       const profile = JSON.parse(profileRaw);
 
-      // Detect languages and story files
+      // Detect language subdirectories (e.g. en, hi, ml)
       const subEntries = await fs.readdir(saintPath, { withFileTypes: true });
       const langDirs = subEntries
         .filter((e) => e.isDirectory())
@@ -52,7 +43,6 @@ async function syncIndex() {
         .sort();
 
       const storiesPaths = {};
-      const parsedStories = {};
 
       for (const lang of langDirs) {
         const langPath = path.join(saintPath, lang);
@@ -73,31 +63,18 @@ async function syncIndex() {
             ? { longStory: `content/${dirName}/${lang}/${longStoryFile}` }
             : {}),
         };
+      }
 
-        if (longStoryFile) {
-          const longStoryRaw = await fs.readFile(
-            path.join(langPath, longStoryFile),
-            "utf-8"
-          );
-          parsedStories[lang] = extractParagraphsFromMarkdown(longStoryRaw);
+      // Clean translations without any inlined story arrays
+      const cleanTranslations = {};
+      if (profile.translations) {
+        for (const [langCode, trans] of Object.entries(profile.translations)) {
+          const { story: _omittedStory, ...restOfTranslation } = trans;
+          cleanTranslations[langCode] = restOfTranslation;
         }
       }
 
-      // Merge translations with parsed stories
-      const mergedTranslations = { ...profile.translations };
-      if (mergedTranslations.ml) {
-        mergedTranslations.ml = {
-          ...mergedTranslations.ml,
-          story: parsedStories.ml || mergedTranslations.ml.story || [],
-        };
-      }
-      if (mergedTranslations.hi) {
-        mergedTranslations.hi = {
-          ...mergedTranslations.hi,
-          story: parsedStories.hi || mergedTranslations.hi.story || [],
-        };
-      }
-
+      // Push clean registry entry mapping the story files
       items.push({
         id: profile.id || dirName,
         name: profile.name,
@@ -113,8 +90,7 @@ async function syncIndex() {
         patronage: profile.patronage || [],
         attributes: profile.attributes || "",
         quote: profile.quote || "",
-        story: parsedStories.en || [],
-        translations: mergedTranslations,
+        translations: cleanTranslations,
         path: `content/${dirName}`,
         profile: `content/${dirName}/profile.json`,
         languages: langDirs,
@@ -139,7 +115,7 @@ async function syncIndex() {
   };
 
   await fs.writeFile(indexFile, JSON.stringify(indexData, null, 2) + "\n", "utf-8");
-  console.log(`\n🎉 Successfully synced content/index.json with ${items.length} saints.`);
+  console.log(`\n🎉 Successfully synced content/index.json with ${items.length} saints (stories mapped from content files).`);
 }
 
 syncIndex().catch((err) => {

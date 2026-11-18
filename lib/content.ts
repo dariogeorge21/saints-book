@@ -1,10 +1,43 @@
 import indexJson from "../content/index.json";
-import type { Saint, SaintTranslation } from "./data";
-
-export type { Saint, SaintTranslation };
 
 export type ContentLanguage = "en" | "ml" | "hi";
 export type StoryKind = "shortStory" | "longStory";
+
+export interface SaintTranslation {
+  name: string;
+  epithet: string;
+  dateOfBirth?: string;
+  beatifiedDate?: string;
+  canonisedDate?: string;
+  feastDate?: string;
+  location?: string;
+  patronage?: string[];
+  attributes?: string;
+  quote?: string;
+  story?: string[];
+}
+
+export interface Saint {
+  id: string;
+  name: string;
+  latinName?: string;
+  epithet: string;
+  dateOfBirth: string;
+  beatifiedDate: string;
+  canonisedDate: string;
+  feastDate: string;
+  feastMonth: string;
+  era: string;
+  location: string;
+  patronage: string[];
+  attributes: string;
+  quote: string;
+  story?: string[];
+  translations?: {
+    ml?: SaintTranslation;
+    hi?: SaintTranslation;
+  };
+}
 
 export interface ContentStoryPaths {
   shortStory?: string;
