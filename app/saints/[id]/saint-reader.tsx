@@ -21,6 +21,7 @@ import {
 import { useLanguage } from "@/lib/language-context";
 import { SUPPORTED_LANGUAGES, SupportedLanguage } from "@/lib/i18n";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { SaintImageCarousel } from "@/components/saint-image-carousel";
 import { cn } from "@/lib/utils";
 import type { SaintReaderProps, StoryFormat } from "./types";
 
@@ -303,6 +304,23 @@ export function SaintReader({
 
         <div className="h-[1px] w-16 mx-auto bg-gradient-to-r from-transparent via-[#FF2477] to-transparent mt-4" />
       </header>
+
+      {/* =========================================================================
+          HERO SAINT ICONOGRAPHY SPOTLIGHT & IMAGE CAROUSEL
+         ========================================================================= */}
+      <section
+        className="max-w-xl mx-auto w-full"
+        aria-label="Saint Iconography & Sacred Imagery"
+      >
+        <SaintImageCarousel
+          images={saint.images || []}
+          name={localized.name}
+          feastDate={localized.feastDate}
+          aspectRatio="aspect-[16/10]"
+          className="shadow-[0_20px_50px_rgba(0,0,0,0.45)] border-[#FF2477]/30"
+          priority={true}
+        />
+      </section>
 
       {/* =========================================================================
           FOUR-DATE CANONICAL MILESTONE MATRIX

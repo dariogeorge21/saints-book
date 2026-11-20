@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SAINTS } from "@/lib/content";
 import { useLanguage } from "@/lib/language-context";
 import { ArrowUpRight, ArrowRight, Calendar, Award, MapPin } from "lucide-react";
+import { SaintImageCarousel } from "@/components/saint-image-carousel";
 import { cn } from "@/lib/utils";
 
 export function SaintsGallery() {
@@ -55,12 +56,26 @@ export function SaintsGallery() {
             return (
               <article
                 key={saint.id}
-                className="group relative rounded-2xl border border-[rgba(194,189,206,0.16)] bg-[#433352]/70 hover:bg-[#433352] p-7 flex flex-col justify-between transition-all duration-300 hover:border-[#FF2477]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.45)] hover:-translate-y-1"
+                className="group relative rounded-2xl border border-[rgba(194,189,206,0.16)] bg-[#433352]/70 hover:bg-[#433352] p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#FF2477]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.45)] hover:-translate-y-1"
               >
                 {/* Accent top indicator line on hover */}
                 <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-[#FF2477] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="space-y-5">
+                  {/* Interactive Saint Image Showcase */}
+                  <Link
+                    href={`/saints/${saint.id}`}
+                    className="block overflow-hidden rounded-xl group/img cursor-pointer"
+                    title={`View chronicle of ${localized.name}`}
+                  >
+                    <SaintImageCarousel
+                      images={saint.images || []}
+                      name={localized.name}
+                      feastDate={localized.feastDate}
+                      aspectRatio="aspect-[4/3]"
+                    />
+                  </Link>
+
                   {/* Feast Date & Clickable Location Anchor */}
                   <div className="flex items-center justify-between text-[11px] font-[200] gap-2 flex-wrap">
                     <span className="px-2.5 py-1 rounded-full bg-[#FF2477]/15 border border-[#FF2477]/30 text-[#FF2477] font-mono tracking-wider uppercase text-[10px]">

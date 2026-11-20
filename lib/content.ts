@@ -32,6 +32,8 @@ export interface Saint {
   patronage: string[];
   attributes: string;
   quote: string;
+  imagesDir?: string;
+  images?: string[];
   story?: string[];
   translations?: {
     ml?: SaintTranslation;
@@ -89,6 +91,8 @@ export interface SaintProfile {
   patronage: string[];
   attributes: string;
   quote: string;
+  imagesDir?: string;
+  images?: string[];
   translations?: {
     ml?: SaintProfileTranslation;
     hi?: SaintProfileTranslation;

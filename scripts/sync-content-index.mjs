@@ -35,12 +35,32 @@ async function syncIndex() {
       const profileRaw = await fs.readFile(profilePath, "utf-8");
       const profile = JSON.parse(profileRaw);
 
-      // Detect language subdirectories (e.g. en, hi, ml)
+      // Detect language subdirectories (e.g. en, hi, ml), excluding special folders like 'images'
       const subEntries = await fs.readdir(saintPath, { withFileTypes: true });
       const langDirs = subEntries
-        .filter((e) => e.isDirectory())
+        .filter((e) => e.isDirectory() && e.name !== "images")
         .map((e) => e.name)
         .sort();
+
+      // Detect saint images directory and resolve valid image files
+      const imagesPath = path.join(saintPath, "images");
+      let imagesList = [];
+      let hasImagesDir = false;
+
+      try {
+        const imgStat = await fs.stat(imagesPath);
+        if (imgStat.isDirectory()) {
+          hasImagesDir = true;
+          const imgFiles = await fs.readdir(imagesPath);
+          const validExts = new Set([".jpg", ".jpeg", ".png", ".webp", ".svg", ".avif"]);
+          imagesList = imgFiles
+            .filter((file) => validExts.has(path.extname(file).toLowerCase()))
+            .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }))
+            .map((file) => `/api/content/${dirName}/images/${file}`);
+        }
+      } catch {
+        // No images directory present
+      }
 
       const storiesPaths = {};
 
@@ -93,11 +113,13 @@ async function syncIndex() {
         translations: cleanTranslations,
         path: `content/${dirName}`,
         profile: `content/${dirName}/profile.json`,
+        imagesDir: hasImagesDir ? `content/${dirName}/images` : undefined,
+        images: imagesList,
         languages: langDirs,
         stories: storiesPaths,
       });
 
-      console.log(`✓ Processed ${dirName} (${langDirs.join(", ")})`);
+      console.log(`✓ Processed ${dirName} (${langDirs.join(", ")} | ${imagesList.length} images)`);
     } catch (err) {
       console.warn(`⚠️ Skipping ${dirName}: missing or invalid profile.json (${err.message})`);
     }

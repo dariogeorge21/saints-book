@@ -51,6 +51,7 @@ content/
 │
 ├── _template/               # Blueprint starter to copy for new saints
 │   ├── profile.json         # Saint biographical metadata & translation dictionaries
+│   ├── images/              # Saint portraits & iconography (.jpg, .png, .webp)
 │   ├── en/
 │   │   ├── shortStory.md    # English summary (1-3 paragraphs)
 │   │   └── longStory.md     # Full English chronicle with markdown chapters

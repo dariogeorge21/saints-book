@@ -70,6 +70,12 @@
       },
       "path": "content/st-alphonsa",
       "profile": "content/st-alphonsa/profile.json",
+      "imagesDir": "content/st-alphonsa/images",
+      "images": [
+        "/api/content/st-alphonsa/images/01-alphonsa-portrait.jpg",
+        "/api/content/st-alphonsa/images/02-alphonsa-clarist.jpg",
+        "/api/content/st-alphonsa/images/03-alphonsa-sketch.jpg"
+      ],
       "languages": [
         "en",
         "hi",
@@ -148,6 +154,11 @@
       },
       "path": "content/st-euphrasia",
       "profile": "content/st-euphrasia/profile.json",
+      "imagesDir": "content/st-euphrasia/images",
+      "images": [
+        "/api/content/st-euphrasia/images/01-euphrasia-shrine.jpg",
+        "/api/content/st-euphrasia/images/02-euphrasia-portrait.jpg"
+      ],
       "languages": [
         "en",
         "hi",
@@ -229,6 +240,11 @@
       },
       "path": "content/st-francis-of-assisi",
       "profile": "content/st-francis-of-assisi/profile.json",
+      "imagesDir": "content/st-francis-of-assisi/images",
+      "images": [
+        "/api/content/st-francis-of-assisi/images/01-francis-cimabue.jpg",
+        "/api/content/st-francis-of-assisi/images/02-francis-panel.jpg"
+      ],
       "languages": [
         "en",
         "hi",

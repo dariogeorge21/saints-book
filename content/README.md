@@ -14,6 +14,7 @@ content/
 │
 ├── _template/               # Starter template to copy when adding a new saint
 │   ├── profile.json         # Saint biographical metadata & translations
+│   ├── images/              # Saint portraits & iconography (.jpg, .png, .webp)
 │   ├── en/
 │   │   ├── shortStory.md    # English summary (1-2 paragraphs)
 │   │   └── longStory.md     # English full chronicle with markdown headings
@@ -26,6 +27,7 @@ content/
 │
 ├── st-alphonsa/             # Saint Alphonsa content bundle
 │   ├── profile.json
+│   ├── images/              # Historical portraits & shrines
 │   ├── en/
 │   │   ├── shortStory.md
 │   │   └── longStory.md
@@ -66,13 +68,18 @@ cp -r content/_template content/st-francis-of-assisi
    - `id`: Must match the folder name (e.g., `"st-francis-of-assisi"`).
    - `name`, `latinName`, `epithet`, `era`, `feastDate`, `location`, `patronage`, `attributes`, `quote`.
    - `translations`: Add Malayalam (`ml`) and Hindi (`hi`) metadata if available.
-2. Edit stories:
+2. Add saint imagery (optional but recommended):
+   - Place portrait or historical artwork files in `content/st-[slug]/images/` (e.g. `01-portrait.jpg`, `02-shrine.jpg`).
+3. Edit stories:
    - `en/shortStory.md`: 1-2 paragraphs for quick preview cards.
    - `en/longStory.md`: Full biographical chapters with `#` and `##` headings.
    - `ml/` and `hi/`: Translations for Malayalam and Hindi.
 
 ### Step 3: Register the Saint in `content/index.json`
-Add an entry to the `items` array in `content/index.json`:
+Run the automated sync tool or add manually:
+```bash
+npm run content:sync
+```
 
 ```json
 {

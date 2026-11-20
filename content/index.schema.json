@@ -34,6 +34,11 @@
           },
           "path": { "type": "string" },
           "profile": { "type": "string" },
+          "imagesDir": { "type": "string" },
+          "images": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
           "languages": {
             "type": "array",
             "items": { "type": "string" }
