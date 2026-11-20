@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { SAINTS } from "@/lib/content";
 import { useLanguage } from "@/lib/language-context";
-import { ArrowUpRight, Search } from "lucide-react";
+import { ArrowUpRight, Search, Calendar as CalendarIcon } from "lucide-react";
+import { FilterDropdown } from "@/components/filter-dropdown";
 import { cn } from "@/lib/utils";
 
 export function FeastCalendar() {
@@ -15,6 +16,8 @@ export function FeastCalendar() {
   const months = [
     "ALL",
     "January",
+    "February",
+    "March",
     "April",
     "May",
     "June",
@@ -22,6 +25,8 @@ export function FeastCalendar() {
     "August",
     "September",
     "October",
+    "November",
+    "December",
   ];
 
   const filtered = SAINTS.filter((s) => {
@@ -76,22 +81,27 @@ export function FeastCalendar() {
           </div>
         </div>
 
-        {/* Month Filter Pills */}
-        <div className="flex gap-2 py-2 overflow-x-auto text-xs uppercase font-[200] tracking-[0.2em] no-scrollbar">
-          {months.map((m) => (
+        {/* Month Filter Dropdown */}
+        <div className="flex items-center gap-3">
+          <FilterDropdown
+            label={t("calendar.month") || "Month"}
+            value={selectedMonth}
+            onChange={setSelectedMonth}
+            icon={CalendarIcon}
+            options={months.map((m) => ({
+              value: m,
+              label: t(`month.${m}`),
+            }))}
+          />
+          {selectedMonth !== "ALL" && (
             <button
-              key={m}
-              onClick={() => setSelectedMonth(m)}
-              className={cn(
-                "px-3.5 py-1.5 rounded-full border transition-all whitespace-nowrap cursor-pointer",
-                selectedMonth === m
-                  ? "bg-[#FF2477] border-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.3)]"
-                  : "border-[rgba(194,189,206,0.15)] text-[#C2BDCE] hover:text-[#F8F6FA] bg-[#33253e]/60"
-              )}
+              type="button"
+              onClick={() => setSelectedMonth("ALL")}
+              className="text-[10px] uppercase font-mono tracking-widest text-[#FF2477] hover:underline cursor-pointer"
             >
-              {t(`month.${m}`)}
+              Clear
             </button>
-          ))}
+          )}
         </div>
 
         {/* Table of Saints with Direct Page Links */}

@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { useLanguage } from "@/lib/language-context";
 import { SaintsSearchBar } from "@/components/saints-search-bar";
 import { SaintImageCarousel } from "@/components/saint-image-carousel";
+import { FilterDropdown } from "@/components/filter-dropdown";
 import {
   Filter,
   ArrowUpRight,
@@ -125,28 +126,26 @@ export default function AllSaintsPage() {
             aria-label="Filter and search saints archive"
             className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 py-6 border-y border-[rgba(194,189,206,0.1)]"
           >
-            {/* Era Filter Pills with Full Localization */}
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-              <Filter className="w-3.5 h-3.5 text-[#C2BDCE]/60 mr-1 shrink-0 stroke-[1.5]" />
-              {eras.map((era) => {
-                const eraLabel = t(`era.${era}`);
-                const isSelected = selectedEra === era;
-                return (
-                  <button
-                    key={era}
-                    onClick={() => setSelectedEra(era)}
-                    className={cn(
-                      "px-3.5 py-1.5 rounded-full text-xs font-[200] tracking-[0.2em] uppercase whitespace-nowrap transition-all cursor-pointer",
-                      isSelected
-                        ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
-                        : "bg-[#352741] text-[#C2BDCE] hover:text-[#F8F6FA] hover:bg-[#433352] border border-[rgba(194,189,206,0.12)]"
-                    )}
-                    aria-pressed={isSelected}
-                  >
-                    {eraLabel}
-                  </button>
-                );
-              })}
+            {/* Era Filter Dropdown with Full Localization */}
+            <div className="flex items-center gap-3">
+              <FilterDropdown
+                label={t("allSaints.filterEra") || "Era"}
+                value={selectedEra}
+                onChange={setSelectedEra}
+                options={eras.map((era) => ({
+                  value: era,
+                  label: t(`era.${era}`),
+                }))}
+              />
+              {selectedEra !== "ALL" && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedEra("ALL")}
+                  className="text-[10px] uppercase font-mono tracking-widest text-[#FF2477] hover:underline cursor-pointer"
+                >
+                  {t("allSaints.clearFilter") || "Clear"}
+                </button>
+              )}
             </div>
 
             {/* Accessible Saints Search Bar with live counter and shortcuts */}

@@ -6,7 +6,8 @@ import { SAINTS, Saint } from "@/lib/content";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { useLanguage } from "@/lib/language-context";
-import { Search, ArrowRight, ArrowLeft } from "lucide-react";
+import { Search, ArrowRight, ArrowLeft, Calendar as CalendarIcon } from "lucide-react";
+import { FilterDropdown } from "@/components/filter-dropdown";
 import { cn } from "@/lib/utils";
 
 // Month numerical mapping for upcoming calculation
@@ -45,6 +46,8 @@ export default function FeastCalendarPage() {
   const months = [
     "ALL",
     "January",
+    "February",
+    "March",
     "April",
     "May",
     "June",
@@ -52,6 +55,8 @@ export default function FeastCalendarPage() {
     "August",
     "September",
     "October",
+    "November",
+    "December",
   ];
 
   // Determine the most upcoming feast day relative to the user's current date
@@ -190,37 +195,39 @@ export default function FeastCalendarPage() {
           )}
 
           {/* Search & Month Filter Controls */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 py-3 border-y border-[rgba(194,189,206,0.1)]">
-            {/* Filter Pills with Full Localization */}
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
-              {months.map((m) => {
-                const monthLabel = t(`month.${m}`);
-                return (
-                  <button
-                    key={m}
-                    onClick={() => setSelectedMonth(m)}
-                    className={cn(
-                      "px-3 py-1.5 rounded-full text-xs font-[200] tracking-[0.18em] uppercase whitespace-nowrap transition-all cursor-pointer",
-                      selectedMonth === m
-                        ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.3)]"
-                        : "bg-[#33253e] text-[#C2BDCE] hover:text-[#F8F6FA] border border-[rgba(194,189,206,0.1)]"
-                    )}
-                  >
-                    {monthLabel}
-                  </button>
-                );
-              })}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 py-4 border-y border-[rgba(194,189,206,0.1)]">
+            {/* Month Filter Dropdown with Full Localization */}
+            <div className="flex items-center gap-3">
+              <FilterDropdown
+                label={t("calendar.month") || "Month"}
+                value={selectedMonth}
+                onChange={setSelectedMonth}
+                icon={CalendarIcon}
+                options={months.map((m) => ({
+                  value: m,
+                  label: t(`month.${m}`),
+                }))}
+              />
+              {selectedMonth !== "ALL" && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedMonth("ALL")}
+                  className="text-[10px] uppercase font-mono tracking-widest text-[#FF2477] hover:underline cursor-pointer"
+                >
+                  Clear
+                </button>
+              )}
             </div>
 
             {/* Search Input */}
-            <div className="w-full md:w-72 relative">
-              <Search className="w-4 h-4 stroke-[1.5] absolute left-3 top-1/2 -translate-y-1/2 text-[#C2BDCE]/60" />
+            <div className="w-full sm:w-72 relative">
+              <Search className="w-4 h-4 stroke-[1.5] absolute left-3.5 top-1/2 -translate-y-1/2 text-[#C2BDCE]/60" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={t("calendar.search")}
-                className="w-full pl-9 pr-4 py-2 rounded-lg bg-[#33253e] border border-[rgba(194,189,206,0.15)] focus:border-[#FF2477] focus:outline-none text-xs font-[200] tracking-wide text-[#F8F6FA] placeholder-[#C2BDCE]/50"
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-[#33253e] border border-[rgba(194,189,206,0.15)] focus:border-[#FF2477] focus:outline-none text-xs font-[200] tracking-wide text-[#F8F6FA] placeholder-[#C2BDCE]/50 transition-colors"
               />
             </div>
           </div>
