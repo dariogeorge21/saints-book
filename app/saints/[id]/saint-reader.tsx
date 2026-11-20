@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import {
   Calendar,
@@ -152,6 +152,37 @@ export function SaintReader({
     lg: "text-lg sm:text-xl leading-loose",
   }[fontSize];
 
+  // Ref for the narrative reading article section
+  const readingSectionRef = useRef<HTMLElement>(null);
+  const [isStickyVisible, setIsStickyVisible] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
+
+  // Monitor scroll position: active strictly when viewport is within the reading section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!readingSectionRef.current) return;
+      const rect = readingSectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Active only when reading section top has reached near top of viewport (<= 80px)
+      // and bottom has not yet scrolled past the top (>= 140px)
+      const inReading = rect.top <= 80 && rect.bottom >= 140;
+      setIsStickyVisible(inReading);
+
+      if (inReading) {
+        const totalHeight = rect.height - windowHeight * 0.4;
+        const scrolled = -rect.top + 80;
+        const progress = Math.min(100, Math.max(0, (scrolled / Math.max(1, totalHeight)) * 100));
+        setReadingProgress(progress);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeMarkdownContent]);
+
   return (
     <div
       className={cn(
@@ -161,6 +192,134 @@ export function SaintReader({
         readerLanguage === "hi" && "font-hindi"
       )}
     >
+      {/* =========================================================================
+          STICKY READING HEADER (Active strictly during narrative reading section)
+         ========================================================================= */}
+      <div
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 bg-[#2D2138]/95 backdrop-blur-md border-b border-[rgba(194,189,206,0.15)] shadow-[0_12px_32px_rgba(0,0,0,0.55)] transition-all duration-300 ease-in-out",
+          isStickyVisible
+            ? "translate-y-0 opacity-100 pointer-events-auto"
+            : "-translate-y-full opacity-0 pointer-events-none"
+        )}
+        aria-hidden={!isStickyVisible}
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
+          {/* Back Link */}
+          <Link
+            href="/saints"
+            className="inline-flex items-center gap-2 text-xs uppercase font-[200] tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer shrink-0"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 stroke-[1.5] group-hover:-translate-x-1 transition-transform" />
+            <span className="hidden sm:inline">{t("story.back")}</span>
+            <span className="sm:hidden">Saints</span>
+          </Link>
+
+          {/* Reader Controls: Font Size, Share, Language Switcher */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+            {/* Font Size Adjuster */}
+            <div
+              className="flex items-center gap-1 bg-[#352741]/90 p-1 rounded-xl border border-[rgba(194,189,206,0.15)] shrink-0"
+              title="Adjust reading font size"
+              role="group"
+              aria-label="Font size adjuster"
+            >
+              <Type className="w-3.5 h-3.5 ml-1.5 text-[#C2BDCE]/60 stroke-[1.5] hidden xs:block" />
+              <button
+                type="button"
+                onClick={() => setFontSize("sm")}
+                className={cn(
+                  "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                  fontSize === "sm"
+                    ? "bg-[#FF2477] text-white"
+                    : "text-[#C2BDCE]/70 hover:text-white"
+                )}
+                aria-label="Small font size"
+              >
+                A-
+              </button>
+              <button
+                type="button"
+                onClick={() => setFontSize("md")}
+                className={cn(
+                  "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                  fontSize === "md"
+                    ? "bg-[#FF2477] text-white"
+                    : "text-[#C2BDCE]/70 hover:text-white"
+                )}
+                aria-label="Default font size"
+              >
+                A
+              </button>
+              <button
+                type="button"
+                onClick={() => setFontSize("lg")}
+                className={cn(
+                  "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                  fontSize === "lg"
+                    ? "bg-[#FF2477] text-white"
+                    : "text-[#C2BDCE]/70 hover:text-white"
+                )}
+                aria-label="Large font size"
+              >
+                A+
+              </button>
+            </div>
+
+            {/* Share Button */}
+            <button
+              type="button"
+              onClick={handleShareCitation}
+              className="p-2 rounded-xl bg-[#352741]/90 border border-[rgba(194,189,206,0.15)] text-[#C2BDCE] hover:text-[#FF2477] transition-colors cursor-pointer shrink-0"
+              title="Copy citation link"
+              aria-label="Share this chronicle"
+            >
+              {hasCopiedShare ? (
+                <Check className="w-4 h-4 text-green-400 stroke-[1.5]" />
+              ) : (
+                <Share2 className="w-4 h-4 stroke-[1.5]" />
+              )}
+            </button>
+
+            {/* Language Switcher Tabs */}
+            <div className="flex items-center gap-1 bg-[#352741]/90 p-1 rounded-xl border border-[rgba(194,189,206,0.15)] shrink-0">
+              <div className="flex items-center gap-1.5 px-2 text-[10px] uppercase font-[200] tracking-[0.2em] text-[#FF2477] hidden md:flex">
+                <Languages className="w-3.5 h-3.5" />
+                <span>{t("story.readIn")}</span>
+              </div>
+
+              <div className="flex items-center gap-1">
+                {SUPPORTED_LANGUAGES.map((lang) => {
+                  const isCurrent = readerLanguage === lang.code;
+                  return (
+                    <button
+                      key={lang.code}
+                      type="button"
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={cn(
+                        "px-3 py-1 rounded-lg text-xs font-[200] tracking-wide transition-all cursor-pointer whitespace-nowrap",
+                        isCurrent
+                          ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
+                          : "text-[#C2BDCE]/80 hover:text-white hover:bg-[#433352]/60"
+                      )}
+                      title={`Read chronicle in ${lang.label}`}
+                    >
+                      {lang.nativeLabel}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Hairline Reading Progress Indicator */}
+        <div
+          className="h-[2px] bg-gradient-to-r from-[#FF2477] to-[#ff4b91] transition-all duration-150"
+          style={{ width: `${readingProgress}%` }}
+          aria-hidden="true"
+        />
+      </div>
       {/* =========================================================================
           TOP ACTION BAR: Breadcrumb, Language Switcher, Font Resizer & Share
          ========================================================================= */}
@@ -391,7 +550,7 @@ export function SaintReader({
       {/* =========================================================================
           DEDICATED STORY SECTION (WITH LONG STORY / SHORT STORY TOGGLE)
          ========================================================================= */}
-      <article className="max-w-3xl mx-auto space-y-8 pt-4">
+      <article ref={readingSectionRef} className="max-w-3xl mx-auto space-y-8 pt-4">
         {/* Story Format Selector & Metadata Bar */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-4 border-b border-[rgba(194,189,206,0.12)]">
           {/* Toggle between Long Story (Full Chronicle) and Short Story (Summary) */}
