@@ -254,3 +254,74 @@
   will-change: transform, filter;
 }
 
+/* Dynamic Reader Typography Scaling */
+.markdown-chronicle,
+.markdown-chronicle p,
+.markdown-chronicle blockquote,
+.markdown-chronicle ul,
+.markdown-chronicle ol,
+.markdown-chronicle li {
+  transition: font-size 200ms ease, line-height 200ms ease;
+}
+
+.reader-font-sm p,
+.reader-font-sm ul,
+.reader-font-sm ol,
+.reader-font-sm blockquote {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.65;
+}
+@media (min-width: 640px) {
+  .reader-font-sm p,
+  .reader-font-sm ul,
+  .reader-font-sm ol,
+  .reader-font-sm blockquote {
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.75;
+  }
+}
+.reader-font-sm h1 { font-size: 1.5rem; }
+.reader-font-sm h2 { font-size: 1.25rem; }
+.reader-font-sm h3 { font-size: 1rem; }
+
+.reader-font-md p,
+.reader-font-md ul,
+.reader-font-md ol,
+.reader-font-md blockquote {
+  font-size: 1rem; /* 16px */
+  line-height: 1.8;
+}
+@media (min-width: 640px) {
+  .reader-font-md p,
+  .reader-font-md ul,
+  .reader-font-md ol,
+  .reader-font-md blockquote {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.95;
+  }
+}
+.reader-font-md h1 { font-size: 1.875rem; }
+.reader-font-md h2 { font-size: 1.5rem; }
+.reader-font-md h3 { font-size: 1.125rem; }
+
+.reader-font-lg p,
+.reader-font-lg ul,
+.reader-font-lg ol,
+.reader-font-lg blockquote {
+  font-size: 1.1875rem; /* 19px */
+  line-height: 1.9;
+}
+@media (min-width: 640px) {
+  .reader-font-lg p,
+  .reader-font-lg ul,
+  .reader-font-lg ol,
+  .reader-font-lg blockquote {
+    font-size: 1.35rem; /* 21.6px */
+    line-height: 2.15;
+  }
+}
+.reader-font-lg h1 { font-size: 2.25rem; }
+.reader-font-lg h2 { font-size: 1.75rem; }
+.reader-font-lg h3 { font-size: 1.25rem; }
+
+

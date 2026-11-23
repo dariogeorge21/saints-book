@@ -84,6 +84,27 @@ export function SaintReader({
   // Reader typography preference: sm | md | lg
   const [fontSize, setFontSize] = useState<"sm" | "md" | "lg">("md");
 
+  // Load saved font size preference from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedFontSize = localStorage.getItem("saintsbook_reader_font_size");
+      if (savedFontSize === "sm" || savedFontSize === "md" || savedFontSize === "lg") {
+        setFontSize(savedFontSize);
+      }
+    } catch {
+      // localStorage may fail in SSR or restricted environments
+    }
+  }, []);
+
+  const handleFontSizeChange = (size: "sm" | "md" | "lg") => {
+    setFontSize(size);
+    try {
+      localStorage.setItem("saintsbook_reader_font_size", size);
+    } catch {
+      // ignore
+    }
+  };
+
   // Share button confirmation feedback state
   const [hasCopiedShare, setHasCopiedShare] = useState<boolean>(false);
 
@@ -227,7 +248,7 @@ export function SaintReader({
               <Type className="w-3.5 h-3.5 ml-1 text-[#C2BDCE]/60 stroke-[1.5] hidden xs:block" />
               <button
                 type="button"
-                onClick={() => setFontSize("sm")}
+                onClick={() => handleFontSizeChange("sm")}
                 className={cn(
                   "px-1.5 sm:px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                   fontSize === "sm"
@@ -240,7 +261,7 @@ export function SaintReader({
               </button>
               <button
                 type="button"
-                onClick={() => setFontSize("md")}
+                onClick={() => handleFontSizeChange("md")}
                 className={cn(
                   "px-1.5 sm:px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                   fontSize === "md"
@@ -253,7 +274,7 @@ export function SaintReader({
               </button>
               <button
                 type="button"
-                onClick={() => setFontSize("lg")}
+                onClick={() => handleFontSizeChange("lg")}
                 className={cn(
                   "px-1.5 sm:px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                   fontSize === "lg"
@@ -344,7 +365,7 @@ export function SaintReader({
           >
             <Type className="w-3.5 h-3.5 ml-1.5 text-[#C2BDCE]/60 stroke-[1.5]" />
             <button
-              onClick={() => setFontSize("sm")}
+              onClick={() => handleFontSizeChange("sm")}
               className={cn(
                 "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                 fontSize === "sm"
@@ -356,7 +377,7 @@ export function SaintReader({
               A-
             </button>
             <button
-              onClick={() => setFontSize("md")}
+              onClick={() => handleFontSizeChange("md")}
               className={cn(
                 "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                 fontSize === "md"
@@ -368,7 +389,7 @@ export function SaintReader({
               A
             </button>
             <button
-              onClick={() => setFontSize("lg")}
+              onClick={() => handleFontSizeChange("lg")}
               className={cn(
                 "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                 fontSize === "lg"
@@ -605,7 +626,7 @@ export function SaintReader({
 
         {/* Dynamic Markdown Chronicle Content */}
         <div className={cn("markdown-container", fontSizeStyle)}>
-          <MarkdownRenderer content={activeMarkdownContent} />
+          <MarkdownRenderer content={activeMarkdownContent} fontSize={fontSize} />
         </div>
       </article>
 

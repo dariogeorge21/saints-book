@@ -29,7 +29,7 @@ const MARKDOWN_COMPONENTS: Components = {
   ),
   p: ({ node: _node, ...props }) => (
     <p
-      className="text-base sm:text-lg font-[300] leading-relaxed sm:leading-loose text-[#C2BDCE] tracking-wide mb-6 transition-colors hover:text-[#F8F6FA]"
+      className="font-[300] tracking-wide mb-6 transition-colors hover:text-[#F8F6FA]"
       {...props}
     />
   ),
@@ -44,19 +44,19 @@ const MARKDOWN_COMPONENTS: Components = {
   ),
   blockquote: ({ node: _node, ...props }) => (
     <blockquote
-      className="my-6 p-4 sm:p-6 rounded-xl bg-[#352741]/50 border-l-2 border-[#FF2477] border-y border-r border-[rgba(194,189,206,0.12)] italic text-base sm:text-lg font-[200] text-[#F8F6FA] leading-relaxed"
+      className="my-6 p-4 sm:p-6 rounded-xl bg-[#352741]/50 border-l-2 border-[#FF2477] border-y border-r border-[rgba(194,189,206,0.12)] italic font-[200] text-[#F8F6FA]"
       {...props}
     />
   ),
   ul: ({ node: _node, ...props }) => (
     <ul
-      className="list-disc pl-5 sm:pl-6 space-y-2 mb-6 text-base sm:text-lg font-[300] text-[#C2BDCE] marker:text-[#FF2477]"
+      className="list-disc pl-5 sm:pl-6 space-y-2 mb-6 font-[300] text-[#C2BDCE] marker:text-[#FF2477]"
       {...props}
     />
   ),
   ol: ({ node: _node, ...props }) => (
     <ol
-      className="list-decimal pl-5 sm:pl-6 space-y-2 mb-6 text-base sm:text-lg font-[300] text-[#C2BDCE] marker:text-[#FF2477]"
+      className="list-decimal pl-5 sm:pl-6 space-y-2 mb-6 font-[300] text-[#C2BDCE] marker:text-[#FF2477]"
       {...props}
     />
   ),
@@ -97,21 +97,29 @@ const MARKDOWN_COMPONENTS: Components = {
   ),
 };
 
-interface MarkdownRendererProps {
+export interface MarkdownRendererProps {
   content: string;
   className?: string;
+  fontSize?: "sm" | "md" | "lg";
 }
 
 export const MarkdownRenderer = memo(function MarkdownRenderer({
   content,
   className,
+  fontSize = "md",
 }: MarkdownRendererProps) {
   if (!content || !content.trim()) {
     return null;
   }
 
   return (
-    <div className={cn("markdown-chronicle space-y-6 text-[#C2BDCE]", className)}>
+    <div
+      className={cn(
+        "markdown-chronicle space-y-6 text-[#C2BDCE]",
+        `reader-font-${fontSize}`,
+        className
+      )}
+    >
       <ReactMarkdown
         remarkPlugins={REMARK_PLUGINS}
         components={MARKDOWN_COMPONENTS}
