@@ -204,11 +204,11 @@ export function SaintReader({
         )}
         aria-hidden={!isStickyVisible}
       >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
+        <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-3">
           {/* Back Link */}
           <Link
             href="/saints"
-            className="inline-flex items-center gap-2 text-xs uppercase font-[200] tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer shrink-0"
+            className="inline-flex items-center gap-1.5 sm:gap-2 text-xs uppercase font-[200] tracking-[0.2em] sm:tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer shrink-0"
           >
             <ArrowLeft className="w-3.5 h-3.5 stroke-[1.5] group-hover:-translate-x-1 transition-transform" />
             <span className="hidden sm:inline">{t("story.back")}</span>
@@ -216,20 +216,20 @@ export function SaintReader({
           </Link>
 
           {/* Reader Controls: Font Size, Share, Language Switcher */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar">
             {/* Font Size Adjuster */}
             <div
-              className="flex items-center gap-1 bg-[#352741]/90 p-1 rounded-xl border border-[rgba(194,189,206,0.15)] shrink-0"
+              className="flex items-center gap-0.5 sm:gap-1 bg-[#352741]/90 p-1 rounded-xl border border-[rgba(194,189,206,0.15)] shrink-0"
               title="Adjust reading font size"
               role="group"
               aria-label="Font size adjuster"
             >
-              <Type className="w-3.5 h-3.5 ml-1.5 text-[#C2BDCE]/60 stroke-[1.5] hidden xs:block" />
+              <Type className="w-3.5 h-3.5 ml-1 text-[#C2BDCE]/60 stroke-[1.5] hidden xs:block" />
               <button
                 type="button"
                 onClick={() => setFontSize("sm")}
                 className={cn(
-                  "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                  "px-1.5 sm:px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                   fontSize === "sm"
                     ? "bg-[#FF2477] text-white"
                     : "text-[#C2BDCE]/70 hover:text-white"
@@ -242,7 +242,7 @@ export function SaintReader({
                 type="button"
                 onClick={() => setFontSize("md")}
                 className={cn(
-                  "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                  "px-1.5 sm:px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                   fontSize === "md"
                     ? "bg-[#FF2477] text-white"
                     : "text-[#C2BDCE]/70 hover:text-white"
@@ -255,7 +255,7 @@ export function SaintReader({
                 type="button"
                 onClick={() => setFontSize("lg")}
                 className={cn(
-                  "px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
+                  "px-1.5 sm:px-2 py-0.5 rounded-lg text-xs font-mono transition-colors cursor-pointer",
                   fontSize === "lg"
                     ? "bg-[#FF2477] text-white"
                     : "text-[#C2BDCE]/70 hover:text-white"
@@ -270,14 +270,14 @@ export function SaintReader({
             <button
               type="button"
               onClick={handleShareCitation}
-              className="p-2 rounded-xl bg-[#352741]/90 border border-[rgba(194,189,206,0.15)] text-[#C2BDCE] hover:text-[#FF2477] transition-colors cursor-pointer shrink-0"
+              className="p-1.5 sm:p-2 rounded-xl bg-[#352741]/90 border border-[rgba(194,189,206,0.15)] text-[#C2BDCE] hover:text-[#FF2477] transition-colors cursor-pointer shrink-0"
               title="Copy citation link"
               aria-label="Share this chronicle"
             >
               {hasCopiedShare ? (
-                <Check className="w-4 h-4 text-green-400 stroke-[1.5]" />
+                <Check className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-green-400 stroke-[1.5]" />
               ) : (
-                <Share2 className="w-4 h-4 stroke-[1.5]" />
+                <Share2 className="w-3.5 sm:w-4 h-3.5 sm:h-4 stroke-[1.5]" />
               )}
             </button>
 
@@ -288,7 +288,7 @@ export function SaintReader({
                 <span>{t("story.readIn")}</span>
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-0.5 sm:gap-1">
                 {SUPPORTED_LANGUAGES.map((lang) => {
                   const isCurrent = readerLanguage === lang.code;
                   return (
@@ -297,7 +297,7 @@ export function SaintReader({
                       type="button"
                       onClick={() => handleLanguageChange(lang.code)}
                       className={cn(
-                        "px-3 py-1 rounded-lg text-xs font-[200] tracking-wide transition-all cursor-pointer whitespace-nowrap",
+                        "px-2 sm:px-3 py-1 rounded-lg text-[11px] sm:text-xs font-[200] tracking-wide transition-all cursor-pointer whitespace-nowrap",
                         isCurrent
                           ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
                           : "text-[#C2BDCE]/80 hover:text-white hover:bg-[#433352]/60"
@@ -447,17 +447,17 @@ export function SaintReader({
           </a>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-[100] uppercase tracking-[0.16em] text-[#F8F6FA] leading-tight">
+        <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-[100] uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[#F8F6FA] leading-tight">
           {localized.name}
         </h1>
 
         {saint.latinName && (
-          <p className="text-sm font-[200] italic text-[#C2BDCE]/70 tracking-widest">
+          <p className="text-xs sm:text-sm font-[200] italic text-[#C2BDCE]/70 tracking-widest">
             {saint.latinName}
           </p>
         )}
 
-        <p className="text-xs sm:text-sm font-[200] text-[#FF2477] tracking-[0.2em] uppercase pt-1">
+        <p className="text-xs sm:text-sm font-[200] text-[#FF2477] tracking-[0.16em] sm:tracking-[0.2em] uppercase pt-1">
           {localized.epithet}
         </p>
 
@@ -485,7 +485,7 @@ export function SaintReader({
           FOUR-DATE CANONICAL MILESTONE MATRIX
          ========================================================================= */}
       <section
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6 rounded-2xl bg-[#352741]/60 border border-[rgba(194,189,206,0.14)] backdrop-blur-sm shadow-[0_15px_40px_rgba(0,0,0,0.3)]"
+        className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-[#352741]/60 border border-[rgba(194,189,206,0.14)] backdrop-blur-sm shadow-[0_15px_40px_rgba(0,0,0,0.3)]"
         aria-label="Canonical Milestones"
       >
         {/* 1. Date of Birth */}
@@ -537,11 +537,11 @@ export function SaintReader({
           INSPIRATIONAL QUOTE BLOCK
          ========================================================================= */}
       {localized.quote && (
-        <div className="p-8 sm:p-10 rounded-2xl bg-[#352741]/50 border-l-2 border-[#FF2477] border-y border-r border-[rgba(194,189,206,0.12)] max-w-3xl mx-auto shadow-md">
+        <div className="p-5 sm:p-8 lg:p-10 rounded-2xl bg-[#352741]/50 border-l-2 border-[#FF2477] border-y border-r border-[rgba(194,189,206,0.12)] max-w-3xl mx-auto shadow-md">
           <blockquote className="text-base sm:text-xl font-[200] italic text-[#F8F6FA] tracking-wide leading-relaxed">
             “{localized.quote}”
           </blockquote>
-          <div className="mt-3 text-right text-xs font-[200] uppercase tracking-[0.25em] text-[#FF2477]">
+          <div className="mt-3 text-right text-xs font-[200] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#FF2477]">
             — {localized.name}
           </div>
         </div>
@@ -550,12 +550,12 @@ export function SaintReader({
       {/* =========================================================================
           DEDICATED STORY SECTION (WITH LONG STORY / SHORT STORY TOGGLE)
          ========================================================================= */}
-      <article ref={readingSectionRef} className="max-w-3xl mx-auto space-y-8 pt-4">
+      <article ref={readingSectionRef} className="max-w-3xl mx-auto space-y-6 sm:space-y-8 pt-2 sm:pt-4">
         {/* Story Format Selector & Metadata Bar */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-4 border-b border-[rgba(194,189,206,0.12)]">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 pb-4 border-b border-[rgba(194,189,206,0.12)]">
           {/* Toggle between Long Story (Full Chronicle) and Short Story (Summary) */}
           <div
-            className="inline-flex items-center bg-[#30233b] p-1 rounded-xl border border-[rgba(194,189,206,0.14)]"
+            className="inline-flex items-center bg-[#30233b] p-1 rounded-xl border border-[rgba(194,189,206,0.14)] max-w-full overflow-x-auto"
             role="tablist"
             aria-label="Story format selection"
           >
@@ -565,7 +565,7 @@ export function SaintReader({
               aria-selected={storyFormat === "longStory"}
               onClick={() => setStoryFormat("longStory")}
               className={cn(
-                "flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-[200] tracking-wider uppercase transition-all cursor-pointer",
+                "flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-[200] tracking-wider uppercase transition-all cursor-pointer whitespace-nowrap",
                 storyFormat === "longStory"
                   ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
                   : "text-[#C2BDCE]/70 hover:text-white hover:bg-[#433352]/40"
@@ -581,7 +581,7 @@ export function SaintReader({
               aria-selected={storyFormat === "shortStory"}
               onClick={() => setStoryFormat("shortStory")}
               className={cn(
-                "flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-[200] tracking-wider uppercase transition-all cursor-pointer",
+                "flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-[200] tracking-wider uppercase transition-all cursor-pointer whitespace-nowrap",
                 storyFormat === "shortStory"
                   ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
                   : "text-[#C2BDCE]/70 hover:text-white hover:bg-[#433352]/40"
@@ -593,8 +593,8 @@ export function SaintReader({
           </div>
 
           {/* Reading Time & Archive Identifier */}
-          <div className="flex items-center justify-between sm:justify-end gap-3 text-[10px] font-mono tracking-widest text-[#C2BDCE]/60 uppercase">
-            <span className="px-2.5 py-1 rounded-full bg-[#352741] border border-[rgba(194,189,206,0.1)] text-[#FF2477]">
+          <div className="flex items-center justify-between sm:justify-end gap-2.5 text-[10px] font-mono tracking-wider sm:tracking-widest text-[#C2BDCE]/60 uppercase">
+            <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-[#352741] border border-[rgba(194,189,206,0.1)] text-[#FF2477]">
               {t("story.readingTime", { minutes: readingTime })}
             </span>
             <span>
@@ -612,16 +612,16 @@ export function SaintReader({
       {/* =========================================================================
           PATRONAGE & ICONOGRAPHY COLOPHON
          ========================================================================= */}
-      <footer className="max-w-3xl mx-auto p-6 rounded-2xl bg-[#32243d] border border-[rgba(194,189,206,0.12)] space-y-4">
+      <footer className="max-w-3xl mx-auto p-4 sm:p-6 rounded-2xl bg-[#32243d] border border-[rgba(194,189,206,0.12)] space-y-4">
         {/* Patronages */}
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-[10px] uppercase font-[200] tracking-[0.25em] text-[#FF2477]">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          <span className="text-[10px] uppercase font-[200] tracking-[0.2em] sm:tracking-[0.25em] text-[#FF2477]">
             {t("story.patronages")}
           </span>
           {localized.patronage.map((p) => (
             <span
               key={p}
-              className="px-2.5 py-1 rounded-full text-[10px] font-[200] uppercase tracking-[0.16em] bg-[#3B2D47] text-[#C2BDCE] border border-[rgba(194,189,206,0.15)]"
+              className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] font-[200] uppercase tracking-[0.14em] sm:tracking-[0.16em] bg-[#3B2D47] text-[#C2BDCE] border border-[rgba(194,189,206,0.15)]"
             >
               {p}
             </span>
@@ -662,20 +662,20 @@ export function SaintReader({
           SEQUENTIAL SAINT NAVIGATION (Prev / All / Next)
          ========================================================================= */}
       <nav
-        className="flex items-center justify-between border-t border-[rgba(194,189,206,0.14)] pt-8 max-w-3xl mx-auto"
+        className="flex items-center justify-between border-t border-[rgba(194,189,206,0.14)] pt-6 sm:pt-8 max-w-3xl mx-auto gap-2"
         aria-label="Sequential Saint Navigation"
       >
         {prevSaint ? (
           <Link
             href={`/saints/${prevSaint.id}`}
-            className="flex items-center gap-2 text-xs font-[200] uppercase tracking-[0.22em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 text-xs font-[200] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer min-w-0"
           >
-            <ArrowLeft className="w-4 h-4 stroke-[1.5] group-hover:-translate-x-1 transition-transform" />
-            <div className="text-left">
+            <ArrowLeft className="w-4 h-4 stroke-[1.5] group-hover:-translate-x-1 transition-transform shrink-0" />
+            <div className="text-left min-w-0">
               <span className="block text-[9px] text-[#C2BDCE]/50 tracking-widest">
                 {t("story.prev")}
               </span>
-              <span className="font-[300]">{prevSaint.name}</span>
+              <span className="font-[300] block truncate max-w-[80px] xs:max-w-[130px] sm:max-w-xs">{prevSaint.name}</span>
             </div>
           </Link>
         ) : (
@@ -684,7 +684,7 @@ export function SaintReader({
 
         <Link
           href="/saints"
-          className="px-4 py-2 rounded-lg border border-[rgba(194,189,206,0.18)] hover:border-[#FF2477] text-xs font-[200] uppercase tracking-[0.25em] text-[#F8F6FA] hover:text-white transition-all bg-[#352741]/50 cursor-pointer"
+          className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border border-[rgba(194,189,206,0.18)] hover:border-[#FF2477] text-[11px] sm:text-xs font-[200] uppercase tracking-[0.18em] sm:tracking-[0.25em] text-[#F8F6FA] hover:text-white transition-all bg-[#352741]/50 cursor-pointer shrink-0"
         >
           {t("story.viewAll")}
         </Link>
@@ -692,15 +692,15 @@ export function SaintReader({
         {nextSaint ? (
           <Link
             href={`/saints/${nextSaint.id}`}
-            className="flex items-center gap-2 text-xs font-[200] uppercase tracking-[0.22em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group text-right cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 text-xs font-[200] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group text-right cursor-pointer min-w-0"
           >
-            <div>
+            <div className="min-w-0">
               <span className="block text-[9px] text-[#C2BDCE]/50 tracking-widest">
                 {t("story.next")}
               </span>
-              <span className="font-[300]">{nextSaint.name}</span>
+              <span className="font-[300] block truncate max-w-[80px] xs:max-w-[130px] sm:max-w-xs">{nextSaint.name}</span>
             </div>
-            <ArrowRight className="w-4 h-4 stroke-[1.5] group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 stroke-[1.5] group-hover:translate-x-1 transition-transform shrink-0" />
           </Link>
         ) : (
           <div />

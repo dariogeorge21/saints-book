@@ -15,24 +15,24 @@ export function Inscription() {
   };
 
   return (
-    <section id="inscription" className="py-24 relative bg-[#352741]/40 border-t border-[rgba(194,189,206,0.12)]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="rounded-2xl border border-[rgba(194,189,206,0.18)] bg-[#3B2D47] p-8 sm:p-14 relative overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.45)]">
+    <section id="inscription" className="py-16 sm:py-24 relative bg-[#352741]/40 border-t border-[rgba(194,189,206,0.12)]">
+      <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 relative">
+        <div className="rounded-2xl border border-[rgba(194,189,206,0.18)] bg-[#3B2D47] p-5 sm:p-10 lg:p-14 relative overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.45)]">
           {/* Subtle neon pink aura in corner */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-[#FF2477]/10 rounded-full blur-[90px] pointer-events-none" />
 
-          <div className="relative space-y-8 text-center max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#FF2477]/30 bg-[#FF2477]/10 text-xs font-[200] tracking-[0.3em] uppercase text-[#FF2477]">
-              <Sparkles className="w-3.5 h-3.5 stroke-[1.5]" />
-              <span>Patron Access &amp; Edition Dispatch</span>
+          <div className="relative space-y-6 sm:space-y-8 text-center max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full border border-[#FF2477]/30 bg-[#FF2477]/10 text-xs font-[200] tracking-[0.2em] sm:tracking-[0.3em] uppercase text-[#FF2477] max-w-full truncate">
+              <Sparkles className="w-3.5 h-3.5 stroke-[1.5] shrink-0" />
+              <span className="truncate">Patron Access &amp; Edition Dispatch</span>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-3xl sm:text-4xl font-[100] uppercase tracking-[0.18em] text-[#F8F6FA] leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-[100] uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[#F8F6FA] leading-tight">
                 Inscribe into the Canon
               </h2>
               <div className="h-[1px] w-16 mx-auto bg-[#FF2477]" />
-              <p className="text-sm font-[200] text-[#C2BDCE] leading-relaxed tracking-wide">
+              <p className="text-xs sm:text-sm font-[200] text-[#C2BDCE] leading-relaxed tracking-wide">
                 Join our international register of architects, typographers, and bibliophiles. Patrons receive hand-numbered physical monographs and private archival dispatches.
               </p>
             </div>

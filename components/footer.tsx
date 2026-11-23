@@ -20,16 +20,16 @@ export function Footer() {
       {/* Near to Footer Option to Switch Language */}
       <LanguageFooterBar />
 
-      <footer className="relative bg-[#2d2138] border-t border-[rgba(194,189,206,0.1)] py-12 text-[#C2BDCE]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-6 border-b border-[rgba(194,189,206,0.08)]">
+      <footer className="relative bg-[#2d2138] border-t border-[rgba(194,189,206,0.1)] py-10 sm:py-12 text-[#C2BDCE]">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 pb-6 border-b border-[rgba(194,189,206,0.08)]">
             {/* Logo */}
             <Link href="/" className="inline-flex items-center">
               <SaintsBookLogo size="sm" />
             </Link>
 
             {/* Minimal Quick Links */}
-            <div className="flex items-center gap-6 text-xs uppercase font-[200] tracking-[0.2em] flex-wrap justify-center">
+            <div className="flex items-center gap-3 sm:gap-6 text-xs uppercase font-[200] tracking-[0.16em] sm:tracking-[0.2em] flex-wrap justify-center">
               <Link href="/saints" className="hover:text-[#FF2477] transition-colors">
                 {t("nav.allSaints")}
               </Link>
@@ -54,7 +54,7 @@ export function Footer() {
 
           {/* Creator & Handles */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-[200] tracking-wide text-[#C2BDCE]/70">
-            <div className="flex items-center gap-2 text-center sm:text-left">
+            <div className="flex items-center gap-2 text-center sm:text-left flex-wrap justify-center">
               <span>{t("footer.creator")}</span>
               <a
                 href="https://dariogeorge.in"
@@ -68,7 +68,7 @@ export function Footer() {
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-3 sm:gap-5 flex-wrap justify-center">
               <a
                 href="https://github.com/dariogeorge21/saints-book"
                 target="_blank"

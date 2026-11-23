@@ -189,7 +189,7 @@ export function SaintImageCarousel({
               e.stopPropagation();
               goToPrev();
             }}
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#FF2477] text-white flex items-center justify-center backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg cursor-pointer"
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#FF2477] text-white flex items-center justify-center backdrop-blur-md border border-white/20 opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg cursor-pointer"
             aria-label="Previous saint image"
             title="Previous image"
           >
@@ -204,7 +204,7 @@ export function SaintImageCarousel({
               e.stopPropagation();
               goToNext();
             }}
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#FF2477] text-white flex items-center justify-center backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg cursor-pointer"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#FF2477] text-white flex items-center justify-center backdrop-blur-md border border-white/20 opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg cursor-pointer"
             aria-label="Next saint image"
             title="Next image"
           >

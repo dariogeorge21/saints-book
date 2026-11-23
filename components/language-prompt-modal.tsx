@@ -48,10 +48,10 @@ export function LanguagePromptModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
       <div
         className={cn(
-          "relative w-full max-w-lg bg-[#2f223a] border border-[#FF2477]/40 rounded-2xl p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.6)] space-y-6 transition-all duration-300",
+          "relative w-full max-w-lg bg-[#2f223a] border border-[#FF2477]/40 rounded-2xl p-4 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.6)] space-y-5 sm:space-y-6 transition-all duration-300 max-h-[90vh] overflow-y-auto",
           selectedLang === "ml" && "font-malayalam",
           selectedLang === "hi" && "font-hindi"
         )}
@@ -59,7 +59,7 @@ export function LanguagePromptModal() {
         {/* Close Button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-4 right-4 p-1.5 rounded-lg text-[#C2BDCE]/60 hover:text-white hover:bg-[#3d2c4b] transition-colors cursor-pointer"
+          className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 p-1.5 rounded-lg text-[#C2BDCE]/60 hover:text-white hover:bg-[#3d2c4b] transition-colors cursor-pointer"
           aria-label="Close language selector"
         >
           <X className="w-4 h-4" />
@@ -67,21 +67,21 @@ export function LanguagePromptModal() {
 
         {/* Header - Dynamically updates in selectedLang */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#FF2477]/15 border border-[#FF2477]/40 flex items-center justify-center text-[#FF2477] shrink-0">
-            <Globe className="w-5 h-5 stroke-[1.5]" />
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#FF2477]/15 border border-[#FF2477]/40 flex items-center justify-center text-[#FF2477] shrink-0">
+            <Globe className="w-4 sm:w-5 h-4 sm:h-5 stroke-[1.5]" />
           </div>
           <div>
-            <h3 className="text-base sm:text-lg font-[200] tracking-wider text-[#F8F6FA] uppercase">
+            <h3 className="text-sm sm:text-lg font-[200] tracking-wider text-[#F8F6FA] uppercase">
               {modalT("prompt.title")}
             </h3>
-            <p className="text-xs font-[200] text-[#C2BDCE]/70 tracking-wide mt-0.5">
+            <p className="text-[11px] sm:text-xs font-[200] text-[#C2BDCE]/70 tracking-wide mt-0.5">
               {modalT("prompt.subtitle")}
             </p>
           </div>
         </div>
 
         {/* Language Selection Buttons */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {SUPPORTED_LANGUAGES.map((lang) => {
             const isSelected = selectedLang === lang.code;
             return (
@@ -89,16 +89,16 @@ export function LanguagePromptModal() {
                 key={lang.code}
                 onClick={() => handleLanguageSelect(lang.code)}
                 className={cn(
-                  "p-3 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1 cursor-pointer",
+                  "p-2.5 sm:p-3 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-0.5 sm:gap-1 cursor-pointer",
                   isSelected
                     ? "bg-[#FF2477]/20 border-[#FF2477] text-white shadow-[0_0_15px_rgba(255,36,119,0.25)] ring-1 ring-[#FF2477]"
                     : "bg-[#382a46]/60 border-[rgba(194,189,206,0.12)] text-[#C2BDCE] hover:border-[rgba(194,189,206,0.25)] hover:text-white"
                 )}
               >
-                <span className="text-sm font-[300] tracking-wide">
+                <span className="text-xs sm:text-sm font-[300] tracking-wide">
                   {lang.nativeLabel}
                 </span>
-                <span className="text-[10px] font-mono tracking-widest text-[#FF2477] uppercase">
+                <span className="text-[9px] sm:text-[10px] font-mono tracking-wider sm:tracking-widest text-[#FF2477] uppercase">
                   {lang.label}
                 </span>
               </button>

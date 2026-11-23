@@ -25,14 +25,14 @@ export function SaintsGallery() {
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#FF2477]/5 blur-[160px] pointer-events-none rounded-full" />
       <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-[#271C31]/60 blur-[130px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative space-y-14">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative space-y-10 sm:space-y-14">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[rgba(194,189,206,0.14)]">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-[200] tracking-[0.3em] uppercase text-[#FF2477]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 sm:pb-8 border-b border-[rgba(194,189,206,0.14)]">
+          <div className="space-y-2 sm:space-y-3">
+            <div className="inline-flex items-center gap-2 text-xs font-[200] tracking-[0.2em] sm:tracking-[0.3em] uppercase text-[#FF2477]">
               <span>{t("gallery.badge")}</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-[100] uppercase tracking-[0.18em] text-[#F8F6FA]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-[100] uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[#F8F6FA]">
               {t("gallery.title")}
             </h2>
             <p className="text-sm sm:text-base font-[200] text-[#C2BDCE] max-w-2xl leading-relaxed tracking-wide">
@@ -42,7 +42,7 @@ export function SaintsGallery() {
 
           <Link
             href="/saints"
-            className="inline-flex items-center gap-2 text-xs uppercase font-[200] tracking-[0.25em] text-[#FF2477] hover:text-[#ff4b91] transition-colors group self-start md:self-end"
+            className="inline-flex items-center gap-2 text-xs uppercase font-[200] tracking-[0.2em] sm:tracking-[0.25em] text-[#FF2477] hover:text-[#ff4b91] transition-colors group self-start md:self-end"
           >
             <span>{t("gallery.viewAll", { count: SAINTS.length })}</span>
             <ArrowRight className="w-3.5 h-3.5 stroke-[1.5] group-hover:translate-x-1 transition-transform" />
@@ -50,13 +50,13 @@ export function SaintsGallery() {
         </div>
 
         {/* 3 Featured Saints Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {featuredThreeSaints.map((saint) => {
             const localized = getSaintContent(saint);
             return (
               <article
                 key={saint.id}
-                className="group relative rounded-2xl border border-[rgba(194,189,206,0.16)] bg-[#433352]/70 hover:bg-[#433352] p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#FF2477]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.45)] hover:-translate-y-1"
+                className="group relative rounded-2xl border border-[rgba(194,189,206,0.16)] bg-[#433352]/70 hover:bg-[#433352] p-4 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#FF2477]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.45)] hover:-translate-y-1"
               >
                 {/* Accent top indicator line on hover */}
                 <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-[#FF2477] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

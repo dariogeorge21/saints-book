@@ -53,7 +53,7 @@ export function SaintsBookLogo({
   // "SAINTS" in #FF2477 with chevron 'A' without crossbar, "BOOK" in #C2BDCE
   const sizeClasses = {
     sm: "text-base tracking-[0.22em]",
-    md: "text-xl sm:text-2xl tracking-[0.26em]",
+    md: "text-lg sm:text-2xl tracking-[0.18em] sm:tracking-[0.26em]",
     lg: "text-3xl sm:text-4xl tracking-[0.28em]",
     xl: "text-4xl sm:text-6xl tracking-[0.3em]",
     watermark: "text-6xl sm:text-8xl md:text-9xl tracking-[0.32em] opacity-15",

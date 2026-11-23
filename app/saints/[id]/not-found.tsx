@@ -13,17 +13,17 @@ export default function SaintNotFound() {
     <div className="min-h-screen flex flex-col bg-[#3B2D47] text-[#C2BDCE] selection:bg-[#FF2477] selection:text-white">
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center py-20 px-4 sm:px-6">
-        <div className="max-w-md w-full text-center space-y-6 p-8 sm:p-10 rounded-2xl bg-[#352741]/60 border border-[rgba(194,189,206,0.15)] shadow-2xl">
-          <div className="w-16 h-16 mx-auto rounded-full bg-[#FF2477]/10 border border-[#FF2477]/30 flex items-center justify-center text-[#FF2477]">
-            <BookOpen className="w-7 h-7 stroke-[1.5]" />
+      <main className="flex-1 flex items-center justify-center py-16 sm:py-20 px-3 sm:px-6">
+        <div className="max-w-md w-full text-center space-y-6 p-5 sm:p-10 rounded-2xl bg-[#352741]/60 border border-[rgba(194,189,206,0.15)] shadow-2xl">
+          <div className="w-14 sm:w-16 h-14 sm:h-16 mx-auto rounded-full bg-[#FF2477]/10 border border-[#FF2477]/30 flex items-center justify-center text-[#FF2477]">
+            <BookOpen className="w-6 sm:w-7 h-6 sm:h-7 stroke-[1.5]" />
           </div>
 
           <div className="space-y-2">
-            <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#FF2477] px-3 py-1 rounded-full bg-[#FF2477]/10 border border-[#FF2477]/20">
+            <span className="text-[10px] font-mono tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[#FF2477] px-2.5 sm:px-3 py-1 rounded-full bg-[#FF2477]/10 border border-[#FF2477]/20">
               404 // Chronicle Not Found
             </span>
-            <h1 className="text-2xl sm:text-3xl font-[100] uppercase tracking-wider text-[#F8F6FA] pt-2">
+            <h1 className="text-xl sm:text-3xl font-[100] uppercase tracking-wider text-[#F8F6FA] pt-2">
               Saint Chronicle Missing
             </h1>
             <p className="text-xs sm:text-sm font-[200] text-[#C2BDCE]/70 leading-relaxed">

@@ -170,8 +170,8 @@ export default function SaintStoryPage({ params }: SaintPageParams) {
       <Navbar />
 
       {/* Main Archival Canvas */}
-      <main className="flex-1 py-12 sm:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 py-8 sm:py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8">
           <Suspense fallback={<SaintChronicleSkeleton />}>
             <SaintChronicleContent params={params} />
           </Suspense>

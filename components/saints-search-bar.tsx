@@ -123,7 +123,7 @@ export function SaintsSearchBar({
           autoComplete="off"
           spellCheck="false"
           className={cn(
-            "w-full pl-10 pr-24 py-2.5 rounded-xl bg-[#33253e] text-xs sm:text-sm font-[200] tracking-wide text-[#F8F6FA]",
+            "w-full pl-10 pr-12 sm:pr-24 py-2.5 rounded-xl bg-[#33253e] text-xs sm:text-sm font-[200] tracking-wide text-[#F8F6FA]",
             "border border-[rgba(194,189,206,0.18)] placeholder-[#C2BDCE]/50",
             "transition-all duration-200 outline-none",
             "focus:border-[#FF2477] focus:ring-2 focus:ring-[#FF2477]/20 focus:bg-[#382845]",

@@ -83,10 +83,10 @@ export default function AllSaintsPage() {
     >
       <Navbar />
 
-      <main className="flex-1 py-12 sm:py-20">
+      <main className="flex-1 py-10 sm:py-20">
         <div
           className={cn(
-            "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 transition-all duration-300",
+            "max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-10 sm:space-y-12 transition-all duration-300",
             isTransitioning && "lang-switch-active"
           )}
         >
@@ -94,13 +94,13 @@ export default function AllSaintsPage() {
           <div className="flex items-center justify-between border-b border-[rgba(194,189,206,0.12)] pb-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs uppercase font-[200] tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer"
+              className="inline-flex items-center gap-2 text-xs uppercase font-[200] tracking-[0.2em] sm:tracking-[0.25em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors group cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5 stroke-[1.5] group-hover:-translate-x-1 transition-transform" />
               <span>{t("allSaints.backHome")}</span>
             </Link>
 
-            <span className="text-[10px] font-mono tracking-widest text-[#FF2477] uppercase px-3 py-1 rounded-full bg-[#FF2477]/10 border border-[#FF2477]/30">
+            <span className="text-[10px] font-mono tracking-wider sm:tracking-widest text-[#FF2477] uppercase px-2.5 sm:px-3 py-1 rounded-full bg-[#FF2477]/10 border border-[#FF2477]/30">
               {t("allSaints.saintsCount", {
                 filtered: filteredSaints.length,
                 total: SAINTS.length,
@@ -109,11 +109,11 @@ export default function AllSaintsPage() {
           </div>
 
           {/* Page Masthead */}
-          <header className="space-y-4 max-w-2xl">
-            <span className="text-xs font-[200] tracking-[0.3em] uppercase text-[#FF2477]">
+          <header className="space-y-3 sm:space-y-4 max-w-2xl">
+            <span className="text-xs font-[200] tracking-[0.2em] sm:tracking-[0.3em] uppercase text-[#FF2477]">
               {t("gallery.badge")}
             </span>
-            <h1 className="text-3xl sm:text-5xl font-[100] uppercase tracking-[0.16em] text-[#F8F6FA]">
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl font-[100] uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[#F8F6FA]">
               {t("allSaints.title")}
             </h1>
             <p className="text-sm sm:text-base font-[200] text-[#C2BDCE] leading-relaxed tracking-wide">
@@ -124,7 +124,7 @@ export default function AllSaintsPage() {
           {/* Interactive Search & Era Filter Controls */}
           <section
             aria-label="Filter and search saints archive"
-            className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 py-6 border-y border-[rgba(194,189,206,0.1)]"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sm:gap-6 py-5 sm:py-6 border-y border-[rgba(194,189,206,0.1)]"
           >
             {/* Era Filter Dropdown with Full Localization */}
             <div className="flex items-center gap-3">
@@ -149,7 +149,7 @@ export default function AllSaintsPage() {
             </div>
 
             {/* Accessible Saints Search Bar with live counter and shortcuts */}
-            <div className="w-full lg:w-96">
+            <div className="w-full sm:w-80 lg:w-96">
               <SaintsSearchBar
                 value={searchQuery}
                 onChange={setSearchQuery}
@@ -161,13 +161,13 @@ export default function AllSaintsPage() {
           </section>
 
           {/* Saints Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredSaints.map((saint) => {
               const localized = getSaintContent(saint);
               return (
                 <article
                   key={saint.id}
-                  className="group relative rounded-2xl border border-[rgba(194,189,206,0.15)] bg-[#433352]/60 hover:bg-[#433352] p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#FF2477]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:-translate-y-1"
+                  className="group relative rounded-2xl border border-[rgba(194,189,206,0.15)] bg-[#433352]/60 hover:bg-[#433352] p-4 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#FF2477]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:-translate-y-1"
                 >
                   <div className="space-y-5">
                     {/* Interactive Saint Image Showcase */}

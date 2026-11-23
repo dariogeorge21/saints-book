@@ -144,21 +144,21 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* Left Column: Minimal Proem & Direct Action on Page Load */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
             {/* Archival Eyebrow Tag */}
-            <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-[rgba(194,189,206,0.18)] bg-[#352741]/80 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF2477] shadow-[0_0_8px_#FF2477]" />
-              <span className="text-[11px] font-[200] tracking-[0.3em] uppercase text-[#F8F6FA]">
+            <div className="inline-flex items-center gap-2.5 sm:gap-3 px-3 sm:px-3.5 py-1.5 rounded-full border border-[rgba(194,189,206,0.18)] bg-[#352741]/80 backdrop-blur-sm max-w-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF2477] shadow-[0_0_8px_#FF2477] shrink-0" />
+              <span className="text-[10px] sm:text-[11px] font-[200] tracking-[0.22em] sm:tracking-[0.3em] uppercase text-[#F8F6FA] truncate">
                 {t("hero.tagline")}
               </span>
             </div>
 
             {/* Main Editorial Headline */}
-            <div className="space-y-4">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-[100] uppercase tracking-[0.14em] sm:tracking-[0.18em] text-[#F8F6FA] leading-[1.18] sm:leading-[1.15]">
+            <div className="space-y-3 sm:space-y-4">
+              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-[100] uppercase tracking-[0.1em] sm:tracking-[0.18em] text-[#F8F6FA] leading-[1.2] sm:leading-[1.15]">
                 {t("hero.titlePart1")}{" "}
                 <span className="text-[#FF2477] font-[200]">
                   &amp; {t("hero.titlePart2")}
@@ -169,15 +169,15 @@ export function Hero() {
             </div>
 
             {/* Editorial Lead Excerpt */}
-            <p className="text-base sm:text-lg font-[200] text-[#C2BDCE] leading-relaxed max-w-xl tracking-wide">
+            <p className="text-sm sm:text-lg font-[200] text-[#C2BDCE] leading-relaxed max-w-xl tracking-wide">
               {t("hero.lead")}
             </p>
 
             {/* Clear Direct Navigation on Page Load with Smooth Scroll to Reading Section */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
               <a
                 href="#saints"
-                className="px-8 py-3.5 rounded-lg bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-xs uppercase tracking-[0.28em] font-[200] transition-all shadow-[0_0_25px_rgba(255,36,119,0.35)] hover:shadow-[0_0_35px_rgba(255,36,119,0.55)] text-center flex items-center justify-center gap-2 group cursor-pointer"
+                className="px-5 sm:px-8 py-3 sm:py-3.5 rounded-lg bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-[11px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.28em] font-[200] transition-all shadow-[0_0_25px_rgba(255,36,119,0.35)] hover:shadow-[0_0_35px_rgba(255,36,119,0.55)] text-center flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <span>{t("hero.ctaStart")}</span>
                 <ArrowDownRight className="w-4 h-4 stroke-[1.5] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
@@ -185,7 +185,7 @@ export function Hero() {
 
               <Link
                 href="/saints"
-                className="px-6 py-3.5 rounded-lg border border-[rgba(194,189,206,0.25)] hover:border-[#FF2477] bg-[#433352]/40 hover:bg-[#FF2477]/10 text-xs uppercase tracking-[0.28em] font-[200] text-[#F8F6FA] transition-all flex items-center justify-center gap-2 group"
+                className="px-5 sm:px-6 py-3 sm:py-3.5 rounded-lg border border-[rgba(194,189,206,0.25)] hover:border-[#FF2477] bg-[#433352]/40 hover:bg-[#FF2477]/10 text-[11px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.28em] font-[200] text-[#F8F6FA] transition-all flex items-center justify-center gap-2 group"
               >
                 <BookOpen className="w-4 h-4 stroke-[1.5] text-[#FF2477]" />
                 <span>{t("nav.allSaints")}</span>
@@ -193,7 +193,7 @@ export function Hero() {
 
               <Link
                 href="/calendar"
-                className="px-4 py-3.5 text-xs uppercase tracking-[0.22em] font-[200] text-[#C2BDCE] hover:text-[#FF2477] transition-colors flex items-center justify-center gap-1.5"
+                className="px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs uppercase tracking-[0.18em] sm:tracking-[0.22em] font-[200] text-[#C2BDCE] hover:text-[#FF2477] transition-colors flex items-center justify-center gap-1.5"
               >
                 <Calendar className="w-3.5 h-3.5 text-[#FF2477]" />
                 <span>{t("nav.calendar")}</span>
@@ -201,12 +201,12 @@ export function Hero() {
             </div>
 
             {/* Archival Attributes Meter */}
-            <div className="pt-6 border-t border-[rgba(194,189,206,0.12)] grid grid-cols-2 gap-8 max-w-sm text-left">
+            <div className="pt-5 sm:pt-6 border-t border-[rgba(194,189,206,0.12)] grid grid-cols-2 gap-4 sm:gap-8 max-w-sm text-left">
               <div>
                 <span className="block text-2xl font-[100] text-[#F8F6FA] tracking-widest">
                   {SAINTS.length}
                 </span>
-                <span className="text-[10px] font-[200] tracking-[0.25em] uppercase text-[#C2BDCE]/70">
+                <span className="text-[10px] font-[200] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[#C2BDCE]/70">
                   Canonised Lives
                 </span>
               </div>
@@ -214,7 +214,7 @@ export function Hero() {
                 <span className="block text-2xl font-[100] text-[#FF2477] tracking-widest">
                   2,000+
                 </span>
-                <span className="text-[10px] font-[200] tracking-[0.25em] uppercase text-[#C2BDCE]/70">
+                <span className="text-[10px] font-[200] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[#C2BDCE]/70">
                   Years of History
                 </span>
               </div>

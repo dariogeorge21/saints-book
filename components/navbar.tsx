@@ -31,21 +31,21 @@ export function Navbar() {
           : "bg-transparent border-b border-transparent py-4 sm:py-5"
       )}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
         {/* Brand Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3 group focus:outline-none"
+          className="flex items-center gap-2 sm:gap-3 group focus:outline-none shrink-0"
           aria-label="SaintsBook Home"
         >
           <SaintsBookLogo size="md" glow />
         </Link>
 
         {/* Minimal Navigation & Direct Start Reading Action */}
-        <div className="flex items-center gap-3 sm:gap-5">
+        <div className="flex items-center gap-2 sm:gap-4 lg:gap-5 shrink-0">
           <Link
             href="/calendar"
-            className="flex items-center gap-1.5 text-xs uppercase font-[200] tracking-[0.2em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors"
+            className="flex items-center gap-1.5 text-xs uppercase font-[200] tracking-[0.16em] sm:tracking-[0.2em] text-[#C2BDCE] hover:text-[#FF2477] transition-colors"
           >
             <Calendar className="w-3.5 h-3.5 stroke-[1.5]" />
             <span className="hidden sm:inline">{t("nav.calendar")}</span>
@@ -54,7 +54,7 @@ export function Navbar() {
           {/* Quick Settings & Language Indicator */}
           <Link
             href="/settings"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-[rgba(194,189,206,0.15)] hover:border-[#FF2477]/50 text-xs font-[200] tracking-wider text-[#C2BDCE] hover:text-[#FF2477] transition-colors"
+            className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-lg border border-[rgba(194,189,206,0.15)] hover:border-[#FF2477]/50 text-xs font-[200] tracking-wider text-[#C2BDCE] hover:text-[#FF2477] transition-colors"
             title="Language & Preferences"
           >
             <Globe className="w-3.5 h-3.5 text-[#FF2477]" />
@@ -65,7 +65,7 @@ export function Navbar() {
 
           <Link
             href="/saints"
-            className="px-4 sm:px-5 py-2 rounded-lg bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-xs uppercase tracking-[0.25em] font-[200] transition-all shadow-[0_0_15px_rgba(255,36,119,0.3)] hover:shadow-[0_0_25px_rgba(255,36,119,0.5)] flex items-center gap-1.5 group"
+            className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-lg bg-[#FF2477] hover:bg-[#ff3f8b] text-white text-[11px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.25em] font-[200] transition-all shadow-[0_0_15px_rgba(255,36,119,0.3)] hover:shadow-[0_0_25px_rgba(255,36,119,0.5)] flex items-center gap-1.5 group shrink-0"
           >
             <span>{t("nav.startReading")}</span>
             <ArrowRight className="w-3.5 h-3.5 stroke-[1.5] group-hover:translate-x-0.5 transition-transform" />

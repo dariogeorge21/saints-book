@@ -12,10 +12,10 @@ export function LanguageFooterBar() {
 
   return (
     <section className="relative z-30 bg-[#2b1f35] border-t border-[rgba(194,189,206,0.12)] py-5 text-[#C2BDCE]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Left: Language Indicator & Icon */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#FF2477]/10 border border-[#FF2477]/30 flex items-center justify-center text-[#FF2477]">
+          <div className="w-8 h-8 rounded-lg bg-[#FF2477]/10 border border-[#FF2477]/30 flex items-center justify-center text-[#FF2477] shrink-0">
             <Globe className="w-4 h-4 stroke-[1.5]" />
           </div>
           <div>
@@ -40,7 +40,7 @@ export function LanguageFooterBar() {
         </div>
 
         {/* Center: Language Switch Buttons */}
-        <div className="flex items-center gap-2 p-1 rounded-xl bg-[#352741]/80 border border-[rgba(194,189,206,0.14)] backdrop-blur-sm">
+        <div className="flex items-center gap-1 sm:gap-2 p-1 rounded-xl bg-[#352741]/80 border border-[rgba(194,189,206,0.14)] backdrop-blur-sm flex-wrap justify-center sm:flex-nowrap">
           {SUPPORTED_LANGUAGES.map((lang) => {
             const isActive = language === lang.code;
             return (
@@ -48,7 +48,7 @@ export function LanguageFooterBar() {
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}
                 className={cn(
-                  "px-3.5 py-1.5 rounded-lg text-xs font-[200] tracking-wider transition-all flex items-center gap-1.5 cursor-pointer",
+                  "px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-[200] tracking-wider transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap",
                   isActive
                     ? "bg-[#FF2477] text-white shadow-[0_0_12px_rgba(255,36,119,0.35)] font-[400]"
                     : "text-[#C2BDCE] hover:text-[#F8F6FA] hover:bg-[#433352]/50"

@@ -82,6 +82,8 @@
     color-scheme: dark;
     background-color: #3B2D47;
     font-family: var(--font-outfit), "Helvetica Neue", Arial, sans-serif;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   body {
@@ -91,6 +93,7 @@
     letter-spacing: 0.02em;
     min-height: 100vh;
     overflow-x: hidden;
+    width: 100%;
   }
 
   /* Ultra-light editorial typography defaults */

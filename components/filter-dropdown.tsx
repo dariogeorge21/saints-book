@@ -126,7 +126,7 @@ export function FilterDropdown({
           role="listbox"
           aria-label={label}
           className={cn(
-            "absolute top-full mt-2 z-50 min-w-[220px] max-h-72 overflow-y-auto rounded-xl bg-[#2D2138] border border-[rgba(194,189,206,0.18)] shadow-[0_20px_45px_rgba(0,0,0,0.6)] p-1.5 backdrop-blur-xl animate-in fade-in-0 zoom-in-95",
+            "absolute top-full mt-2 z-50 min-w-[200px] sm:min-w-[220px] max-w-[calc(100vw-24px)] max-h-72 overflow-y-auto rounded-xl bg-[#2D2138] border border-[rgba(194,189,206,0.18)] shadow-[0_20px_45px_rgba(0,0,0,0.6)] p-1.5 backdrop-blur-xl animate-in fade-in-0 zoom-in-95",
             align === "right" ? "right-0" : "left-0"
           )}
         >

@@ -44,26 +44,26 @@ const MARKDOWN_COMPONENTS: Components = {
   ),
   blockquote: ({ node: _node, ...props }) => (
     <blockquote
-      className="my-6 p-6 rounded-xl bg-[#352741]/50 border-l-2 border-[#FF2477] border-y border-r border-[rgba(194,189,206,0.12)] italic text-base sm:text-lg font-[200] text-[#F8F6FA] leading-relaxed"
+      className="my-6 p-4 sm:p-6 rounded-xl bg-[#352741]/50 border-l-2 border-[#FF2477] border-y border-r border-[rgba(194,189,206,0.12)] italic text-base sm:text-lg font-[200] text-[#F8F6FA] leading-relaxed"
       {...props}
     />
   ),
   ul: ({ node: _node, ...props }) => (
     <ul
-      className="list-disc pl-6 space-y-2 mb-6 text-base sm:text-lg font-[300] text-[#C2BDCE] marker:text-[#FF2477]"
+      className="list-disc pl-5 sm:pl-6 space-y-2 mb-6 text-base sm:text-lg font-[300] text-[#C2BDCE] marker:text-[#FF2477]"
       {...props}
     />
   ),
   ol: ({ node: _node, ...props }) => (
     <ol
-      className="list-decimal pl-6 space-y-2 mb-6 text-base sm:text-lg font-[300] text-[#C2BDCE] marker:text-[#FF2477]"
+      className="list-decimal pl-5 sm:pl-6 space-y-2 mb-6 text-base sm:text-lg font-[300] text-[#C2BDCE] marker:text-[#FF2477]"
       {...props}
     />
   ),
   li: ({ node: _node, ...props }) => <li className="pl-1" {...props} />,
   table: ({ node: _node, ...props }) => (
-    <div className="my-8 overflow-x-auto rounded-xl border border-[rgba(194,189,206,0.15)] bg-[#352741]/40 shadow-inner">
-      <table className="w-full text-left text-sm font-[300]" {...props} />
+    <div className="my-8 overflow-x-auto max-w-full rounded-xl border border-[rgba(194,189,206,0.15)] bg-[#352741]/40 shadow-inner">
+      <table className="w-full min-w-[480px] sm:min-w-full text-left text-xs sm:text-sm font-[300]" {...props} />
     </div>
   ),
   thead: ({ node: _node, ...props }) => (
@@ -73,11 +73,11 @@ const MARKDOWN_COMPONENTS: Components = {
     />
   ),
   th: ({ node: _node, ...props }) => (
-    <th className="px-5 py-3 font-[300]" {...props} />
+    <th className="px-3 sm:px-5 py-2.5 sm:py-3 font-[300]" {...props} />
   ),
   td: ({ node: _node, ...props }) => (
     <td
-      className="px-5 py-3 border-t border-[rgba(194,189,206,0.08)] text-[#C2BDCE]"
+      className="px-3 sm:px-5 py-2.5 sm:py-3 border-t border-[rgba(194,189,206,0.08)] text-[#C2BDCE]"
       {...props}
     />
   ),
