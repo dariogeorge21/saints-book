@@ -285,8 +285,7 @@ export function Hero() {
 
                 {/* Saint Header Row: Featured Badge & Dynamic Feast Date */}
                 <div className="flex flex-wrap items-center justify-between gap-2.5 pb-4 border-b border-[rgba(194,189,206,0.12)]">
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-[200] tracking-[0.16em] sm:tracking-[0.25em] uppercase text-[#FF2477] shrink-0 min-w-0">
-                    <Sparkles className="w-3.5 h-3.5 stroke-[1.5] animate-pulse shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-[200] tracking-[0.16em] sm:tracking-[0.25em] uppercase text-[#FF2477] shrink-0 min-w-0">
                     <span>{t("gallery.badge")}</span>
                   </div>
                   <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
