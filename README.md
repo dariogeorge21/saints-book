@@ -1,9 +1,11 @@
 # SaintsBook 📖✝️
 
 > **An Open-Source Archival Repository of Christian Saint Chronicles & Hagiographies**  
-> Preserving the lives, sacred chronicles, canonical milestones, and liturgical feast days of Christian saints across 2,000+ years of Church history for public reading.
+> Preserving the lives, sacred chronicles, canonical milestones, and liturgical feast days of Christian saints across 2,000+ years of Church history for public reading.  
+> 🌐 **Live Website**: [https://saints-book.vercel.app/](https://saints-book.vercel.app/)
 
-[![Open Source](https://img.shields.io/badge/Open_Source-Public_Repository-FF2477?style=flat-square&logo=github)](https://github.com/dariogeorge21/saints-book)
+[![Live Website](https://img.shields.io/badge/Live_Site-saints--book.vercel.app-FF2477?style=flat-square&logo=vercel)](https://saints-book.vercel.app/)
+[![Open Source](https://img.shields.io/badge/Open_Source-Public_Repository-black?style=flat-square&logo=github)](https://github.com/dariogeorge21/saints-book)
 [![Content Format](https://img.shields.io/badge/Chronicles-Markdown-38B2AC?style=flat-square&logo=markdown)](https://github.com/dariogeorge21/saints-book/tree/main/content)
 [![Languages](https://img.shields.io/badge/Languages-English%20%7C%20%E0%B4%AE%E0%B4%B2%E0%B4%AF%E0%B4%BE%E0%B4%B3%E0%B4%82%20%7C%20%E0%A4%B9%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A4%80-9A92A8?style=flat-square)](https://github.com/dariogeorge21/saints-book)
 [![Next.js](https://img.shields.io/badge/Next.js-16.4.5-black?style=flat-square&logo=next.js)](https://nextjs.org/)
