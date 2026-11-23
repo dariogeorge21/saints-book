@@ -53,7 +53,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguage, Record<string, string>> 
     "hero.ctaStart": "Start Reading",
     "hero.ctaChronicles": "Browse Saints",
     "hero.ctaCalendar": "Explore Feast Days",
-    "hero.tabDates": "Key Dates",
+    "hero.tabDates": "Portrait",
     "hero.tabQuote": "Words of Wisdom",
     "hero.tabPatronage": "Patron Saints",
 
@@ -207,7 +207,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguage, Record<string, string>> 
     "hero.ctaStart": "വായന തുടങ്ങുക",
     "hero.ctaChronicles": "വിശുദ്ധരെ പരിചയപ്പെടുക",
     "hero.ctaCalendar": "തിരുനാൾ ദിനങ്ങൾ കാണുക",
-    "hero.tabDates": "പ്രധാന തീയതികൾ",
+    "hero.tabDates": "ചിത്രം",
     "hero.tabQuote": "പ്രചോദനമേകുന്ന വാക്കുകൾ",
     "hero.tabPatronage": "സംരക്ഷക വിശുദ്ധർ",
 
@@ -361,7 +361,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguage, Record<string, string>> 
     "hero.ctaStart": "पढ़ना शुरू करें",
     "hero.ctaChronicles": "सभी संतों को जानें",
     "hero.ctaCalendar": "पर्व-दिवस देखें",
-    "hero.tabDates": "ज़रूरी तारीखें",
+    "hero.tabDates": "चित्र",
     "hero.tabQuote": "प्रेरक विचार",
     "hero.tabPatronage": "संरक्षक संत",
 

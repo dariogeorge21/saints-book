@@ -2,21 +2,19 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { SaintsBookLogo } from "./saintsbook-logo";
 import { SAINTS } from "@/lib/content";
 import { useLanguage } from "@/lib/language-context";
 import {
   ArrowDownRight,
   BookOpen,
-  Sparkles,
   Calendar,
-  Award,
   Heart,
   ChevronLeft,
   ChevronRight,
   Pause,
   Play,
-  RotateCw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -351,31 +349,31 @@ export function Hero() {
                   </button>
                 </div>
 
-                {/* Tab 1: Key Dates */}
+                {/* Tab 1: Portrait Showcase */}
                 {activeTab === "dates" && (
-                  <div className="space-y-2.5 py-2 animate-in fade-in duration-200 text-xs font-[200]">
-                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between gap-2">
-                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px] shrink-0">
-                        <Calendar className="w-3 h-3 text-[#FF2477] shrink-0" /> {t("story.dob")}
-                      </span>
-                      <span className="text-[#F8F6FA] text-right truncate text-[11px] sm:text-xs">{localizedFeatured.dateOfBirth}</span>
-                    </div>
-                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between gap-2">
-                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px] shrink-0">
-                        <Sparkles className="w-3 h-3 text-[#FF2477] shrink-0" /> {t("story.beatified")}
-                      </span>
-                      <span className="text-[#F8F6FA] text-right truncate text-[11px] sm:text-xs max-w-[200px]">
-                        {localizedFeatured.beatifiedDate}
-                      </span>
-                    </div>
-                    <div className="p-2.5 rounded-lg bg-[#352741] border border-[rgba(194,189,206,0.1)] flex items-center justify-between gap-2">
-                      <span className="flex items-center gap-1.5 text-[#C2BDCE]/70 uppercase tracking-wider text-[10px] shrink-0">
-                        <Award className="w-3 h-3 text-[#FF2477] shrink-0" /> {t("story.canonised")}
-                      </span>
-                      <span className="text-[#F8F6FA] text-right truncate text-[11px] sm:text-xs max-w-[200px]">
-                        {localizedFeatured.canonisedDate}
-                      </span>
-                    </div>
+                  <div className="space-y-2.5 py-1 animate-in fade-in duration-200 text-xs font-[200]">
+                    <Link
+                      href={`/saints/${currentSaint.id}`}
+                      className="block relative h-36 sm:h-40 w-full rounded-xl overflow-hidden border border-[rgba(194,189,206,0.15)] bg-[#271C31] group/img cursor-pointer"
+                      title={`View chronicle of ${localizedFeatured.name}`}
+                    >
+                      {currentSaint.images && currentSaint.images.length > 0 ? (
+                        <Image
+                          src={currentSaint.images[0]}
+                          alt={localizedFeatured.name}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 420px"
+                          className="object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                          priority
+                        />
+                      ) : (
+                        <div className="h-full flex items-center justify-center text-xs text-[#C2BDCE]/60">
+                          {localizedFeatured.name}
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#271C31]/80 via-transparent to-transparent pointer-events-none" />
+                    </Link>
+
                     <div className="p-2.5 rounded-lg bg-[#463354] border border-[#FF2477]/40 flex items-center justify-between gap-2">
                       <span className="flex items-center gap-1.5 text-[#FF2477] uppercase tracking-wider text-[10px] shrink-0">
                         <Heart className="w-3 h-3 text-[#FF2477] shrink-0" /> {t("story.feastDay")}
