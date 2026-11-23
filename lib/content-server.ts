@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { cache } from "react";
 import {
   getSaintSummary,
   type ContentLanguage,
@@ -19,7 +20,9 @@ function getContentPath(...segments: string[]): string {
  * Uses index.json mapping if available, or falls back to standard content path.
  * Server-only function.
  */
-export async function getSaintProfile(id: string): Promise<SaintProfile | null> {
+export const getSaintProfile = cache(async function getSaintProfile(
+  id: string
+): Promise<SaintProfile | null> {
   const summary = getSaintSummary(id);
   const rel = summary?.profile ? summary.profile.replace(/^content[\\/]/, "") : `${id}/profile.json`;
   const fullPath = path.join(process.cwd(), "content", rel);
@@ -31,14 +34,14 @@ export async function getSaintProfile(id: string): Promise<SaintProfile | null> 
     console.error(`[content] Failed to load profile for ${id}:`, error);
     return null;
   }
-}
+});
 
 /**
  * Loads the raw markdown story for a saint directly from the content folder.
  * Uses index.json story mapping as the single source of truth.
  * Server-only function.
  */
-export async function getSaintStory(
+export const getSaintStory = cache(async function getSaintStory(
   id: string,
   language: ContentLanguage = "en",
   kind: StoryKind = "shortStory"
@@ -79,14 +82,16 @@ export async function getSaintStory(
   }
 
   return null;
-}
+});
 
 /**
  * Loads the complete saint bundle (profile + all stories in all languages).
  * Fetches all markdown files from the content folder mapped in index.json.
  * Server-only function.
  */
-export async function getCompleteSaint(id: string): Promise<CompleteSaint | null> {
+export const getCompleteSaint = cache(async function getCompleteSaint(
+  id: string
+): Promise<CompleteSaint | null> {
   const profile = await getSaintProfile(id);
   if (!profile) return null;
 
@@ -110,4 +115,4 @@ export async function getCompleteSaint(id: string): Promise<CompleteSaint | null
     profile,
     stories,
   };
-}
+});

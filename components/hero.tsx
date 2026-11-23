@@ -222,9 +222,9 @@ export function Hero() {
           </div>
 
           {/* Right Column: Featured Saint Stories 3D Rotating Showcase (Sequential 180° X & Y Axis Flips) */}
-          <div className="lg:col-span-5 relative flex flex-col items-center">
+          <div className="lg:col-span-5 relative flex flex-col items-center w-full">
             {/* Perspective Wrapper */}
-            <div className="w-full max-w-md [perspective:1400px]">
+            <div className="w-full max-w-sm sm:max-w-md [perspective:1400px]">
               {/* Rotating 3D Card Element */}
               <div
                 ref={cardRef}
@@ -232,7 +232,7 @@ export function Hero() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 className={cn(
-                  "relative mx-auto w-full rounded-2xl border border-[rgba(194,189,206,0.18)] bg-[#433352]/90 p-5 sm:p-7 shadow-[0_30px_70px_rgba(0,0,0,0.55)] backdrop-blur-md overflow-hidden select-none [transform-style:preserve-3d]",
+                  "relative mx-auto w-full rounded-2xl border border-[rgba(194,189,206,0.18)] bg-[#433352]/90 p-4 sm:p-6 lg:p-7 shadow-[0_30px_70px_rgba(0,0,0,0.55)] backdrop-blur-md overflow-hidden select-none [transform-style:preserve-3d]",
                   flipAnimation
                 )}
                 style={
@@ -277,26 +277,26 @@ export function Hero() {
                 )}
 
                 {/* Saint Header Row: Featured Badge & Dynamic Feast Date */}
-                <div className="flex flex-wrap items-center justify-between gap-2.5 pb-4 border-b border-[rgba(194,189,206,0.12)]">
+                <div className="flex flex-wrap items-center justify-between gap-2 pb-3.5 border-b border-[rgba(194,189,206,0.12)]">
                   <div className="text-[11px] sm:text-xs font-[200] tracking-[0.16em] sm:tracking-[0.25em] uppercase text-[#FF2477] shrink-0 min-w-0">
                     <span>{t("gallery.badge")}</span>
                   </div>
                   <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                    <span className="text-[10px] font-mono tracking-wider sm:tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[#FF2477]/30 text-[#FF2477] whitespace-nowrap shrink-0 leading-none">
+                    <span className="text-[10px] font-mono tracking-wider sm:tracking-widest uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-[#2e2238] border border-[#FF2477]/30 text-[#FF2477] whitespace-nowrap shrink-0 leading-none">
                       {String(currentIndex + 1).padStart(2, "0")}&nbsp;/&nbsp;{String(SAINTS.length).padStart(2, "0")}
                     </span>
-                    <span className="text-[10px] font-mono tracking-wider sm:tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#2e2238] border border-[rgba(194,189,206,0.15)] text-[#C2BDCE] whitespace-nowrap shrink-0 leading-none">
+                    <span className="text-[10px] font-mono tracking-wider sm:tracking-widest uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-[#2e2238] border border-[rgba(194,189,206,0.15)] text-[#C2BDCE] whitespace-nowrap shrink-0 leading-none">
                       {localizedFeatured.feastDate}
                     </span>
                   </div>
                 </div>
 
                 {/* Saint Title & Epithet */}
-                <div className="py-4 space-y-1.5 text-center">
-                  <div className="py-1">
+                <div className="py-3 sm:py-4 space-y-1 sm:space-y-1.5 text-center">
+                  <div className="py-0.5 sm:py-1">
                     <SaintsBookLogo size="sm" />
                   </div>
-                  <h3 className="text-2xl font-[100] tracking-[0.16em] uppercase text-[#F8F6FA] leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-[100] tracking-[0.16em] uppercase text-[#F8F6FA] leading-snug">
                     {localizedFeatured.name}
                   </h3>
                   <p className="text-xs font-[200] text-[#FF2477] tracking-[0.14em] uppercase">
@@ -308,10 +308,10 @@ export function Hero() {
                 </div>
 
                 {/* Prominent Saint Portrait Showcase & Feast Day Banner (Tabs removed) */}
-                <div className="space-y-3 py-1 text-xs font-[200]">
+                <div className="space-y-2.5 sm:space-y-3 py-1 text-xs font-[200]">
                   <Link
                     href={`/saints/${currentSaint.id}`}
-                    className="block relative h-48 sm:h-52 w-full rounded-xl overflow-hidden border border-[rgba(194,189,206,0.15)] bg-[#271C31] group/img cursor-pointer shadow-inner"
+                    className="block relative h-44 sm:h-52 w-full rounded-xl overflow-hidden border border-[rgba(194,189,206,0.15)] bg-[#271C31] group/img cursor-pointer shadow-inner"
                     title={`View chronicle of ${localizedFeatured.name}`}
                   >
                     {currentSaint.images && currentSaint.images.length > 0 ? (
@@ -319,7 +319,7 @@ export function Hero() {
                         src={currentSaint.images[0]}
                         alt={localizedFeatured.name}
                         fill
-                        sizes="(max-width: 640px) 100vw, 420px"
+                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 420px"
                         className="object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
                         priority
                       />
@@ -331,7 +331,7 @@ export function Hero() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#271C31]/80 via-transparent to-transparent pointer-events-none" />
                   </Link>
 
-                  <div className="p-2.5 rounded-lg bg-[#463354] border border-[#FF2477]/40 flex items-center justify-between gap-2">
+                  <div className="p-2 sm:p-2.5 rounded-lg bg-[#463354] border border-[#FF2477]/40 flex items-center justify-between gap-2">
                     <span className="flex items-center gap-1.5 text-[#FF2477] uppercase tracking-wider text-[10px] shrink-0">
                       <Heart className="w-3.5 h-3.5 text-[#FF2477] shrink-0" /> {t("story.feastDay")}
                     </span>
@@ -342,7 +342,7 @@ export function Hero() {
                 </div>
 
                 {/* Direct Redirect & In-Card Navigation Controls */}
-                <div className="pt-4 mt-2 border-t border-[rgba(194,189,206,0.12)] flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
+                <div className="pt-3.5 sm:pt-4 mt-1 sm:mt-2 border-t border-[rgba(194,189,206,0.12)] flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
                   <Link
                     href={`/saints/${currentSaint.id}`}
                     className="inline-flex items-center gap-1.5 text-xs uppercase font-[200] tracking-[0.18em] sm:tracking-[0.22em] text-[#FF2477] hover:text-[#ff4b91] transition-colors group shrink-0"

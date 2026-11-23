@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Noto_Sans_Malayalam, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/app-providers";
 
@@ -7,6 +7,21 @@ const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600"],
+  display: "swap",
+});
+
+const notoMalayalam = Noto_Sans_Malayalam({
+  variable: "--font-malayalam",
+  subsets: ["malayalam"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+});
+
+const notoDevanagari = Noto_Sans_Devanagari({
+  variable: "--font-hindi",
+  subsets: ["devanagari"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saints-book.vercel.app";
@@ -132,16 +147,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} h-full antialiased dark`}
+      className={`${outfit.variable} ${notoMalayalam.variable} ${notoDevanagari.variable} h-full antialiased dark`}
     >
       <head>
         <meta name="apple-mobile-web-app-title" content="Saints Book" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@100..900&family=Noto+Sans+Malayalam:wght@100..900&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap"
-        />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-[#3B2D47] text-[#C2BDCE] selection:bg-[#FF2477] selection:text-white">
         <AppProviders>{children}</AppProviders>

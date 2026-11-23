@@ -121,12 +121,12 @@
 
 /* Native script typographic enhancement */
 [lang="ml"], .font-malayalam, html[lang="ml"] body {
-  font-family: "Google Sans", "Noto Sans Malayalam", "Gayathri", "Manjari", system-ui, sans-serif;
+  font-family: var(--font-malayalam), "Noto Sans Malayalam", "Gayathri", "Manjari", system-ui, sans-serif;
   letter-spacing: 0.01em;
 }
 
 [lang="hi"], .font-hindi, html[lang="hi"] body {
-  font-family: "Tiro Devanagari Hindi", "Noto Sans Devanagari", "Mangal", system-ui, serif;
+  font-family: var(--font-hindi), "Noto Sans Devanagari", "Mangal", system-ui, serif;
   letter-spacing: 0.02em;
 }
 
